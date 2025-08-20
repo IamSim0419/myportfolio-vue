@@ -1,7 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import HeaderSection from '@/sections/HeaderSection.vue'
+</script>
 
 <template>
-  <h1 class="bg-blue-500 text-white">This is a portfolio</h1>
+  <HeaderSection />
+  <main></main>
 </template>
 
 <style scoped></style>
