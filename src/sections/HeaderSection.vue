@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+import MobileNav from '@/components/MobileNav.vue'
+
 const navLinks = [
-  { text: 'Home', href: '/' },
-  { text: 'About', href: '/about' },
-  { text: 'Projects', href: '/projects' },
-  { text: 'Contact', href: '/contact' },
+  { name: 'Work', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Resume', href: '/projects' },
 ]
 </script>
 
@@ -16,10 +17,11 @@ const navLinks = [
       <nav>
         <ul>
           <li v-for="link in navLinks" :key="link.href">
-            <a :href="link.href">{{ link.text }}</a>
+            <a :href="link.href">{{ link.name }}</a>
           </li>
         </ul>
       </nav>
+      <MobileNav :navLinks="navLinks" />
     </div>
   </header>
 </template>
