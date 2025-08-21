@@ -1,13 +1,45 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const navLinks = [
+  { text: 'Home', href: '/' },
+  { text: 'About', href: '/about' },
+  { text: 'Projects', href: '/projects' },
+  { text: 'Contact', href: '/contact' },
+]
+</script>
 
 <template>
-  <header>
-    <div>
-      <h2>Simreich</h2>
+  <header class="bg-gray-900">
+    <div class="header_container">
+      <div>
+        <a href="/"><img src="/sim_logo.svg" alt="" /></a>
+      </div>
+      <nav>
+        <ul>
+          <li v-for="link in navLinks" :key="link.href">
+            <a :href="link.href">{{ link.text }}</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </header>
 </template>
 
 <style scoped>
 @reference 'tailwindcss';
+
+.header_container {
+  @apply flex items-center justify-between px-4 py-[13px];
+}
+
+.header_container img {
+  @apply h-[45px] w-[45px];
+}
+
+nav ul {
+  @apply hidden md:flex space-x-4;
+}
+
+nav a {
+  @apply text-gray-300 hover:text-white;
+}
 </style>
