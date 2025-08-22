@@ -12,7 +12,7 @@
         <div class="hero_info">
           <p>
             Currently a freelance Frontend Developer, previously at
-            <span class="text-azurePrimary-600">FlexCode</span>.
+            <span>FlexCode</span>.
           </p>
           <p>Based in Philippines, Iloilo</p>
         </div>
@@ -53,6 +53,10 @@ section {
 
 .hero_info p {
   @apply text-[#6B6B6B] text-base;
+}
+
+.hero_info span {
+  @apply text-[#7000FF];
 }
 
 .divider {

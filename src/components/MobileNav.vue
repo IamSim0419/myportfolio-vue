@@ -92,19 +92,18 @@ watch(
 /* Hamburger Button */
 .hamburger-button {
   @apply relative z-50 p-3 focus:outline-none cursor-pointer;
-  color: var(--color-primaryPurple-700);
 }
 
 .hamburger-line {
-  @apply block w-6 h-0.5 bg-neutral-100 transition-all;
+  @apply block w-6 h-0.5 bg-neutral-100 transition-all duration-300;
 }
 
 .middle-line {
-  @apply my-1;
+  @apply my-[5px];
 }
 
 .open-first {
-  @apply rotate-45 translate-y-1.5;
+  @apply rotate-45 translate-y-2;
 }
 
 .open-middle {
@@ -117,7 +116,7 @@ watch(
 
 /* Mobile Menu */
 .mobile-menu {
-  @apply fixed top-0 right-0 w-64 h-full bg-black shadow-lg z-40 lg:hidden;
+  @apply fixed top-0 right-0 w-full h-full bg-[#080808] shadow-lg z-40 lg:hidden;
 }
 
 .menu-content {

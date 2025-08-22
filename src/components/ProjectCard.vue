@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
+
 defineProps<{
   projects: {
     title: string
@@ -7,6 +9,13 @@ defineProps<{
     tech: string[]
   }[]
 }>()
+
+// Track expanded descriptions by title (or index)
+const expanded = ref<string | null>(null)
+
+const toggleExpand = (title: string) => {
+  expanded.value = expanded.value === title ? null : title
+}
 </script>
 
 <template>
@@ -14,7 +23,18 @@ defineProps<{
     <article class="project-card" v-for="project in projects" :key="project.title">
       <img :src="project.image" alt="project image" />
       <h3>{{ project.title }}</h3>
-      <p>{{ project.description }}</p>
+
+      <!-- Description -->
+      <div class="card_description">
+        <p :class="expanded === project.title ? 'line-clamp-none' : 'line-clamp-2'">
+          {{ project.description }}
+        </p>
+        <span @click="toggleExpand(project.title)">{{
+          expanded === project.title ? 'Less' : 'More'
+        }}</span>
+      </div>
+
+      <!-- Tech Badges -->
       <div v-for="value in project.tech" :key="value" class="tech-badge">
         <small>{{ value }}</small>
       </div>
@@ -26,7 +46,7 @@ defineProps<{
 @reference 'tailwindcss';
 
 .card_wrapper {
-  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10;
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-10;
 }
 
 .project-card {
@@ -41,8 +61,12 @@ defineProps<{
   @apply text-[18px] mt-3;
 }
 
-.project-card p {
-  @apply text-[14px] text-[#8D8C95] mt-1 line-clamp-2;
+.card_description p {
+  @apply text-[14px] text-[#8D8C95] mt-1;
+}
+
+.card_description span {
+  @apply cursor-pointer transition-all duration-300 text-sm;
 }
 
 .tech-badge {
