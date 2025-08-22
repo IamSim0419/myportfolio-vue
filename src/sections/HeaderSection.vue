@@ -33,7 +33,7 @@ const navLinks = [
 @reference 'tailwindcss';
 
 header {
-  @apply bg-black/40 blur-3xl fixed top-0 left-0 right-0 z-50;
+  @apply bg-black/80 blur-3xl fixed top-0 left-0 right-0 z-50;
 }
 
 .header_container {

@@ -44,7 +44,7 @@ section {
 }
 
 .hero_details img {
-  @apply self-end;
+  @apply self-end w-4 h-4;
 }
 
 .hero_info {
