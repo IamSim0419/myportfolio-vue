@@ -1,11 +1,6 @@
 <script lang="ts" setup>
 import MobileNav from '@/components/MobileNav.vue'
-
-const navLinks = [
-  { name: 'Work', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Resume', href: '/projects' },
-]
+import { navLinks } from '@/lib/constant'
 </script>
 
 <template>
