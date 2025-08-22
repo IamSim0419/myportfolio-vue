@@ -4,15 +4,16 @@
   <section>
     <div class="hero-container">
       <h1>
-        I'm Simreich, <br />
+        I'm Simreich,
+        <br />
         a frontend developer who enjoys solving design-to-code challenges with precision and
         creativity.
       </h1>
       <div class="hero_details">
         <div class="hero_info">
           <p>
-            Currently a freelance Frontend Developer, previously at
-            <span>FlexCode</span>.
+            Currently a freelance Frontend Developer, <br />
+            previously at <span>FlexCode</span>.
           </p>
           <p>Based in Philippines, Iloilo</p>
         </div>
@@ -32,15 +33,15 @@ section {
 }
 
 .hero-container {
-  @apply px-4 pt-30;
+  @apply pt-30 md:pt-36 px-4 md:px-8 lg:px-[45px];
 }
 
 .hero-container h1 {
-  @apply text-[45px] leading-[48px];
+  @apply text-[45px] md:text-[55px] leading-[48px] md:leading-[58px];
 }
 
 .hero_details {
-  @apply flex items-center mt-40;
+  @apply flex items-center mt-40 md:mt-100 lg:mt-40 justify-between;
 }
 
 .hero_details img {

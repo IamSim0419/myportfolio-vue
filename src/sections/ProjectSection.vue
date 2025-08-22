@@ -46,7 +46,7 @@ const projects = ref([
 @reference 'tailwindcss';
 
 .project_container {
-  @apply p-4;
+  @apply px-4 md:px-8 lg:px-[45px];
 }
 
 .project_container > h2 {

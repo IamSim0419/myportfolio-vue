@@ -22,7 +22,7 @@ const toggleExpand = (title: string) => {
   <div class="card_wrapper">
     <article class="project-card" v-for="project in projects" :key="project.title">
       <img :src="project.image" alt="project image" />
-      <h3>{{ project.title }}</h3>
+      <h4>{{ project.title }}</h4>
 
       <!-- Description -->
       <div class="card_description">
@@ -46,7 +46,7 @@ const toggleExpand = (title: string) => {
 @reference 'tailwindcss';
 
 .card_wrapper {
-  @apply grid grid-cols-1 lg:grid-cols-3 gap-10;
+  @apply grid grid-cols-1 lg:grid-cols-3 gap-10 md:gap-16;
 }
 
 .project-card {
@@ -54,15 +54,15 @@ const toggleExpand = (title: string) => {
 }
 
 .project-card img {
-  @apply w-full aspect-square object-cover rounded-[16px];
+  @apply w-full aspect-square md:aspect-video object-cover md:object-top rounded-[16px];
 }
 
-.project-card h3 {
-  @apply text-[18px] mt-3;
+.project-card h4 {
+  @apply text-[18px] md:text-[26px] mt-3;
 }
 
 .card_description p {
-  @apply text-[14px] text-[#8D8C95] mt-1;
+  @apply text-[14px] md:text-[16px] text-[#8D8C95] mt-1;
 }
 
 .card_description span {

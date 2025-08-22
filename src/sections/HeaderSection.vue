@@ -28,11 +28,11 @@ import { navLinks } from '@/lib/constant'
 @reference 'tailwindcss';
 
 header {
-  @apply bg-black/80 blur-3xl fixed top-0 left-0 right-0 z-50;
+  @apply bg-black/80 fixed top-0 left-0 right-0 z-50;
 }
 
 .header_container {
-  @apply flex items-center justify-between px-4 py-[13px];
+  @apply flex items-center justify-between px-4 py-[13px] md:px-8 md:py-4 lg:px-[45px] lg:py-6;
 }
 
 .header_container img {
@@ -40,7 +40,7 @@ header {
 }
 
 nav ul {
-  @apply hidden md:flex space-x-4;
+  @apply hidden lg:flex space-x-4;
 }
 
 nav a {
@@ -48,10 +48,10 @@ nav a {
 }
 
 .mobile_nav {
-  @apply flex items-center gap-4 md:hidden;
+  @apply flex items-center gap-4 lg:hidden;
 }
 
 .mobile_nav img {
-  @apply h-5 w-5;
+  @apply h-4 w-4;
 }
 </style>
