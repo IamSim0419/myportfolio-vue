@@ -10,9 +10,13 @@
       </h1>
       <div class="hero_details">
         <div class="hero_info">
-          <p>Currently a freelance Frontend Developer, previously at FlexCode.</p>
+          <p>
+            Currently a freelance Frontend Developer, previously at
+            <span class="text-azurePrimary-600">FlexCode</span>.
+          </p>
           <p>Based in Philippines, Iloilo</p>
         </div>
+
         <img src="../assets/icons/arrow-down.svg" alt="" />
       </div>
       <div class="divider"></div>
@@ -32,7 +36,7 @@ section {
 }
 
 .hero-container h1 {
-  @apply text-[38px];
+  @apply text-[45px] leading-[48px];
 }
 
 .hero_details {
@@ -40,14 +44,18 @@ section {
 }
 
 .hero_details img {
-  @apply content-end border;
+  @apply self-end;
+}
+
+.hero_info {
+  @apply flex flex-col gap-[28px];
 }
 
 .hero_info p {
-  @apply text-neutral-700;
+  @apply text-[#6B6B6B] text-base;
 }
 
 .divider {
-  @apply border-t border-gray-300 my-10;
+  @apply border-t border-[#6B6B6B]/50 my-4;
 }
 </style>
