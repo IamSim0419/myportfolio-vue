@@ -41,20 +41,20 @@ const toggleItem = (index: number) => {
           @click="toggleItem(index)"
         >
           <div>
-            <h4 class="text-[15px] font-medium">{{ item.company }}</h4>
-            <h4 class="text-[14px] text-gray-300">{{ item.role }}</h4>
-            <small class="text-xs text-gray-500">{{ item.year }}</small>
+            <h4 class="text-[19px] font-medium">{{ item.company }}</h4>
+            <h4 class="text-[19px] text-gray-300">{{ item.role }}</h4>
+            <small class="text-sm text-gray-500">{{ item.year }}</small>
           </div>
           <img
             src="../assets/icons/add_icon.svg"
             alt="toggle"
-            class="w-6 h-6 transition-transform duration-300"
+            class="w-7 h-7 transition-transform duration-300"
             :class="{ 'rotate-45': openIndex === index }"
           />
         </div>
 
         <transition name="accordion">
-          <p v-if="openIndex === index" class="text-[14px] text-[#8D8C95] mt-2 pb-3">
+          <p v-if="openIndex === index" class="text-[#8D8C95] mt-2 pb-3">
             {{ item.description }}
           </p>
         </transition>
@@ -67,7 +67,7 @@ const toggleItem = (index: number) => {
 @reference 'tailwindcss';
 
 .dropdown {
-  @apply mt-10;
+  @apply mt-20;
 }
 
 .dropdown h5 {
@@ -75,7 +75,7 @@ const toggleItem = (index: number) => {
 }
 
 .dropdown-menu {
-  @apply mt-4 border-t border-b border-[#464553];
+  @apply mt-4;
 }
 
 .dropdown-item {

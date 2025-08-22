@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AboutDropdown from '@/components/AboutDropdown.vue'
+import AboutDropdown from '@/components/AboutAccordion.vue'
 </script>
 
 <template>
@@ -7,7 +7,7 @@ import AboutDropdown from '@/components/AboutDropdown.vue'
     <div class="about_container">
       <h2>About</h2>
 
-      <p>
+      <p class="about_text">
         I'm Simreich, a frontend developer with 2 years of experience based in the Philippines.
         Currently, I work as a freelance developer, helping clients build modern, responsive, and
         high-performance websites.
@@ -23,6 +23,11 @@ import AboutDropdown from '@/components/AboutDropdown.vue'
       </p>
 
       <AboutDropdown />
+
+      <div class="about_image">
+        <img src="../assets/images/myprofile-pic.png" alt="my profile" />
+        <p>This is me :)</p>
+      </div>
     </div>
   </section>
 </template>
@@ -42,11 +47,23 @@ section {
   @apply text-[35px];
 }
 
-.about_container p {
+.about_container .about_text {
   @apply text-[17px] mt-10 leading-6;
 }
 
 .about_container span {
   @apply text-[#7000FF];
+}
+
+.about_image {
+  @apply mt-20;
+}
+
+.about_image p {
+  @apply text-sm text-gray-500 mt-1;
+}
+
+.about_image img {
+  @apply w-full h-auto rounded-lg;
 }
 </style>
