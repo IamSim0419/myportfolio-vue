@@ -46,7 +46,7 @@ header {
 }
 
 .desktop_nav .moon_icon {
-  @apply h-[18px] w-[18px] lg:h-5 lg:w-5;
+  @apply h-[18px] w-[18px];
 }
 
 nav ul {
@@ -54,7 +54,7 @@ nav ul {
 }
 
 nav li {
-  @apply text-2xl;
+  @apply text-xl;
 }
 
 nav a {

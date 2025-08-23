@@ -5,10 +5,10 @@ import AboutDropdown from '@/components/AboutAccordion.vue'
 <template>
   <section>
     <div class="about_container">
-      <div class="lg:flex-1/2 border-t-1">
+      <div class="box box1">
         <h2>About</h2>
       </div>
-      <div class="lg:flex-1/2 lg:ml-8">
+      <div class="box box2">
         <p class="about_text">
           I'm Simreich, a frontend developer with 2 years of experience based in the Philippines.
           Currently, I work as a freelance developer, helping clients build modern, responsive, and
@@ -44,6 +44,18 @@ section {
 
 .about_container {
   @apply px-4 md:px-8 lg:px-[180px] lg:flex;
+}
+
+.box {
+  @apply lg:flex-1/2;
+}
+
+.box1 {
+  @apply border-t border-[#6B6B6B]/60;
+}
+
+.box2 {
+  @apply lg:ml-8;
 }
 
 .about_container h2 {

@@ -6,28 +6,35 @@ import { socialLinks } from '@/lib/constant'
 <template>
   <footer>
     <div class="footer_container">
-      <div class="footer_top">
-        <img src="/sim_logo.svg" alt="Logo" />
-        <a href="mailto:simreich1989@gmail.com" class="footer_contact">
-          <h1>Let's talk <br />Drop me a line</h1>
-          <img src="../assets/icons/arrow_area.svg" alt="arrow logo" />
-        </a>
-      </div>
+      <div class="footer_wrapper">
+        <div class="footer_col">
+          <img src="/sim_logo.svg" alt="Logo" />
+        </div>
 
-      <div class="footer_links">
-        <!-- Navigation Links -->
-        <ul>
-          <li v-for="link in navLinks" :key="link.id">
-            {{ link.label }}
-          </li>
-        </ul>
+        <div class="footer_col">
+          <div class="footer_top">
+            <a href="mailto:simreich1989@gmail.com" class="footer_contact">
+              <h1>Let's talk <br />Drop me a line</h1>
+              <img src="../assets/icons/arrow_area.svg" alt="arrow logo" />
+            </a>
+          </div>
 
-        <!-- Social Links -->
-        <ul>
-          <li v-for="link in socialLinks" :key="link.href">
-            <a :href="link.href">{{ link.name }}</a>
-          </li>
-        </ul>
+          <div class="footer_links">
+            <!-- Navigation Links -->
+            <ul>
+              <li v-for="link in navLinks" :key="link.id">
+                {{ link.label }}
+              </li>
+            </ul>
+
+            <!-- Social Links -->
+            <ul>
+              <li v-for="link in socialLinks" :key="link.href">
+                <a :href="link.href">{{ link.name }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <div class="footer_bottom">
@@ -46,7 +53,15 @@ footer {
 }
 
 .footer_container {
-  @apply px-4 md:px-8 lg:px-[115px] flex flex-col pt-50;
+  @apply px-4 md:px-8 lg:px-[115px] pt-50;
+}
+
+.footer_wrapper {
+  @apply flex flex-col lg:flex-row;
+}
+
+.footer_col {
+  @apply lg:basis-1/2;
 }
 
 .footer_top img {
@@ -54,7 +69,7 @@ footer {
 }
 
 .footer_contact {
-  @apply flex items-center mt-10 relative;
+  @apply flex items-center mt-10 lg:mt-0 relative;
 }
 
 .footer_contact h1 {
@@ -66,7 +81,7 @@ footer {
 }
 
 .footer_contact img {
-  @apply h-[60px] w-[60px] absolute right-9 top-10 md:right-[380px];
+  @apply h-[60px] w-[60px] absolute right-9 top-10 md:right-[380px] lg:right-[270px];
 }
 
 .footer_links {
@@ -90,6 +105,6 @@ footer {
 }
 
 .footer_bottom {
-  @apply flex items-center justify-between mb-4 mt-30 border-t border-[#2A2A2A] pt-4 text-[12px] text-[#BFBFBF];
+  @apply flex items-center justify-between mb-4 mt-30 border-t border-[#2A2A2A] p-4 text-[12px] text-[#BFBFBF];
 }
 </style>
