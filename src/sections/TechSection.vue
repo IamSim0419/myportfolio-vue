@@ -1,5 +1,16 @@
 <script lang="ts" setup>
-import { techStack } from '@/lib/constant'
+// Tech images for Tech Section
+import FigmaIcon from '../assets/icons/figma.svg'
+import GsapIcon from '@/assets/icons/gsap.svg'
+import VueIcon from '@/assets/icons/vue.svg'
+import TypescriptIcon from '@/assets/icons/typescript.svg'
+
+const techStack = [
+  { name: 'Typescript', icon: TypescriptIcon },
+  { name: 'Vue.js', icon: VueIcon },
+  { name: 'Gsap', icon: GsapIcon },
+  { name: 'Figma', icon: FigmaIcon },
+]
 </script>
 
 <template>

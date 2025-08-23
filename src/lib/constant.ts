@@ -2,12 +2,6 @@ import CypressImg from '@/assets/images/cypress-img.png'
 import OfferJobsImg from '@/assets/images/offer-jobs.png'
 import PortfolioImg from '@/assets/images/porfolio-img.png'
 
-// Tech images for Tech Section
-// import FigmaIcon from '../assets/icons/figma.svg'
-import GsapIcon from '@/assets/icons/gsap.svg'
-import VueIcon from '@/assets/icons/vue.svg'
-import TypescriptIcon from '@/assets/icons/typescript.svg'
-
 // Header & Footer Navigation links
 export const navLinks = [
   { id: 'work', label: 'Work' },
@@ -48,11 +42,4 @@ export const projects = [
     tech: ['Vue', 'TypeScript', 'GSAP', 'TailwindCSS'],
     class: 'card_03',
   },
-]
-
-export const techStack = [
-  { name: 'Typescript', icon: TypescriptIcon },
-  { name: 'Vue.js', icon: VueIcon },
-  { name: 'Gsap', icon: GsapIcon },
-  // { name: 'Figma', icon: FigmaIcon },
 ]
