@@ -32,7 +32,7 @@
 @reference 'tailwindcss';
 
 section {
-  @apply h-screen max-w-[1440px] mx-auto  overflow-hidden flex items-center border;
+  @apply h-screen max-w-[1440px] mx-auto  overflow-hidden flex items-center;
 }
 
 .hero-container {
