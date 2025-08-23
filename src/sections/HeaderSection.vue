@@ -34,11 +34,11 @@ header {
 }
 
 .header_container {
-  @apply flex items-center justify-between px-4 py-[13px] md:px-8 md:py-4 lg:px-[45px] lg:py-6;
+  @apply flex items-center justify-between px-4 py-[12px] md:px-8 md:py-[15px] lg:px-[45px];
 }
 
 .header_container .logo {
-  @apply h-[45px] w-[45px];
+  @apply h-[40x] w-[40px];
 }
 
 .desktop_nav {
@@ -54,7 +54,7 @@ nav ul {
 }
 
 nav li {
-  @apply text-xl;
+  @apply text-base;
 }
 
 nav a {

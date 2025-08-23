@@ -32,7 +32,7 @@
 @reference 'tailwindcss';
 
 section {
-  @apply h-screen max-w-[1440px] mx-auto bg-red-300 overflow-hidden pt-32 md:pt-40 lg:pt-52 pb-20;
+  @apply h-screen max-w-[1440px] mx-auto  overflow-hidden flex items-center border;
 }
 
 .hero-container {
@@ -40,11 +40,11 @@ section {
 }
 
 .hero-container h1 {
-  @apply text-[45px] md:text-[55px] lg:text-[65px] leading-[48px] md:leading-[58px] lg:leading-[68px];
+  @apply text-[45px] md:text-[55px] lg:text-[65px] leading-[48px] md:leading-15 lg:max-w-[850px];
 }
 
 .hero_details {
-  @apply flex items-center   justify-between;
+  @apply flex items-center justify-between border-b border-[#6B6B6B]/50 relative top-16 pb-4;
 }
 
 .hero_details img {
@@ -56,14 +56,14 @@ section {
 }
 
 .hero_info p {
-  @apply text-[#6B6B6B] text-base;
+  @apply text-[#6B6B6B] text-[12px];
 }
 
 .hero_info span {
   @apply text-[#7000FF];
 }
 
-.divider {
+/* .divider {
   @apply border-t border-[#6B6B6B]/50 my-8;
-}
+} */
 </style>

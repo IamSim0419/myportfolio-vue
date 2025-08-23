@@ -22,7 +22,7 @@ section {
 }
 
 .project_container {
-  @apply px-4 md:px-8 lg:px-[180px];
+  @apply px-4 md:px-8 lg:px-[113px];
 }
 
 .project_container > h2 {

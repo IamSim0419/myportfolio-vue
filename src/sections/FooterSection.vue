@@ -53,7 +53,7 @@ footer {
 }
 
 .footer_container {
-  @apply px-4 md:px-8 lg:px-[115px] pt-50;
+  @apply px-4 md:px-8 lg:px-[113px] pt-50;
 }
 
 .footer_wrapper {
@@ -105,6 +105,6 @@ footer {
 }
 
 .footer_bottom {
-  @apply flex items-center justify-between mb-4 mt-30 border-t border-[#2A2A2A] p-4 text-[12px] text-[#BFBFBF];
+  @apply flex items-center justify-between mb-4 mt-30 border-t border-[#2A2A2A] py-4 text-[12px] text-[#BFBFBF];
 }
 </style>
