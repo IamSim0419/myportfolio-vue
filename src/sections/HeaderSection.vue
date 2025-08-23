@@ -30,7 +30,7 @@ import { navLinks } from '@/lib/constant'
 @reference 'tailwindcss';
 
 header {
-  @apply bg-black/80 fixed top-0 left-0 right-0 z-50;
+  @apply max-w-[1440px] mx-auto bg-black/80 fixed top-0 left-0 right-0 z-50;
 }
 
 .header_container {

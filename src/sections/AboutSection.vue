@@ -39,7 +39,7 @@ import AboutDropdown from '@/components/AboutAccordion.vue'
 @reference 'tailwindcss';
 
 section {
-  @apply mt-30 md:mt-40;
+  @apply max-w-[1440px] mx-auto mt-30 md:mt-40;
 }
 
 .about_container {

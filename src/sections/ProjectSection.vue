@@ -17,6 +17,10 @@ import { projects } from '@/lib/constant'
 <style scoped>
 @reference 'tailwindcss';
 
+section {
+  @apply max-w-[1440px] mx-auto;
+}
+
 .project_container {
   @apply px-4 md:px-8 lg:px-[180px];
 }

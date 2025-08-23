@@ -4,11 +4,13 @@
   <section>
     <div class="hero-container">
       <h1>
-        I'm Simreich,
-        <br />
-        a frontend developer who enjoys solving design-to-code challenges with precision and
-        creativity.
+        <span class="block">I'm Simreich,</span>
+        <span class="block">
+          a frontend developer who enjoys solving design-to-code challenges with precision and
+          creativity.
+        </span>
       </h1>
+
       <div class="hero_details">
         <div class="hero_info">
           <p>
@@ -18,8 +20,9 @@
           <p>Based in Philippines, Iloilo</p>
         </div>
 
-        <img src="../assets/icons/arrow-down.svg" alt="" />
+        <img src="../assets/icons/arrow-down.svg" alt="Arrow Down" />
       </div>
+
       <div class="divider"></div>
     </div>
   </section>
@@ -29,19 +32,19 @@
 @reference 'tailwindcss';
 
 section {
-  @apply h-screen;
+  @apply h-screen max-w-[1440px] mx-auto bg-red-300 overflow-hidden pt-32 md:pt-40 lg:pt-52 pb-20;
 }
 
 .hero-container {
-  @apply pt-30 md:pt-36 px-4 md:px-8 lg:px-[180px];
+  @apply px-4 md:px-8 lg:px-[113px];
 }
 
 .hero-container h1 {
-  @apply text-[45px] md:text-[55px] lg:text-[65px] leading-[48px] md:leading-[58px] lg:leading-[68px] md:mt-8 lg:mt-10;
+  @apply text-[45px] md:text-[55px] lg:text-[65px] leading-[48px] md:leading-[58px] lg:leading-[68px];
 }
 
 .hero_details {
-  @apply flex items-center mt-40 md:mt-90 lg:mt-60 justify-between;
+  @apply flex items-center   justify-between;
 }
 
 .hero_details img {
@@ -61,6 +64,6 @@ section {
 }
 
 .divider {
-  @apply border-t border-[#6B6B6B]/50 my-4;
+  @apply border-t border-[#6B6B6B]/50 my-8;
 }
 </style>

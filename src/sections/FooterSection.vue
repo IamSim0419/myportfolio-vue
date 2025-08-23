@@ -49,7 +49,7 @@ import { socialLinks } from '@/lib/constant'
 @reference 'tailwindcss';
 
 footer {
-  @apply bg-[#131313] mt-50;
+  @apply max-w-[1440px] mx-auto bg-[#131313] mt-50;
 }
 
 .footer_container {
