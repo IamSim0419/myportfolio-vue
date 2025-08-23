@@ -36,11 +36,11 @@ import AboutDropdown from '@/components/AboutAccordion.vue'
 @reference 'tailwindcss';
 
 section {
-  @apply mt-30;
+  @apply mt-30 md:mt-40;
 }
 
 .about_container {
-  @apply px-4 pt-8;
+  @apply px-4 md:px-8 lg:px-[180px];
 }
 
 .about_container h2 {

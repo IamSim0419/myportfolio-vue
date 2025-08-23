@@ -7,6 +7,7 @@ defineProps<{
     description: string
     image: string
     tech: string[]
+    class: string
   }[]
 }>()
 
@@ -20,13 +21,17 @@ const toggleExpand = (title: string) => {
 
 <template>
   <div class="card_wrapper">
-    <article class="project-card" v-for="project in projects" :key="project.title">
+    <article
+      :class="['project-card', project.class]"
+      v-for="project in projects"
+      :key="project.title"
+    >
       <img :src="project.image" alt="project image" />
       <h4>{{ project.title }}</h4>
 
       <!-- Description -->
       <div class="card_description">
-        <p :class="expanded === project.title ? 'line-clamp-none' : 'line-clamp-2'">
+        <p :class="expanded === project.title ? 'line-clamp-none' : 'line-clamp-2 lg:line-clamp-1'">
           {{ project.description }}
         </p>
         <span @click="toggleExpand(project.title)">{{
@@ -46,7 +51,14 @@ const toggleExpand = (title: string) => {
 @reference 'tailwindcss';
 
 .card_wrapper {
-  @apply grid grid-cols-1 lg:grid-cols-3 gap-10 md:gap-16;
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-10;
+}
+
+/* Special spanning for card01 */
+.card_01 {
+  @apply lg:col-span-3;
+  /* grid-column-start: 1;
+  grid-column-end: 3; */
 }
 
 .project-card {

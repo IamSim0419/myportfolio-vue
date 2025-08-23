@@ -1,16 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import FigmaIcon from '@/assets/icons/figma.svg'
-import GsapIcon from '@/assets/icons/gsap.svg'
-import VueIcon from '@/assets/icons/vue.svg'
-import TypescriptIcon from '@/assets/icons/typescript.svg'
-
-const techStack = ref([
-  { name: 'Typescript', icon: TypescriptIcon },
-  { name: 'Vue.js', icon: VueIcon },
-  { name: 'Gsap', icon: GsapIcon },
-  { name: 'Figma', icon: FigmaIcon },
-])
+import { techStack } from '@/lib/constant'
 </script>
 
 <template>
@@ -30,11 +19,11 @@ const techStack = ref([
 @reference 'tailwindcss';
 
 section {
-  @apply mt-30;
+  @apply mt-30 md:mt-40;
 }
 
 .tech_container {
-  @apply px-4;
+  @apply px-4 md:px-8 lg:px-[180px];
 }
 
 .tech_container .grid-wrapper {

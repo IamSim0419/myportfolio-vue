@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import ProjectCard from '@/components/ProjectCard.vue'
-
 import { projects } from '@/lib/constant'
 </script>
 
@@ -19,7 +18,7 @@ import { projects } from '@/lib/constant'
 @reference 'tailwindcss';
 
 .project_container {
-  @apply px-4 md:px-8 lg:px-[45px];
+  @apply px-4 md:px-8 lg:px-[180px];
 }
 
 .project_container > h2 {

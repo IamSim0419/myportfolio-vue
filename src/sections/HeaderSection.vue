@@ -7,18 +7,20 @@ import { navLinks } from '@/lib/constant'
   <header>
     <div class="header_container">
       <div>
-        <a href="/"><img src="/sim_logo.svg" alt="" /></a>
+        <a href="/"><img class="logo" src="/sim_logo.svg" alt="" /></a>
       </div>
-      <nav>
-        <ul>
-          <li v-for="link in navLinks" :key="link.href">
-            <a :href="link.href">{{ link.name }}</a>
-          </li>
-        </ul>
-      </nav>
-      <div class="mobile_nav">
-        <img src="../assets/icons/moon_icon.svg" alt="" />
-        <MobileNav :navLinks="navLinks" />
+      <div class="desktop_nav">
+        <img class="moon_icon" src="../assets/icons/moon_icon.svg" alt="" />
+        <nav>
+          <ul>
+            <li v-for="link in navLinks" :key="link.id">
+              {{ link.label }}
+            </li>
+          </ul>
+        </nav>
+        <div class="mobile_nav">
+          <MobileNav :navLinks="navLinks" />
+        </div>
       </div>
     </div>
   </header>
@@ -35,12 +37,24 @@ header {
   @apply flex items-center justify-between px-4 py-[13px] md:px-8 md:py-4 lg:px-[45px] lg:py-6;
 }
 
-.header_container img {
+.header_container .logo {
   @apply h-[45px] w-[45px];
 }
 
+.desktop_nav {
+  @apply flex items-center gap-2 md:gap-3 lg:gap-10;
+}
+
+.desktop_nav .moon_icon {
+  @apply h-[18px] w-[18px] lg:h-5 lg:w-5;
+}
+
 nav ul {
-  @apply hidden lg:flex space-x-4;
+  @apply hidden lg:flex gap-10;
+}
+
+nav li {
+  @apply text-2xl;
 }
 
 nav a {
@@ -52,6 +66,6 @@ nav a {
 }
 
 .mobile_nav img {
-  @apply h-4 w-4;
+  @apply h-4 w-4 lg:flex;
 }
 </style>

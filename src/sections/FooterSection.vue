@@ -17,8 +17,8 @@ import { socialLinks } from '@/lib/constant'
       <div class="footer_links">
         <!-- Navigation Links -->
         <ul>
-          <li v-for="link in navLinks" :key="link.href">
-            <a :href="link.href">{{ link.name }}</a>
+          <li v-for="link in navLinks" :key="link.id">
+            {{ link.label }}
           </li>
         </ul>
 
@@ -46,7 +46,7 @@ footer {
 }
 
 .footer_container {
-  @apply px-4 flex flex-col pt-50;
+  @apply px-4 md:px-8 lg:px-[115px] flex flex-col pt-50;
 }
 
 .footer_top img {
@@ -66,11 +66,11 @@ footer {
 }
 
 .footer_contact img {
-  @apply h-[60px] w-[60px] absolute right-9 top-10;
+  @apply h-[60px] w-[60px] absolute right-9 top-10 md:right-[380px];
 }
 
 .footer_links {
-  @apply flex items-center gap-6 mt-30;
+  @apply flex items-center gap-6 md:gap-68 mt-30;
 }
 
 .footer_links ul {

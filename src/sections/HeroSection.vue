@@ -33,15 +33,15 @@ section {
 }
 
 .hero-container {
-  @apply pt-30 md:pt-36 px-4 md:px-8 lg:px-[45px];
+  @apply pt-30 md:pt-36 px-4 md:px-8 lg:px-[180px];
 }
 
 .hero-container h1 {
-  @apply text-[45px] md:text-[55px] leading-[48px] md:leading-[58px];
+  @apply text-[45px] md:text-[55px] lg:text-[65px] leading-[48px] md:leading-[58px] lg:leading-[68px] md:mt-8 lg:mt-10;
 }
 
 .hero_details {
-  @apply flex items-center mt-40 md:mt-100 lg:mt-40 justify-between;
+  @apply flex items-center mt-40 md:mt-90 lg:mt-60 justify-between;
 }
 
 .hero_details img {

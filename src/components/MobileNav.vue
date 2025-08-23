@@ -4,8 +4,8 @@ import gsap from 'gsap'
 
 defineProps<{
   navLinks: {
-    name: string
-    href: string
+    id: string
+    label: string
   }[]
 }>()
 
@@ -75,7 +75,7 @@ watch(
         ref="el => linksRef[i] = el!"
         class="menu-link"
       >
-        {{ link.name }}
+        {{ link.label }}
       </a>
     </div>
   </nav>
