@@ -40,7 +40,7 @@ const toggleItem = (index: number) => {
           class="dropdown-item-content flex items-center justify-between cursor-pointer py-3"
           @click="toggleItem(index)"
         >
-          <div>
+          <div class="mb-8">
             <h4 class="text-[19px] font-medium">{{ item.company }}</h4>
             <h4 class="text-[19px] text-gray-300">{{ item.role }}</h4>
             <small class="text-sm text-gray-500">{{ item.year }}</small>

@@ -5,28 +5,31 @@ import AboutDropdown from '@/components/AboutAccordion.vue'
 <template>
   <section>
     <div class="about_container">
-      <h2>About</h2>
+      <div class="lg:flex-1/2 border-t-1">
+        <h2>About</h2>
+      </div>
+      <div class="lg:flex-1/2 lg:ml-8">
+        <p class="about_text">
+          I'm Simreich, a frontend developer with 2 years of experience based in the Philippines.
+          Currently, I work as a freelance developer, helping clients build modern, responsive, and
+          high-performance websites.
+          <br />
+          <br />
+          Previously, I worked as a Frontend Developer at <span>FlexCode</span>, a local company,
+          where I contributed to developing scalable web applications and collaborated with
+          cross-functional teams to deliver user-focused solutions.
+          <br />
+          <br />
+          I specialize in creating seamless digital experiences, writing clean and maintainable
+          code, and continuously improving my skills to adapt to the evolving web landscape.
+        </p>
 
-      <p class="about_text">
-        I'm Simreich, a frontend developer with 2 years of experience based in the Philippines.
-        Currently, I work as a freelance developer, helping clients build modern, responsive, and
-        high-performance websites.
-        <br />
-        <br />
-        Previously, I worked as a Frontend Developer at <span>FlexCode</span>, a local company,
-        where I contributed to developing scalable web applications and collaborated with
-        cross-functional teams to deliver user-focused solutions.
-        <br />
-        <br />
-        I specialize in creating seamless digital experiences, writing clean and maintainable code,
-        and continuously improving my skills to adapt to the evolving web landscape.
-      </p>
+        <AboutDropdown />
 
-      <AboutDropdown />
-
-      <div class="about_image">
-        <img src="../assets/images/myprofile-pic.png" alt="my profile" />
-        <p>This is me :)</p>
+        <div class="about_image">
+          <img src="../assets/images/myprofile-pic.png" alt="my profile" />
+          <p>This is me :)</p>
+        </div>
       </div>
     </div>
   </section>
@@ -40,15 +43,15 @@ section {
 }
 
 .about_container {
-  @apply px-4 md:px-8 lg:px-[180px];
+  @apply px-4 md:px-8 lg:px-[180px] lg:flex;
 }
 
 .about_container h2 {
-  @apply text-[35px];
+  @apply text-[35px] mt-3;
 }
 
 .about_container .about_text {
-  @apply text-[17px] mt-10 leading-6;
+  @apply text-[17px] leading-6 mt-4;
 }
 
 .about_container span {
