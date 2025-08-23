@@ -3,7 +3,7 @@ import OfferJobsImg from '@/assets/images/offer-jobs.png'
 import PortfolioImg from '@/assets/images/porfolio-img.png'
 
 // Tech images for Tech Section
-import FigmaIcon from '../assets/icons/figma.svg'
+// import FigmaIcon from '../assets/icons/figma.svg'
 import GsapIcon from '@/assets/icons/gsap.svg'
 import VueIcon from '@/assets/icons/vue.svg'
 import TypescriptIcon from '@/assets/icons/typescript.svg'
@@ -54,5 +54,5 @@ export const techStack = [
   { name: 'Typescript', icon: TypescriptIcon },
   { name: 'Vue.js', icon: VueIcon },
   { name: 'Gsap', icon: GsapIcon },
-  { name: 'Figma', icon: FigmaIcon },
+  // { name: 'Figma', icon: FigmaIcon },
 ]
