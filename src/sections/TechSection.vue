@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 // Tech images for Tech Section
-import FigmaIcon from '@/assets/icons/figma.svg'
-import GsapIcon from '@/assets/icons/gsap.svg'
-import VueIcon from '@/assets/icons/vue.svg'
-import TypescriptIcon from '@/assets/icons/typescript.svg'
+import FigmaIcon from '/figma.svg'
+import GsapIcon from '/gsap.svg'
+import VueIcon from '/vue.svg'
+import TypescriptIcon from '/typescript.svg'
 
 const techStack = [
   { name: 'Typescript', icon: TypescriptIcon },
