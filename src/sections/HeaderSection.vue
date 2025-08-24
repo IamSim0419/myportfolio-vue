@@ -30,7 +30,9 @@ import { navLinks } from '@/lib/constant'
 @reference 'tailwindcss';
 
 header {
-  @apply bg-black/80 fixed top-0 left-0 right-0 z-50;
+  @apply bg-black/40 border-b border-white/10 fixed top-0 left-0 right-0 z-50;
+  --webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 .header_container {
@@ -38,7 +40,11 @@ header {
 }
 
 .header_container .logo {
-  @apply h-[38x] w-[38px];
+  @apply h-[38x] w-[38px] transition-all duration-500;
+}
+
+.header_container .logo:hover {
+  @apply transform -translate-y-1;
 }
 
 .desktop_nav {
@@ -46,7 +52,11 @@ header {
 }
 
 .desktop_nav .moon_icon {
-  @apply h-[18px] w-[18px];
+  @apply h-[16px] w-[16px] transition-all duration-500;
+}
+
+.desktop_nav .moon_icon:hover {
+  @apply transform -translate-y-2;
 }
 
 nav ul {
@@ -54,7 +64,11 @@ nav ul {
 }
 
 nav li {
-  @apply text-base;
+  @apply text-base transition-all duration-500 cursor-pointer text-gray-300 hover:text-white;
+}
+
+nav li:hover {
+  @apply transform -translate-y-2;
 }
 
 nav a {

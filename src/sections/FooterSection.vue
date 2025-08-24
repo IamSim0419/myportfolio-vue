@@ -53,7 +53,7 @@ footer {
 }
 
 .footer_container {
-  @apply px-4 md:px-8 lg:px-[113px] pt-50;
+  @apply px-4 md:px-[50px] pt-38;
 }
 
 .footer_wrapper {
@@ -81,30 +81,32 @@ footer {
 }
 
 .footer_contact img {
-  @apply h-[60px] w-[60px] absolute right-9 top-10 md:right-[380px] lg:right-[270px];
+  @apply h-[60px] w-[60px] absolute right-9 top-10 md:right-[380px] lg:right-[340px];
 }
 
 .footer_links {
-  @apply flex items-center gap-6 md:gap-68 mt-30;
+  @apply flex items-center gap-6 md:gap-68 mt-12;
 }
 
 .footer_links ul {
-  @apply flex flex-col gap-4;
+  @apply flex flex-col;
 }
 
 .footer_links li {
-  @apply mb-2;
+  @apply text-[15px];
 }
 
-.footer_links a {
+.footer_links a,
+li {
   @apply text-[#BFBFBF] transition duration-300;
 }
 
-.footer_links a:hover {
+.footer_links a:hover,
+li:hover {
   @apply text-[#7000FF];
 }
 
 .footer_bottom {
-  @apply flex items-center justify-between mb-4 mt-30 border-t border-[#2A2A2A] py-4 text-[12px] text-[#BFBFBF];
+  @apply flex items-center justify-between mb-4 mt-20 border-t border-[#2A2A2A] py-3 text-[12px] text-[#BFBFBF];
 }
 </style>
