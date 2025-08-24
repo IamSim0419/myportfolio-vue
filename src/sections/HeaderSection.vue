@@ -2,13 +2,22 @@
 import MobileNav from '@/components/MobileNav.vue'
 import { navLinks } from '@/lib/constant'
 
+import { useGsapScrollTrigger } from '@/composables/useGsapScollTrigger'
+import { onMounted, useTemplateRef } from 'vue'
+
+const headerRef = useTemplateRef<HTMLElement>('header')
+
+onMounted(() => {
+  useGsapScrollTrigger(headerRef.value, { preset: 'slide-down', once: true, duration: 1 })
+})
+
 const emit = defineEmits<{
   navigate: [id: string]
 }>()
 </script>
 
 <template>
-  <header>
+  <header ref="header">
     <div class="header_container">
       <div>
         <a href="/"><img class="logo" src="/sim_logo.svg" alt="logo" /></a>

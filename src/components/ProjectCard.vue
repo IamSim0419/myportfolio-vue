@@ -1,6 +1,15 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 
+import { useGsapScrollTrigger } from '@/composables/useGsapScollTrigger'
+import { onMounted, useTemplateRef } from 'vue'
+
+const cardRef = useTemplateRef<HTMLElement>('card')
+
+onMounted(() => {
+  useGsapScrollTrigger(cardRef.value, { preset: 'scale-in', once: true })
+})
+
 defineProps<{
   projects: {
     title: string
@@ -22,11 +31,12 @@ const toggleExpand = (title: string) => {
 <template>
   <div class="card_wrapper">
     <article
+      ref="card"
       v-for="project in projects"
       :key="project.title"
       :class="['project-card', project.class]"
     >
-      <img :src="project.image" alt="project image" />
+      <img :class="project.class" :src="project.image" alt="project image" />
       <h4>{{ project.title }}</h4>
 
       <div class="card_description">
@@ -53,20 +63,28 @@ const toggleExpand = (title: string) => {
 }
 
 /* Special spanning for card01 */
-.card_01 {
-  @apply lg:col-span-3 aspect-[16/7];
+.project-card img:nth-child(1) {
+  @apply lg:col-span-3;
 }
+
+/* .card_01 img {
+  @apply lg:aspect-[16/7];
+} */
 
 .project-card {
   @apply rounded-lg shadow-md overflow-hidden;
 }
 
 .project-card img {
-  @apply w-full aspect-square md:aspect-video object-cover md:object-top rounded-[16px];
+  @apply w-full aspect-square md:aspect-video object-cover md:object-top rounded-[16px] hover:scale-105 transition-all duration-300;
+}
+
+.project-card img:hover {
+  @apply scale-105;
 }
 
 .project-card h4 {
-  @apply text-[18px] md:text-[26px] mt-3;
+  @apply text-[18px] md:text-[20px] mt-3;
 }
 
 .card_description p {

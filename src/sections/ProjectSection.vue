@@ -1,11 +1,19 @@
 <script setup lang="ts">
 import ProjectCard from '@/components/ProjectCard.vue'
 import { projects } from '@/lib/constant'
+
+import { useGsapScrollTrigger } from '@/composables/useGsapScollTrigger'
+import { onMounted, useTemplateRef } from 'vue'
+
+const projectRef = useTemplateRef<HTMLElement>('project')
+
+onMounted(() => {
+  useGsapScrollTrigger(projectRef.value, { preset: 'slide-up', once: true })
+})
 </script>
 
 <template>
-  <CursorPointer ref="cursor" />
-  <section id="work">
+  <section ref="project" id="work">
     <div class="project_container">
       <h2>Selected works</h2>
       <ProjectCard :projects="projects" />

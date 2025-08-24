@@ -1,9 +1,17 @@
 <script lang="ts" setup>
 import AboutDropdown from '@/components/AboutAccordion.vue'
+import { useGsapScrollTrigger } from '@/composables/useGsapScollTrigger'
+import { onMounted, useTemplateRef } from 'vue'
+
+const aboutRef = useTemplateRef<HTMLElement>('about')
+
+onMounted(() => {
+  useGsapScrollTrigger(aboutRef.value, { preset: 'slide-up', once: true })
+})
 </script>
 
 <template>
-  <section id="about">
+  <section ref="about" id="about">
     <div class="about_container">
       <div class="box box1">
         <h2>About</h2>
