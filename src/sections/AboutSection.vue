@@ -43,7 +43,7 @@ section {
 }
 
 .about_container {
-  @apply px-4 md:px-8 lg:px-[113px] lg:flex;
+  @apply px-4 md:px-8 lg:px-[65px] lg:flex;
 }
 
 .box {

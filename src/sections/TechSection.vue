@@ -34,7 +34,7 @@ section {
 }
 
 .tech_container {
-  @apply px-4 md:px-8 lg:px-[113px];
+  @apply px-4 md:px-8 lg:px-[65px];
 }
 
 .tech_container .grid-wrapper {

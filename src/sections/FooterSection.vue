@@ -49,7 +49,7 @@ import { socialLinks } from '@/lib/constant'
 @reference 'tailwindcss';
 
 footer {
-  @apply max-w-[1440px] mx-auto bg-[#131313] mt-50;
+  @apply bg-[#131313] mt-50;
 }
 
 .footer_container {
@@ -64,8 +64,8 @@ footer {
   @apply lg:basis-1/2;
 }
 
-.footer_top img {
-  @apply h-[45px] w-[45px];
+.footer_col img {
+  @apply h-[40px] w-[40px];
 }
 
 .footer_contact {

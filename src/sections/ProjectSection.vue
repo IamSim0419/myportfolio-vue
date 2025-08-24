@@ -18,11 +18,11 @@ import { projects } from '@/lib/constant'
 @reference 'tailwindcss';
 
 section {
-  @apply max-w-[1440px] mx-auto;
+  @apply max-w-[1440px] mx-auto mt-22;
 }
 
 .project_container {
-  @apply px-4 md:px-8 lg:px-[113px];
+  @apply px-4 md:px-8 lg:px-[65px];
 }
 
 .project_container > h2 {
