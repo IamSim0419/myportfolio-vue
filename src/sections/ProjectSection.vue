@@ -1,14 +1,13 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import ProjectCard from '@/components/ProjectCard.vue'
 import { projects } from '@/lib/constant'
 </script>
 
 <template>
-  <section>
+  <CursorPointer ref="cursor" />
+  <section id="work">
     <div class="project_container">
       <h2>Selected works</h2>
-
-      <!-- Project cards -->
       <ProjectCard :projects="projects" />
     </div>
   </section>
@@ -26,6 +25,6 @@ section {
 }
 
 .project_container > h2 {
-  @apply text-[35px] mb-10;
+  @apply text-[35px] mb-10 pt-4;
 }
 </style>

@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import MobileNav from '@/components/MobileNav.vue'
 import { navLinks } from '@/lib/constant'
+
+const emit = defineEmits<{
+  navigate: [id: string]
+}>()
 </script>
 
 <template>
@@ -13,7 +17,7 @@ import { navLinks } from '@/lib/constant'
         <img class="moon_icon" src="../assets/icons/moon_icon.svg" alt="" />
         <nav>
           <ul>
-            <li v-for="link in navLinks" :key="link.id">
+            <li @click="emit('navigate', link.id)" v-for="link in navLinks" :key="link.id">
               {{ link.label }}
             </li>
           </ul>

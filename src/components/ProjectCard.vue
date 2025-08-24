@@ -22,24 +22,22 @@ const toggleExpand = (title: string) => {
 <template>
   <div class="card_wrapper">
     <article
-      :class="['project-card', project.class]"
       v-for="project in projects"
       :key="project.title"
+      :class="['project-card', project.class]"
     >
       <img :src="project.image" alt="project image" />
       <h4>{{ project.title }}</h4>
 
-      <!-- Description -->
       <div class="card_description">
         <p :class="expanded === project.title ? 'line-clamp-none' : 'line-clamp-2 lg:line-clamp-1'">
           {{ project.description }}
         </p>
-        <span @click="toggleExpand(project.title)">{{
-          expanded === project.title ? 'Less' : 'More'
-        }}</span>
+        <span @click="toggleExpand(project.title)">
+          {{ expanded === project.title ? 'Less' : 'More' }}
+        </span>
       </div>
 
-      <!-- Tech Badges -->
       <div v-for="value in project.tech" :key="value" class="tech-badge">
         <small>{{ value }}</small>
       </div>
@@ -56,9 +54,7 @@ const toggleExpand = (title: string) => {
 
 /* Special spanning for card01 */
 .card_01 {
-  @apply lg:col-span-3;
-  /* grid-column-start: 1;
-  grid-column-end: 3; */
+  @apply lg:col-span-3 aspect-[16/7];
 }
 
 .project-card {

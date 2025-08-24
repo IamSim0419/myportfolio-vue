@@ -28,10 +28,14 @@ onMounted(() => {
 onBeforeUnmount(() => {
   smoother?.kill()
 })
+
+function scrollToSection(id: string) {
+  smoother?.scrollTo(`#${id}`, true, 'top top+=80')
+}
 </script>
 
 <template>
-  <HeaderSection />
+  <HeaderSection @navigate="scrollToSection" />
   <div id="smooth-wrapper">
     <div id="smooth-content">
       <main>

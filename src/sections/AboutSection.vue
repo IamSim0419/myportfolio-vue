@@ -3,7 +3,7 @@ import AboutDropdown from '@/components/AboutAccordion.vue'
 </script>
 
 <template>
-  <section>
+  <section id="about">
     <div class="about_container">
       <div class="box box1">
         <h2>About</h2>
