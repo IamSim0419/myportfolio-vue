@@ -11,7 +11,7 @@ const emit = defineEmits<{
   <header>
     <div class="header_container">
       <div>
-        <a href="/"><img class="logo" src="/sim_logo.svg" alt="" /></a>
+        <a href="/"><img class="logo" src="/sim_logo.svg" alt="logo" /></a>
       </div>
       <div class="desktop_nav">
         <img class="moon_icon" src="../assets/icons/moon_icon.svg" alt="" />
@@ -68,7 +68,7 @@ nav ul {
 }
 
 nav li {
-  @apply text-base transition-all duration-500 cursor-pointer text-gray-300 hover:text-white;
+  @apply text-base transition-all duration-500 text-gray-300 hover:text-white;
 }
 
 nav li:hover {
