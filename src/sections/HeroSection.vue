@@ -36,7 +36,7 @@ section {
 }
 
 .hero-container {
-  @apply px-4 md:px-8 lg:px-[113px] w-full;
+  @apply px-4 md:px-8 lg:px-[65px] w-full;
 }
 
 .hero-container h1 {

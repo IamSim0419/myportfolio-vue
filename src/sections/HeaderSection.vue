@@ -30,11 +30,11 @@ import { navLinks } from '@/lib/constant'
 @reference 'tailwindcss';
 
 header {
-  @apply max-w-[1440px] mx-auto bg-black/80 fixed top-0 left-0 right-0 z-50;
+  @apply bg-black/80 fixed top-0 left-0 right-0 z-50;
 }
 
 .header_container {
-  @apply flex items-center justify-between px-4 py-[12px] md:px-8 md:py-[15px] lg:px-[45px] lg:py-[18px];
+  @apply flex items-center justify-between px-4 py-[12px] md:px-[50px] md:py-[15px] lg:py-[20px];
 }
 
 .header_container .logo {
