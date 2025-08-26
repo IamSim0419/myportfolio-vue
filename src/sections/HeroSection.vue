@@ -70,6 +70,7 @@ section {
   @apply px-4 md:px-8 lg:px-[65px] w-full
          flex flex-col justify-between; /* <-- important */
   min-height: 100dvh;
+  height: 100dvh;
 }
 
 .hero-container h1 {
