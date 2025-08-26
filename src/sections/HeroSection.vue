@@ -90,7 +90,7 @@ section {
 }
 
 .hero_works p {
-  @apply text-[12px] lg:text-[15px] overflow-hidden;
+  @apply text-[15px] overflow-hidden;
 }
 
 .hero_works img {
