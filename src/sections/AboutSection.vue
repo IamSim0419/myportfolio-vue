@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import AboutDropdown from '@/components/AboutAccordion.vue'
+import AboutAccordion from '@/components/AboutAccordion.vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { onMounted, onUnmounted, ref, nextTick } from 'vue'
@@ -27,15 +27,16 @@ onMounted(async () => {
 
   const tween = gsap.to(content, {
     y: () => -getScrollLength(),
-    // y: -1790,
+
     ease: 'none',
     scrollTrigger: {
       trigger: section,
       start: 'top 12%',
-      // end: 'bottom bottom',
+
       end: () => `+=${getScrollLength()}`,
       scrub: true,
       pin: true,
+      pinSpacing: false,
       anticipatePin: 1,
       invalidateOnRefresh: true, // recompute on resize
     },
@@ -78,7 +79,7 @@ onMounted(async () => {
         </p>
 
         <div id="experience">
-          <AboutDropdown />
+          <AboutAccordion />
         </div>
 
         <div id="about_image" class="about_image">

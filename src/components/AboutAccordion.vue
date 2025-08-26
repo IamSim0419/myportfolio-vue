@@ -30,7 +30,7 @@ const items = [
 const activeId = ref<number | null>(null)
 
 function toggleAbout(id: number) {
-  activeId.value = id
+  activeId.value = activeId.value === id ? null : id // 👈 toggle on/off
 }
 </script>
 
