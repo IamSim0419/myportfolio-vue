@@ -1,23 +1,68 @@
 <script lang="ts" setup>
 import AboutDropdown from '@/components/AboutAccordion.vue'
-import { useGsapScrollTrigger } from '@/composables/useGsapScollTrigger'
-import { onMounted, useTemplateRef } from 'vue'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { onMounted, onUnmounted, ref, nextTick } from 'vue'
 
-const aboutRef = useTemplateRef<HTMLElement>('about')
+gsap.registerPlugin(ScrollTrigger)
 
-onMounted(() => {
-  useGsapScrollTrigger(aboutRef.value, { preset: 'slide-up', once: true })
+const aboutSection = ref<HTMLElement | null>(null)
+const aboutContent = ref<HTMLElement | null>(null)
+
+onMounted(async () => {
+  await nextTick()
+
+  if (!aboutSection.value || !aboutContent.value) return
+
+  const section = aboutSection.value
+  const content = aboutContent.value
+
+  gsap.set(content, { y: 100, opacity: 1 })
+
+  const getScrollLength = () => {
+    const total = content.scrollHeight
+    const viewport = window.innerHeight
+    return Math.max(total - viewport, 0)
+  }
+
+  const tween = gsap.to(content, {
+    y: () => -getScrollLength(),
+    // y: -1790,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: section,
+      start: 'top 12%',
+      // end: 'bottom bottom',
+      end: () => `+=${getScrollLength()}`,
+      scrub: true,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true, // recompute on resize
+    },
+  })
+
+  const onResize = () => ScrollTrigger.refresh()
+  window.addEventListener('resize', onResize)
+
+  onUnmounted(() => {
+    window.addEventListener('resize', onResize)
+    tween.scrollTrigger?.kill()
+    tween.kill()
+  })
 })
 </script>
 
 <template>
-  <section ref="about" id="about">
+  <section ref="aboutSection" id="about" class="overflow-hidden border">
     <div class="about_container">
+      <!-- About label left side -->
       <div class="box box1">
         <h2>About</h2>
       </div>
-      <div class="box box2">
-        <p class="about_text">
+
+      <!-- About Content right side -->
+      <div ref="aboutContent" class="box box2 opacity-0">
+        <p class="about_text" id="about">
           I'm Simreich, a frontend developer with 2 years of experience based in the Philippines.
           Currently, I work as a freelance developer, helping clients build modern, responsive, and
           high-performance websites.
@@ -32,9 +77,11 @@ onMounted(() => {
           code, and continuously improving my skills to adapt to the evolving web landscape.
         </p>
 
-        <AboutDropdown />
+        <div id="experience">
+          <AboutDropdown />
+        </div>
 
-        <div class="about_image">
+        <div id="about_image" class="about_image">
           <img src="../assets/images/myprofile-pic.png" alt="my profile" />
           <p>This is me :)</p>
         </div>
@@ -47,7 +94,7 @@ onMounted(() => {
 @reference 'tailwindcss';
 
 section {
-  @apply max-w-[1440px] mx-auto mt-30 md:mt-40;
+  @apply min-h-screen max-w-[1440px] mx-auto mt-30 md:mt-40;
 }
 
 .about_container {
@@ -67,11 +114,11 @@ section {
 }
 
 .about_container h2 {
-  @apply text-[35px] mt-3;
+  @apply text-[35px] lg:text-[65px] mt-3;
 }
 
 .about_container .about_text {
-  @apply text-[17px] leading-6 mt-4;
+  @apply text-[17px] lg:text-[28px] leading-6 lg:leading-[35px] mt-4;
 }
 
 .about_container span {

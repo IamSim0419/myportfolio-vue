@@ -1,13 +1,16 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-
 import { useGsapScrollTrigger } from '@/composables/useGsapScollTrigger'
-import { onMounted, useTemplateRef } from 'vue'
+import { onMounted, ref, useTemplateRef } from 'vue'
 
-const cardRef = useTemplateRef<HTMLElement>('card')
+const cardListRef = useTemplateRef<HTMLElement>('card')
 
 onMounted(() => {
-  useGsapScrollTrigger(cardRef.value, { preset: 'scale-in', once: true })
+  useGsapScrollTrigger(cardListRef.value, {
+    preset: 'stagger-scale',
+    stagger: 0.2,
+    duration: 0.6,
+    once: false,
+  })
 })
 
 defineProps<{
@@ -29,9 +32,8 @@ const toggleExpand = (title: string) => {
 </script>
 
 <template>
-  <div class="card_wrapper">
+  <div ref="card" class="card_wrapper">
     <article
-      ref="card"
       v-for="project in projects"
       :key="project.title"
       :class="['project-card', project.class]"

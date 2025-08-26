@@ -3,7 +3,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-export type ScrollPreset = 'fade-in' | 'scale-in' | 'slide-up' | 'slide-down' | 'stagger-fade'
+export type ScrollPreset =
+  | 'fade-in'
+  | 'scale-in'
+  | 'slide-up'
+  | 'slide-down'
+  | 'stagger-fade'
+  | 'stagger-scale'
 
 interface ScrollOptions {
   preset?: ScrollPreset
@@ -132,6 +138,27 @@ export function useGsapScrollTrigger(el: Element | null, options: ScrollOptions 
           toggleActions: once ? 'play none none none' : 'play reverse play reverse',
         },
       })
+      break
+
+    case 'stagger-scale':
+      tween = gsap.fromTo(
+        el.children,
+        { opacity: 0, scale: 0.8 },
+        {
+          opacity: 1,
+          scale: 1,
+          stagger,
+          duration,
+          ease,
+          delay,
+          scrollTrigger: {
+            trigger,
+            start,
+            end,
+            toggleActions: once ? 'play none none none' : 'play reverse play reverse',
+          },
+        },
+      )
       break
 
     default:

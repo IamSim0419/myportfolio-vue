@@ -19,7 +19,8 @@ const emit = defineEmits<{
 <template>
   <header ref="header">
     <div class="header_container">
-      <div>
+      <div class="relative">
+        <div class="logo_effect"></div>
         <a href="/"><img class="logo" src="/sim_logo.svg" alt="logo" /></a>
       </div>
       <div class="desktop_nav">
@@ -53,7 +54,12 @@ header {
 }
 
 .header_container .logo {
-  @apply h-[38x] w-[38px] transition-all duration-500;
+  @apply relative h-[38x] w-[38px] transition-all duration-500;
+}
+
+.logo_effect {
+  @apply w-[30px] h-[30px] bg-[#e6f2ff] absolute rounded-full -top-[2px] -right-[2px];
+  filter: blur(16px);
 }
 
 .header_container .logo:hover {

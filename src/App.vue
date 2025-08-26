@@ -39,8 +39,8 @@ useCustomCursor()
 
 <template>
   <!-- Custom Cursor -->
-  <div class="custom-cursor">
-    <span class="custom-cursor-text text-black"></span>
+  <div class="custom_cursor">
+    <span class="custom_cursor_text text-black"></span>
   </div>
 
   <HeaderSection @navigate="scrollToSection" />

@@ -1,63 +1,68 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-
-const items = ref([
+const items = [
   {
+    id: 1,
     company: 'Freelance / Upwork',
     role: 'Frontend Developer',
     year: 'Currently 2025',
-    description: 'Worked on various projects for clients worldwide.',
+    description:
+      'Simreich, a frontend developer with 2 years of experience based in the Philippines. Currently, I work as a freelance developer, helping clients build modern, responsive, and high-performance websites.',
   },
   {
+    id: 2,
     company: 'Freelance / Upwork',
     role: 'Frontend Developer',
     year: 'Currently 2025',
-    description: 'Collaborated with local businesses to enhance their online presence.',
+    description:
+      'I worked as a Frontend Developer at FlexCode, a local company, where I contributed to developing scalable web applications and collaborated with cross-functional teams to deliver user-focused solutions.',
   },
   {
+    id: 3,
     company: 'FlexCode',
     role: 'Intern Frontend Developer',
     year: '2023',
-    description: 'Contributed to open-source projects and developed custom solutions.',
+    description:
+      'I specialize in creating seamless digital experiences, writing clean and maintainable code, and continuously improving my skills to adapt to the evolving web landscape.',
   },
-])
+]
 
-const openIndex = ref<number | null>(null)
+const activeId = ref<number | null>(null)
 
-const toggleItem = (index: number) => {
-  openIndex.value = openIndex.value === index ? null : index
+function toggleAbout(id: number) {
+  activeId.value = id
 }
 </script>
 
 <template>
   <!-- Dropdown -->
-  <div class="dropdown">
-    <h5>Experience</h5>
+  <div class="accordion">
+    <h4>Experience</h4>
 
-    <div class="dropdown-menu">
-      <div v-for="(item, index) in items" :key="index" class="dropdown-item">
-        <div
-          class="dropdown-item-content flex items-center justify-between cursor-pointer py-3"
-          @click="toggleItem(index)"
-        >
-          <div class="mb-8">
-            <h4 class="text-[19px] font-medium">{{ item.company }}</h4>
-            <h4 class="text-[19px] text-gray-300">{{ item.role }}</h4>
+    <div class="dropdown_menu">
+      <div v-for="(item, index) in items" :key="item.id" class="dropdown_item">
+        <!-- Clickable -->
+        <div class="dropdown_title flex justify-between pt-3" @click="toggleAbout(item.id)">
+          <div>
+            <h3 class="text-[19px] font-medium">{{ item.company }}</h3>
+            <h3 class="text-[19px] text-gray-300">{{ item.role }}</h3>
             <small class="text-sm text-gray-500">{{ item.year }}</small>
           </div>
           <img
             src="../assets/icons/add_icon.svg"
-            alt="toggle"
+            alt="add icon"
             class="w-7 h-7 transition-transform duration-300"
-            :class="{ 'rotate-45': openIndex === index }"
+            :class="[item.id === activeId ? 'rotate-45' : '']"
           />
         </div>
 
-        <transition name="accordion">
-          <p v-if="openIndex === index" class="text-[#8D8C95] mt-2 pb-3">
-            {{ item.description }}
-          </p>
-        </transition>
+        <!-- Contents -->
+        <p
+          class="text-[15px] leading-5 transition-all transform duration-300 opacity-0"
+          :class="[item.id === activeId ? 'opacity-100 -translate-y-2 pt-5 pb-3' : '']"
+        >
+          {{ item.description }} {{ index + 1 }}
+        </p>
       </div>
     </div>
   </div>
@@ -66,35 +71,19 @@ const toggleItem = (index: number) => {
 <style scoped>
 @reference 'tailwindcss';
 
-.dropdown {
+.accordion {
   @apply mt-20;
 }
 
-.dropdown h5 {
-  @apply text-[#7000FF] font-semibold text-sm;
+.accordion h4 {
+  @apply text-[#7000FF];
 }
 
-.dropdown-menu {
+.dropdown_menu {
   @apply mt-4;
 }
 
-.dropdown-item {
+.dropdown_item {
   @apply border-t border-[#464553];
-}
-
-/* Accordion transition */
-.accordion-enter-active,
-.accordion-leave-active {
-  transition: all 0.2s ease;
-}
-.accordion-enter-from,
-.accordion-leave-to {
-  opacity: 0;
-  max-height: 0;
-}
-.accordion-enter-to,
-.accordion-leave-from {
-  opacity: 1;
-  max-height: 200px;
 }
 </style>

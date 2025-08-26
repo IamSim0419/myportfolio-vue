@@ -27,6 +27,8 @@ useSplitText(heroInfoRef, undefined, { type: 'words', stagger: 0.08, y: 50 })
 
 <template>
   <section>
+    <!-- Blur background effects -->
+    <div class="hero_effects"></div>
     <div class="hero-container">
       <h1 ref="heroTitleEl" class="hero-content">
         I'm Simreich,<br />
@@ -57,7 +59,11 @@ useSplitText(heroInfoRef, undefined, { type: 'words', stagger: 0.08, y: 50 })
 @reference 'tailwindcss';
 
 section {
-  @apply max-w-[1440px] mx-auto overflow-hidden;
+  @apply relative max-w-[1440px] mx-auto overflow-hidden;
+}
+
+.hero_effects {
+  @apply absolute w-[300px] h-[600px] bg-[##e6f2ff] rounded-full top-0 right-0 z-50;
 }
 
 .hero-container {
