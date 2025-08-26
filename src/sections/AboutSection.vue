@@ -54,7 +54,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section ref="aboutSection" id="about" class="overflow-hidden border">
+  <section ref="aboutSection" id="about" class="overflow-hidden">
     <div class="about_container">
       <!-- About label left side -->
       <div class="box box1">
