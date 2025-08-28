@@ -24,6 +24,7 @@ export function useSplitText(
 
   const animate = async () => {
     await nextTick()
+
     if (target.value) {
       split = new SplitText(target.value, { type, linesClass: 'split-line' })
 

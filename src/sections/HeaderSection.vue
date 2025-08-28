@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import MobileNav from '@/components/MobileNav.vue'
 import { navLinks } from '@/lib/constant'
-
 import { useGsapScrollTrigger } from '@/composables/useGsapScollTrigger'
 import { onMounted, useTemplateRef } from 'vue'
+import { useNightMode } from '@/composables/useNightMode'
 
 const headerRef = useTemplateRef<HTMLElement>('header')
+const { isNight, toggleNightMode } = useNightMode()
 
 onMounted(() => {
   useGsapScrollTrigger(headerRef.value, { preset: 'slide-down', once: true, duration: 1 })
@@ -19,12 +20,16 @@ const emit = defineEmits<{
 <template>
   <header ref="header">
     <div class="header_container">
-      <div class="relative">
+      <div class="logo">
         <div class="logo_effect"></div>
-        <a href="/"><img class="logo" src="/sim_logo.svg" alt="logo" /></a>
+        <a href="/"><img src="/sim_logo.svg" alt="logo" /></a>
       </div>
       <div class="desktop_nav">
-        <img class="moon_icon" src="../assets/icons/moon_icon.svg" alt="" />
+        <div @click="toggleNightMode()">
+          {{ isNight ? 'Night' : 'Light' }}
+          <img class="moon_icon" src="../assets/icons/moon_icon.svg" alt="" />
+        </div>
+
         <nav>
           <ul>
             <li @click="emit('navigate', link.id)" v-for="link in navLinks" :key="link.id">
@@ -44,25 +49,29 @@ const emit = defineEmits<{
 @reference 'tailwindcss';
 
 header {
-  @apply bg-black/40 border-b border-white/10 fixed top-0 left-0 right-0 z-50;
+  @apply bg-black/40 border-b border-white/10 fixed top-0 left-0 right-0 z-20;
   --webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
 .header_container {
-  @apply flex items-center justify-between px-4 py-[12px] md:px-[50px] md:py-[15px] lg:py-[20px];
+  @apply flex items-center justify-between px-4 py-[12px] md:px-[32px] lg:px-[50px] md:py-[15px] lg:py-[20px];
 }
 
-.header_container .logo {
+.header_container img {
   @apply relative h-[38x] w-[38px] transition-all duration-500;
 }
 
+.header_container .logo {
+  @apply relative;
+}
+
 .logo_effect {
-  @apply w-[30px] h-[30px] bg-[#e6f2ff] absolute rounded-full -top-[2px] -right-[2px];
+  @apply w-[20px] h-[20px] bg-[#e6f2ff] absolute rounded-[4px] -top-[2px] -right-[2px];
   filter: blur(16px);
 }
 
-.header_container .logo:hover {
+.header_container img:hover {
   @apply transform -translate-y-1;
 }
 
@@ -75,7 +84,7 @@ header {
 }
 
 .desktop_nav .moon_icon:hover {
-  @apply transform -translate-y-2;
+  @apply transform -translate-y-1;
 }
 
 nav ul {
@@ -87,7 +96,7 @@ nav li {
 }
 
 nav li:hover {
-  @apply transform -translate-y-2;
+  @apply transform -translate-y-1;
 }
 
 nav a {

@@ -2,59 +2,36 @@
 import AboutAccordion from '@/components/AboutAccordion.vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { onMounted, onUnmounted, ref, nextTick } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const aboutSection = ref<HTMLElement | null>(null)
-const aboutContent = ref<HTMLElement | null>(null)
+// const mm = gsap.matchMedia()
 
-onMounted(async () => {
-  await nextTick()
+let containerEl: HTMLElement | null = null;
+let leftEl: HTMLElement | null = null;
+let rightEl: HTMLElement | null = null;
 
-  if (!aboutSection.value || !aboutContent.value) return
+onMounted( () => {
+  const ctx = gsap.context(
+    () => {
+        if (!containerEl || !leftEl || !rightEl) return
 
-  const section = aboutSection.value
-  const content = aboutContent.value
-
-  gsap.set(content, { y: 100, opacity: 1 })
-
-  const getScrollLength = () => {
-    const total = content.scrollHeight
-    const viewport = window.innerHeight
-    return Math.max(total - viewport, 0)
-  }
-
-  const tween = gsap.to(content, {
-    y: () => -getScrollLength(),
-
-    ease: 'none',
-    scrollTrigger: {
-      trigger: section,
-      start: 'top 12%',
-
-      end: () => `+=${getScrollLength()}`,
-      scrub: true,
-      pin: true,
-      pinSpacing: false,
-      anticipatePin: 1,
-      invalidateOnRefresh: true, // recompute on resize
-    },
-  })
-
-  const onResize = () => ScrollTrigger.refresh()
-  window.addEventListener('resize', onResize)
-
-  onUnmounted(() => {
-    window.addEventListener('resize', onResize)
-    tween.scrollTrigger?.kill()
-    tween.kill()
-  })
-})
+        const st = ScrollTrigger.create({
+          trigger: containerEl,
+          start: "top top",
+          end: () => `+=${Math.max(0, rightEl!.scrollHeight - leftEl!.offsetHeight)}`,
+          pin: leftEl,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        })
+      }
+    })
 </script>
 
 <template>
-  <section ref="aboutSection" id="about" class="overflow-hidden">
+  <section ref="aboutSection" id="about" class="">
     <div class="about_container">
       <!-- About label left side -->
       <div class="box box1">
@@ -95,11 +72,11 @@ onMounted(async () => {
 @reference 'tailwindcss';
 
 section {
-  @apply min-h-screen max-w-[1440px] mx-auto mt-30 md:mt-40;
+  @apply max-w-[1440px] w-full mx-auto mt-30;
 }
 
 .about_container {
-  @apply px-4 md:px-8 lg:px-[65px] lg:flex;
+  @apply mx-4 md:mx-8 lg:mx-[65px] lg:flex;
 }
 
 .box {
@@ -115,7 +92,7 @@ section {
 }
 
 .about_container h2 {
-  @apply text-[35px] lg:text-[65px] mt-3;
+  @apply text-[35px] lg:text-[65px] pt-3;
 }
 
 .about_container .about_text {

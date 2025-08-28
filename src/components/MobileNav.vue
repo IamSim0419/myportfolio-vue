@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
+import { useSplitText } from '@/composables/useSplitText'
 
 defineProps<{
   navLinks: {
@@ -11,18 +12,24 @@ defineProps<{
 
 const isOpen = ref(false)
 const menuRef = ref<HTMLElement | null>(null)
-const linksRef = ref<HTMLAnchorElement[]>([])
+const linksRef = ref<Element[]>([])
+const navLocRef = ref<HTMLElement | null>(null)
+const navcontactRef = ref<HTMLElement | null>(null)
 
 function toggleNav() {
   isOpen.value = !isOpen.value
 }
 
-onMounted(() => {
+onMounted(async () => {
+  await nextTick()
   if (menuRef.value) {
     gsap.set(menuRef.value, {
       xPercent: 100,
     })
   }
+
+  useSplitText(navLocRef, undefined, { type: 'words', y: 20 })
+  useSplitText(navcontactRef, undefined, { type: 'lines', stagger: 0.2, y: 20 })
 })
 
 watch(
@@ -40,8 +47,9 @@ watch(
         linksRef.value,
         {
           opacity: 0,
-          y: 20,
-          stagger: 0.05,
+          x: 50,
+          delay: 0.3,
+          stagger: 0.2,
         },
         '-=0.3',
       )
@@ -56,46 +64,42 @@ watch(
 </script>
 
 <template>
-  <div class="nav-container">
+  <div class="nav_container">
     <!-- Hamburger -->
-    <button @click="toggleNav" class="hamburger-button">
-      <span :class="['hamburger-line', { 'open-first': isOpen }]"></span>
-      <span :class="['hamburger-line', 'middle-line', { 'open-middle': isOpen }]"></span>
-      <span :class="['hamburger-line', { 'open-last': isOpen }]"></span>
+    <button @click="toggleNav" class="hamburger_button">
+      <span :class="['line', { 'open-first': isOpen }]"></span>
+      <span :class="['line', 'middle-line', { 'open-middle': isOpen }]"></span>
+      <span :class="['line', { 'open-last': isOpen }]"></span>
     </button>
   </div>
 
-  <!-- Menu -->
-  <nav ref="menuRef" class="mobile-menu">
-    <div class="menu-content">
-      <a
-        v-for="(link, i) in navLinks"
-        :key="i"
-        href="#"
-        ref="el => linksRef[i] = el!"
-        class="menu-link"
-      >
-        {{ link.label }}
-      </a>
+  <!-- Nav menu -->
+  <div ref="menuRef" class="mobile_menu">
+    <nav>
+      <ul class="menu_content">
+        <li v-for="(link, i) in navLinks" :key="link.id" :ref="(el) => (linksRef[i] = el!)">
+          {{ link.label }}
+        </li>
+      </ul>
+    </nav>
+
+    <div class="info">
+      <p ref="navLocRef">Based in Philippines, Iloilo</p>
+      <a ref="navContactRef" href="#">Linkedin</a>
     </div>
-  </nav>
+  </div>
 </template>
 
 <style scoped>
 @reference 'tailwindcss';
 
-/* Container */
-.nav-container {
-  @apply relative;
-}
-
 /* Hamburger Button */
-.hamburger-button {
-  @apply relative z-50 p-3 focus:outline-none cursor-pointer;
+.hamburger_button {
+  @apply relative z-50 p-3 focus:outline-none cursor-none;
 }
 
-.hamburger-line {
-  @apply block w-6 h-0.5 bg-neutral-100 transition-all duration-300;
+.line {
+  @apply block w-6 h-0.5 bg-neutral-200 transition-all duration-300;
 }
 
 .middle-line {
@@ -115,28 +119,24 @@ watch(
 }
 
 /* Mobile Menu */
-.mobile-menu {
-  @apply fixed top-0 right-0 w-full h-full bg-[#080808] shadow-lg z-40 lg:hidden;
+.mobile_menu {
+  @apply p-6 fixed top-0 right-0 w-full dark:bg-[#080808] dark:text-white bg-[##FAFAFA] flex flex-col justify-between z-10 lg:hidden;
+  height: 100dvh;
 }
 
-.menu-content {
-  @apply p-8 flex flex-col space-y-6 mt-20;
+.menu_content {
+  @apply py-6 md:p-8 flex flex-col  space-y-6 mt-20;
 }
 
-.menu-link {
-  @apply text-lg font-semibold;
+.menu_content li {
+  @apply text-3xl md:text-4xl font-semibold transition-colors duration-300;
 }
 
-.menu-link:hover {
-  color: var(--color-primaryPurple-600);
+.mobile_menu li:hover {
+  @apply text-[#7000ff];
 }
 
-/* Buttons */
-.mobile_btn {
-  @apply flex flex-col;
-}
-
-.login_btn {
-  @apply bg-neutral-900 py-2 px-6 rounded-md cursor-pointer hover:bg-neutral-800 mb-2;
+.mobile_menu .info {
+  @apply flex justify-between text-neutral-500 pb-6 md:p-8;
 }
 </style>

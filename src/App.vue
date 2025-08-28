@@ -11,7 +11,7 @@ import { onMounted, onBeforeUnmount } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
-import { useCustomCursor } from '@/composables/useCustomCursor'
+import CursorPointer from '@/components/CustomCursor.vue'
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
 
@@ -33,15 +33,11 @@ onBeforeUnmount(() => {
 function scrollToSection(id: string) {
   smoother?.scrollTo(`#${id}`, true, 'top top+=80')
 }
-
-useCustomCursor()
 </script>
 
 <template>
-  <!-- Custom Cursor -->
-  <div class="custom_cursor">
-    <span class="custom_cursor_text text-black"></span>
-  </div>
+  <!-- Custom cursor -->
+  <CursorPointer />
 
   <HeaderSection @navigate="scrollToSection" />
   <div id="smooth-wrapper">

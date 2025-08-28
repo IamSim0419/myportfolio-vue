@@ -2,6 +2,21 @@ import CypressImg from '@/assets/images/cypress-img.png'
 import OfferJobsImg from '@/assets/images/offer-jobs.png'
 import PortfolioImg from '@/assets/images/porfolio-img.png'
 
+// Tech images for Tech Section
+import VueIcon from '/vue.svg'
+import TypescriptIcon from '/typescript.svg'
+import GsapIcon from '/gsap.svg'
+import FigmaIcon from '/figma.svg'
+import JavascriptIcon from '/javascript.svg'
+import TailwindIcon from '/tailwind.svg'
+import ReactIcon from '/react.svg'
+import NextIcon from '/next.svg'
+import CssIcon from '/css.svg'
+import GithubIcon from '/github.svg'
+import GitIcon from '/git.svg'
+import htmlIcon from '/html.svg'
+import NodeIcon from '/node.svg'
+
 // Header & Footer Navigation links
 export const navLinks = [
   { id: 'work', label: 'Work' },
@@ -42,4 +57,20 @@ export const projects = [
     tech: ['Vue', 'TypeScript', 'GSAP', 'TailwindCSS'],
     class: 'card_03',
   },
+]
+
+export const techStack = [
+  { name: 'Typescript', icon: TypescriptIcon },
+  { name: 'Vue.js', icon: VueIcon },
+  { name: 'Tailwind', icon: TailwindIcon },
+  { name: 'Gsap', icon: GsapIcon },
+  { name: 'Figma', icon: FigmaIcon },
+  { name: 'Javascript', icon: JavascriptIcon },
+  { name: 'React', icon: ReactIcon },
+  { name: 'Next', icon: NextIcon },
+  { name: 'Node', icon: NodeIcon },
+  { name: 'Github', icon: GithubIcon },
+  { name: 'Git', icon: GitIcon },
+  { name: 'Html', icon: htmlIcon },
+  { name: 'Css', icon: CssIcon },
 ]

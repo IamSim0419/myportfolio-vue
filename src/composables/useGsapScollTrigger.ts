@@ -41,7 +41,7 @@ export function useGsapScrollTrigger(el: Element | null, options: ScrollOptions 
     ease = 'power2.out',
   } = options
 
-  let tween: gsap.core.Tween | null = null
+  let tween: gsap.core.Tween | gsap.core.Timeline | null = null
 
   switch (preset) {
     case 'fade-in':
@@ -140,27 +140,34 @@ export function useGsapScrollTrigger(el: Element | null, options: ScrollOptions 
       })
       break
 
-    case 'stagger-scale':
-      tween = gsap.fromTo(
-        el.children,
-        { opacity: 0, scale: 0.8 },
-        {
-          opacity: 1,
-          scale: 1,
-          stagger,
-          duration,
-          ease,
-          delay,
-          scrollTrigger: {
-            trigger,
-            start,
-            end,
-            toggleActions: once ? 'play none none none' : 'play reverse play reverse',
+    case 'stagger-scale': {
+      const targets = Array.from(el.children)
+      // const targets = gsap.utils.toArray(el.children)
+      const tl = gsap.timeline()
+      targets.forEach((child, i) => {
+        tl.fromTo(
+          child,
+          { opacity: 0, scale: 0.8 },
+          {
+            opacity: 1,
+            y: 1,
+            duration,
+            ease,
+            delay: delay + i * stagger,
+            scrollTrigger: {
+              trigger: child, // 👈 each child observed individually
+              start,
+              end,
+              toggleActions: once ? 'play none none none' : 'play reverse play reverse',
+              markers: true,
+            },
           },
-        },
-      )
+          0,
+        )
+      })
+      tween = tl
       break
-
+    }
     default:
       console.warn(`Unknown ScrollTrigger preset: ${preset}`)
   }

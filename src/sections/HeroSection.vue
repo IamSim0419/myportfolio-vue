@@ -65,11 +65,10 @@ section {
 .hero_effects {
   @apply absolute w-[300px] h-[600px] bg-[##e6f2ff] rounded-full top-0 right-0 z-50;
 }
-
 .hero-container {
-  @apply px-4 md:px-8 lg:px-[65px] w-full
-         flex flex-col justify-between; /* <-- important */
-  min-height: 100dvh;
+  @apply mx-4 md:mx-8 lg:mx-[65px]
+         flex flex-col justify-between;
+  /* min-height: 100dvh; */
   height: 100dvh;
 }
 
@@ -79,7 +78,7 @@ section {
 }
 
 .hero-content {
-  @apply mt-28 md:mt-38; /* adjust vertical offset safely */
+  @apply mt-24 md:mt-34;
 }
 
 .hero_details {

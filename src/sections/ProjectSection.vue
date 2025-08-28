@@ -29,10 +29,10 @@ section {
 }
 
 .project_container {
-  @apply px-4 md:px-8 lg:px-[65px];
+  @apply mx-4 md:mx-8 lg:mx-[65px];
 }
 
 .project_container > h2 {
-  @apply text-[35px] mb-10 pt-4;
+  @apply text-[35px] mb-12;
 }
 </style>
