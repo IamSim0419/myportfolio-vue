@@ -1,33 +1,66 @@
-<script lang="ts" setup>
-import AboutAccordion from '@/components/AboutAccordion.vue'
+<script setup lang="ts">
+import { onMounted, onBeforeUnmount, ref } from 'vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { onMounted, onUnmounted } from 'vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// const mm = gsap.matchMedia()
+const aboutSection = ref<HTMLElement | null>(null)
+const aboutContent = ref<HTMLElement | null>(null)
 
-let containerEl: HTMLElement | null = null;
-let leftEl: HTMLElement | null = null;
-let rightEl: HTMLElement | null = null;
+let ctx: gsap.Context | null = null
 
-onMounted( () => {
-  const ctx = gsap.context(
-    () => {
-        if (!containerEl || !leftEl || !rightEl) return
+onMounted(() => {
+  ctx = gsap.context(() => {
+    const container = aboutSection.value
+    const left = container?.querySelector<HTMLElement>('.box1')
+    const right = aboutContent.value
 
-        const st = ScrollTrigger.create({
-          trigger: containerEl,
-          start: "top top",
-          end: () => `+=${Math.max(0, rightEl!.scrollHeight - leftEl!.offsetHeight)}`,
-          pin: leftEl,
+    ctx!.matchMedia({
+      // Desktop only
+      '(min-width: 1025px)': () => {
+        if (!container || !left || !right) return
+
+        // Pin left side
+        ScrollTrigger.create({
+          trigger: container,
+          start: 'top top',
+          end: () => `+=${Math.max(0, right.scrollHeight - left.offsetHeight)}`,
+          pin: left,
           pinSpacing: true,
           anticipatePin: 1,
           invalidateOnRefresh: true,
         })
-      }
+
+        // Animate right content
+        gsap.utils.toArray<HTMLElement>(right.querySelectorAll('p, h3, li, img')).forEach((el) => {
+          gsap.from(el, {
+            opacity: 0,
+            y: 30,
+            duration: 0.5,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              toggleActions: 'play none none reverse',
+            },
+          })
+        })
+
+        ScrollTrigger.refresh()
+      },
+
+      // Tablet & mobile → no pinning
+      '(max-width: 1024px)': () => {
+        // Just natural scroll, no pin
+      },
     })
+  }, aboutSection) // 👈 scoped to your section
+})
+
+onBeforeUnmount(() => {
+  ctx?.revert()
+})
 </script>
 
 <template>
