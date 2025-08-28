@@ -7,11 +7,13 @@ import { socialLinks } from '@/lib/constant'
   <footer>
     <div class="footer_container">
       <div class="footer_wrapper">
+        <!-- Left Column -->
         <div class="footer_col">
           <div class="logo_effect"></div>
           <img class="logo" src="/sim_logo.svg" alt="Logo" />
         </div>
 
+        <!-- Right Column -->
         <div class="footer_col">
           <div class="email">
             <h1>Let's talk</h1>
@@ -43,6 +45,7 @@ import { socialLinks } from '@/lib/constant'
         </div>
       </div>
 
+      <!-- Bottom Footer -->
       <div class="footer_bottom">
         <p>Crafted with code, care, and caffeine</p>
         <p>@ 2025 Simreich Somogod</p>
@@ -80,7 +83,7 @@ footer {
 }
 
 .email a {
-  @apply flex items-center  lg:mt-0 relative;
+  @apply flex items-center lg:mt-0 relative;
 }
 
 .email h1 {
@@ -103,19 +106,35 @@ footer {
   @apply flex flex-col gap-4;
 }
 
+/* Fixed list link */
 .list_link {
-  @apply inline-flex items-center text-[15px] -ml-1.5 border;
+  @apply relative inline-flex items-center text-[15px] -ml-1.5;
 }
 
+/* Bullet - absolutely positioned so it won't push siblings */
 .list_link .bullet_icon {
-  @apply w-1.5 h-1.5 rounded-full transition-all bg-green-500 opacity-0 group-hover:opacity-100 group-hover:ml-1.5;
+  @apply absolute left-0 w-1.5 h-1.5 rounded-full bg-green-500 opacity-0;
+  transform: translateX(-6px); /* start off-screen */
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.group:hover .bullet_icon {
+  opacity: 1;
+  transform: translateX(0); /* smooth slide-in */
 }
 
 .list_link p {
-  @apply text-[#BFBFBF] transition-transform duration-300 group-hover:translate-x-3 group-hover:md:translate-x-3.5 ease-out;
+  @apply text-[#BFBFBF] transition-transform duration-300 ease-out;
+  transform: translateX(0);
+}
+
+.group:hover p {
+  transform: translateX(6px);
 }
 
 .footer_bottom {
-  @apply flex items-center justify-between  mt-20 border-t border-[#2A2A2A] py-3 text-[12px] text-[#BFBFBF];
+  @apply flex items-center justify-between mt-20 border-t border-[#2A2A2A] py-3 text-[12px] text-[#BFBFBF];
 }
 </style>

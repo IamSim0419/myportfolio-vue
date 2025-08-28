@@ -26,8 +26,15 @@ const emit = defineEmits<{
       </div>
       <div class="desktop_nav">
         <div @click="toggleNightMode()">
-          {{ isNight ? 'Night' : 'Light' }}
-          <img class="moon_icon" src="../assets/icons/moon_icon.svg" alt="" />
+          <!-- Night mode = show moon -->
+          <img
+            v-if="isNight"
+            class="moon_icon"
+            src="@/assets/icons/moon_icon.svg"
+            alt="Moon Icon"
+          />
+          <!-- Light mode = show sun -->
+          <img v-else class="sun_icon" src="@/assets/icons/sun_icon.svg" alt="Sun Icon" />
         </div>
 
         <nav>
