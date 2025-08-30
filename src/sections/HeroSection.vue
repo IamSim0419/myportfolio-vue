@@ -68,8 +68,8 @@ section {
 .hero-container {
   @apply mx-4 md:mx-8 lg:mx-[65px]
          flex flex-col justify-between;
-  /* min-height: 100dvh; */
   height: 100dvh;
+  min-height: 100vh;
 }
 
 .hero-container h1 {
