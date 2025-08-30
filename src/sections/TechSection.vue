@@ -93,7 +93,7 @@ section {
 }
 
 .tech_container > h2 {
-  @apply text-[35px] mb-12;
+  @apply text-[32px] lg:text-5xl mb-16 lg:mb-22;
 }
 
 .tech_rows {

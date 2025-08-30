@@ -48,7 +48,7 @@ watch(
         {
           opacity: 0,
           x: 50,
-          delay: 0.3,
+          ease: 'power.in',
           stagger: 0.2,
         },
         '-=0.3',
@@ -56,7 +56,7 @@ watch(
     } else {
       tl.to(menuRef.value, {
         xPercent: 100,
-        duration: 0.4,
+        duration: 0.5,
       })
     }
   },
@@ -80,12 +80,21 @@ watch(
         <li v-for="(link, i) in navLinks" :key="link.id" :ref="(el) => (linksRef[i] = el!)">
           {{ link.label }}
         </li>
+
+        <!-- Resume download -->
+        <a href="/resume/CV.pdf" download class="nav_links"> Resume </a>
       </ul>
     </nav>
 
     <div class="info">
-      <p ref="navLocRef">Based in Philippines, Iloilo</p>
-      <a ref="navContactRef" href="#">Linkedin</a>
+      <p ref="navLocRef">
+        Philippines,<br />
+        Iloilo City
+      </p>
+      <div class="linkedin">
+        <a ref="navContactRef" href="#"><p>Linkedin</p> </a>
+        <img src="../assets/icons/arrow_icon_left.svg" alt="arrow icon" />
+      </div>
     </div>
   </div>
 </template>
@@ -125,18 +134,27 @@ watch(
 }
 
 .menu_content {
-  @apply py-6 md:p-8 flex flex-col  space-y-6 mt-20;
+  @apply py-6 md:p-8 flex flex-col  space-y-3 mt-15;
 }
 
 .menu_content li {
-  @apply text-3xl md:text-4xl font-semibold transition-colors duration-300;
+  @apply text-5xl md:text-6xl  transition-colors duration-300;
 }
 
-.mobile_menu li:hover {
-  @apply text-[#7000ff];
+.info {
+  @apply flex justify-between  pb-4 md:p-8;
 }
 
-.mobile_menu .info {
-  @apply flex justify-between text-neutral-500 pb-6 md:p-8;
+.info p {
+  @apply text-[15px];
+}
+
+.info .linkedin {
+  @apply flex items-center text-neutral-500 self-end;
+}
+
+.linkedin img {
+  @apply w-[18px] -rotate-[35deg] bg-white;
+  stroke: red;
 }
 </style>

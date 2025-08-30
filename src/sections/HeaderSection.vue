@@ -6,7 +6,7 @@ import { onMounted, useTemplateRef } from 'vue'
 import { useNightMode } from '@/composables/useNightMode'
 
 const headerRef = useTemplateRef<HTMLElement>('header')
-const { isNight, toggleNightMode } = useNightMode()
+const { isDark, toggleNightMode } = useNightMode()
 
 onMounted(() => {
   useGsapScrollTrigger(headerRef.value, { preset: 'slide-down', once: true, duration: 1 })
@@ -27,21 +27,24 @@ const emit = defineEmits<{
       <div class="desktop_nav">
         <div @click="toggleNightMode()">
           <!-- Night mode = show moon -->
-          <img
-            v-if="isNight"
-            class="moon_icon"
-            src="@/assets/icons/moon_icon.svg"
-            alt="Moon Icon"
-          />
+          <img v-if="isDark" class="moon_icon" src="@/assets/icons/moon_icon.svg" alt="Moon Icon" />
           <!-- Light mode = show sun -->
           <img v-else class="sun_icon" src="@/assets/icons/sun_icon.svg" alt="Sun Icon" />
         </div>
 
         <nav>
           <ul>
-            <li @click="emit('navigate', link.id)" v-for="link in navLinks" :key="link.id">
+            <li
+              class="nav_links"
+              @click="emit('navigate', link.id)"
+              v-for="link in navLinks"
+              :key="link.id"
+            >
               {{ link.label }}
             </li>
+
+            <!-- Resume download -->
+            <a href="/resume/CV.pdf" download class="nav_links"> Resume </a>
           </ul>
         </nav>
         <div class="mobile_nav">
@@ -56,7 +59,7 @@ const emit = defineEmits<{
 @reference 'tailwindcss';
 
 header {
-  @apply bg-black/40 border-b border-white/10 fixed top-0 left-0 right-0 z-20;
+  @apply dark:bg-black/40 bg-white/40 border-b border-white/10 fixed top-0 left-0 right-0 z-20;
   --webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
@@ -66,7 +69,7 @@ header {
 }
 
 .header_container img {
-  @apply relative h-[38x] w-[38px] transition-all duration-500;
+  @apply relative h-[38x] w-[38px] transition-all duration-300;
 }
 
 .header_container .logo {
@@ -87,7 +90,11 @@ header {
 }
 
 .desktop_nav .moon_icon {
-  @apply h-[16px] w-[16px] transition-all duration-500;
+  @apply h-[16px] w-[16px] transition-all duration-300;
+}
+
+.desktop_nav .sun_icon {
+  @apply h-[25px] w-[25px] transition-all duration-300;
 }
 
 .desktop_nav .moon_icon:hover {
@@ -98,11 +105,11 @@ nav ul {
   @apply hidden lg:flex gap-10;
 }
 
-nav li {
-  @apply text-base transition-all duration-500 text-gray-300 hover:text-white;
+nav .nav_links {
+  @apply text-base transition-all duration-300 text-gray-300 hover:text-white;
 }
 
-nav li:hover {
+nav .nav_links:hover {
   @apply transform -translate-y-1;
 }
 

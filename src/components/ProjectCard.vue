@@ -28,7 +28,7 @@ onMounted(async () => {
       })
     },
     {
-      threshold: 0.5,
+      threshold: 0.3,
     },
   )
 
@@ -57,7 +57,7 @@ const toggleExpand = (title: string) => {
       class="project_list"
     >
       <div class="card_image group">
-        <div class="click"><img src="../assets/icons/arrow-down.svg" alt="arrow icon" /></div>
+        <div class="arrow_icon"><img src="../assets/icons/arrow-down.svg" alt="arrow icon" /></div>
         <img :class="project.class" :src="project.image" alt="project image" />
       </div>
 
@@ -87,7 +87,7 @@ const toggleExpand = (title: string) => {
 }
 
 .project_list {
-  @apply opacity-0 transition-all scale-75 duration-500;
+  @apply opacity-0 transition-all scale-[90%] duration-800;
 }
 
 .project_list.show {
@@ -108,23 +108,23 @@ const toggleExpand = (title: string) => {
 }
 
 .project_card img {
-  @apply w-full aspect-square md:aspect-video object-cover md:object-top rounded-xl transition-transform duration-300;
+  @apply w-full aspect-square md:aspect-video object-cover md:object-top rounded-2xl transition-transform duration-300;
 }
 
 .project_card img:hover {
-  @apply scale-[103%];
+  @apply scale-[102%];
 }
 
 .card_image {
   @apply relative;
 }
 
-.card_image .click {
-  @apply absolute bg-lime-500 px-6 py-5 rounded-full top-5 right-10  transition-all duration-300 z-50 opacity-0 group-hover:translate-x-6 group-hover:opacity-100;
+.card_image .arrow_icon {
+  @apply absolute bg-lime-500 py-8 px-7 rounded-full top-5 right-10  transition-all duration-300 z-50 opacity-0 group-hover:translate-x-6 group-hover:opacity-100 -rotate-90;
 }
 
 .project_card h4 {
-  @apply text-[16px] md:text-[18px] mt-2;
+  @apply text-[16px] md:text-[18px] mt-3;
 }
 
 .card_description p {

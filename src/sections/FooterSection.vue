@@ -87,7 +87,7 @@ footer {
 }
 
 .email h1 {
-  @apply text-[45px] dark:text-white leading-12;
+  @apply text-[45px] dark:text-white leading-8;
 }
 
 .email .hovered_email:hover {
@@ -108,7 +108,7 @@ footer {
 
 /* Fixed list link */
 .list_link {
-  @apply relative inline-flex items-center text-[15px] -ml-1.5;
+  @apply relative inline-flex items-center text-[15px] ml-1;
 }
 
 /* Bullet - absolutely positioned so it won't push siblings */
@@ -131,7 +131,7 @@ footer {
 }
 
 .group:hover p {
-  transform: translateX(6px);
+  transform: translateX(16px);
 }
 
 .footer_bottom {

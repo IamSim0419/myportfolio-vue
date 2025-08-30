@@ -1,78 +1,63 @@
-<script setup lang="ts">
-import { onMounted, onBeforeUnmount, ref } from 'vue'
+<script lang="ts" setup>
+import AboutAccordion from '@/components/AboutAccordion.vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { onMounted } from 'vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const aboutSection = ref<HTMLElement | null>(null)
-const aboutContent = ref<HTMLElement | null>(null)
-
-let ctx: gsap.Context | null = null
-
 onMounted(() => {
-  ctx = gsap.context(() => {
-    const container = aboutSection.value
-    const left = container?.querySelector<HTMLElement>('.box1')
-    const right = aboutContent.value
+  const aboutSection = document.querySelector<HTMLElement>('.aboutSection')
+  const leftScreen = document.querySelector<HTMLElement>('.box1')
+  const rightScreen = document.querySelector<HTMLElement>('.box2')
+  // let mm = gsap.matchMedia()
 
-    ctx!.matchMedia({
-      // Desktop only
-      '(min-width: 1025px)': () => {
-        if (!container || !left || !right) return
+  if (!aboutSection || !leftScreen || !rightScreen) return
 
-        // Pin left side
-        ScrollTrigger.create({
-          trigger: container,
-          start: 'top top',
-          end: () => `+=${Math.max(0, right.scrollHeight - left.offsetHeight)}`,
-          pin: left,
-          pinSpacing: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        })
+  // gsap.matchMedia().add('(min-width: 1025)', () => {
+  ScrollTrigger.create({
+    trigger: aboutSection,
+    start: 'top 11.4%',
+    // end: () => `+=${rightScreen?.scrollHeight} 10%`,
+    end: () => `bottom 22.5%`,
+    pin: leftScreen,
+    pinSpacing: false,
+    anticipatePin: 1,
+    invalidateOnRefresh: true,
+    // markers: true,
+  })
 
-        // Animate right content
-        gsap.utils.toArray<HTMLElement>(right.querySelectorAll('p, h3, li, img')).forEach((el) => {
-          gsap.from(el, {
-            opacity: 0,
-            y: 30,
-            duration: 0.5,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse',
-            },
-          })
-        })
-
-        ScrollTrigger.refresh()
-      },
-
-      // Tablet & mobile → no pinning
-      '(max-width: 1024px)': () => {
-        // Just natural scroll, no pin
-      },
+  gsap.utils
+    .toArray(rightScreen?.querySelectorAll<HTMLElement>('.about_text, .experience, .about_image'))
+    .forEach((el) => {
+      gsap.from(el as HTMLElement, {
+        opacity: 0,
+        y: 100,
+        duration: 0.5,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: el as HTMLElement,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+      })
     })
-  }, aboutSection) // 👈 scoped to your section
-})
 
-onBeforeUnmount(() => {
-  ctx?.revert()
+  ScrollTrigger.refresh()
 })
+// })
 </script>
 
 <template>
-  <section ref="aboutSection" id="about" class="">
+  <section id="about" class="aboutSection">
     <div class="about_container">
       <!-- About label left side -->
-      <div class="box box1">
+      <aside class="box box1">
         <h2>About</h2>
-      </div>
+      </aside>
 
       <!-- About Content right side -->
-      <div ref="aboutContent" class="box box2 opacity-0">
+      <article ref="aboutContent" class="box box2">
         <p class="about_text" id="about">
           I'm Simreich, a frontend developer with 2 years of experience based in the Philippines.
           Currently, I work as a freelance developer, helping clients build modern, responsive, and
@@ -88,7 +73,7 @@ onBeforeUnmount(() => {
           code, and continuously improving my skills to adapt to the evolving web landscape.
         </p>
 
-        <div id="experience">
+        <div id="experience" class="experience">
           <AboutAccordion />
         </div>
 
@@ -96,7 +81,7 @@ onBeforeUnmount(() => {
           <img src="../assets/images/myprofile-pic.png" alt="my profile" />
           <p>This is me :)</p>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 </template>
@@ -105,31 +90,27 @@ onBeforeUnmount(() => {
 @reference 'tailwindcss';
 
 section {
-  @apply max-w-[1440px] w-full mx-auto mt-30;
+  @apply max-w-[1440px] w-full mx-auto mt-40 lg:mt-48;
 }
 
 .about_container {
-  @apply mx-4 md:mx-8 lg:mx-[65px] lg:flex;
-}
-
-.box {
-  @apply lg:flex-1/2;
+  @apply mx-4 md:mx-8 lg:mx-[65px] flex flex-col lg:flex-row gap-6;
 }
 
 .box1 {
-  @apply border-t border-[#6B6B6B]/60;
+  @apply border-t border-[#6B6B6B]/60 lg:min-w-[50%];
 }
 
 .box2 {
-  @apply lg:ml-8;
+  @apply pt-5 lg:min-w-[50%];
 }
 
 .about_container h2 {
-  @apply text-[35px] lg:text-[65px] pt-3;
+  @apply text-[35px] lg:text-[65px];
 }
 
 .about_container .about_text {
-  @apply text-[17px] lg:text-[28px] leading-6 lg:leading-[35px] mt-4;
+  @apply text-[22px] lg:text-[28px] leading-7 lg:leading-[35px] mt-4;
 }
 
 .about_container span {

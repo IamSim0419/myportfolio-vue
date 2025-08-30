@@ -1,46 +1,55 @@
 import { ref, onMounted } from 'vue'
 import gsap from 'gsap'
 
-const isNight = ref(true)
+const isDark = ref(true)
 
 export function useNightMode() {
-  const toggleNightMode = (target?: HTMLElement | null) => {
-    isNight.value = !isNight.value
+  const applyMode = (dark: boolean, animate = false) => {
+    const el = document.body
+    const html = document.documentElement
 
-    const el = target || document.body
-    if (!el) return
+    isDark.value = dark
 
-    if (isNight.value) {
+    // Toggle Tailwind's dark class
+    if (dark) {
+      html.classList.add('dark')
+    } else {
+      html.classList.remove('dark')
+    }
+
+    // Animate body transition
+    if (animate) {
       gsap.to(el, {
-        backgroundColor: '#080808',
-        color: '#ffffff',
-        duration: 0.6,
+        backgroundColor: dark ? '#080808' : '#FAFAFA',
+        color: dark ? '#FAFAFA' : '#080808',
+        duration: 0.5,
         ease: 'power2.inOut',
       })
     } else {
-      gsap.to(el, {
-        backgroundColor: '#FAFAFA',
-        color: '#080808',
-        duration: 0.6,
-        ease: 'power2.inOut',
+      gsap.set(el, {
+        backgroundColor: dark ? '#080808' : '#FAFAFA',
+        color: dark ? '#FAFAFA' : '#080808',
       })
     }
 
-    localStorage.setItem('nightMode', isNight.value ? 'true' : 'false')
+    localStorage.setItem('nightMode', isDark.value ? 'true' : 'false')
+  }
+
+  const toggleNightMode = () => {
+    applyMode(!isDark.value, true) // animate on toggle
   }
 
   onMounted(() => {
     const saved = localStorage.getItem('nightMode')
 
     if (saved !== null) {
-      isNight.value = saved === 'true'
-
-      gsap.set(document.body, {
-        backgroundColor: isNight.value ? '#080808' : '#FAFAFA',
-        color: isNight.value ? '#ffffff' : '#080808',
-      })
+      applyMode(saved !== null)
+    } else {
+      // Fallback to system preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      applyMode(prefersDark)
     }
   })
 
-  return { isNight, toggleNightMode }
+  return { isDark, toggleNightMode }
 }

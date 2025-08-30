@@ -33,6 +33,6 @@ section {
 }
 
 .project_container > h2 {
-  @apply text-[35px] mb-12;
+  @apply text-[32px] lg:text-5xl mb-8;
 }
 </style>

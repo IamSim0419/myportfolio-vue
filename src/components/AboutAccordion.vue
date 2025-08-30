@@ -40,28 +40,30 @@ function toggleAbout(id: number) {
     <h4>Experience</h4>
 
     <div class="dropdown_menu">
-      <div v-for="(item, index) in items" :key="item.id" class="dropdown_item">
+      <div v-for="item in items" :key="item.id" class="dropdown_item">
         <!-- Clickable -->
-        <div class="dropdown_title flex justify-between pt-3" @click="toggleAbout(item.id)">
-          <div>
-            <h3 class="text-[19px] font-medium">{{ item.company }}</h3>
-            <h3 class="text-[19px] text-gray-300">{{ item.role }}</h3>
-            <small class="text-sm text-gray-500">{{ item.year }}</small>
+        <div class="dropdown_title flex justify-between pt-4" @click="toggleAbout(item.id)">
+          <div class="leading-6">
+            <h3 class="text-[20px] font-medium">{{ item.company }}</h3>
+            <h3 class="text-[20px] text-neutral-500">{{ item.role }}</h3>
+            <small class="text-[15px] text-neutral-500">{{ item.year }}</small>
           </div>
           <img
             src="../assets/icons/add_icon.svg"
             alt="add icon"
-            class="w-7 h-7 transition-transform duration-300"
+            class="w-10 h-10 transition-transform duration-300"
             :class="[item.id === activeId ? 'rotate-45' : '']"
           />
         </div>
 
         <!-- Contents -->
         <p
-          class="text-[15px] leading-5 transition-all transform duration-300 opacity-0"
-          :class="[item.id === activeId ? 'opacity-100 -translate-y-2 pt-5 pb-3' : '']"
+          class="text-[16px] leading-6 transition-all transform duration-300 opacity-0 line-clamp-1"
+          :class="[
+            item.id === activeId ? 'line-clamp-none opacity-100 -translate-y-2 pt-8 pb-5' : '',
+          ]"
         >
-          {{ item.description }} {{ index + 1 }}
+          {{ item.description }}
         </p>
       </div>
     </div>

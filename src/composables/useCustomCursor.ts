@@ -32,7 +32,7 @@ export function useCustomCursor() {
           scale: 5,
           borderRadius: '50%',
           backgroundColor: '#ffffff',
-          // duration: 0.1,
+          duration: 0.1,
         })
         if (cursorTextEl) cursorTextEl.textContent = 'View'
       })
@@ -41,7 +41,7 @@ export function useCustomCursor() {
           scale: 1,
           borderRadius: '50%',
           backgroundColor: '#ffffff',
-          // duration: 0.1,
+          duration: 0.1,
         })
         if (cursorTextEl) cursorTextEl.textContent = ''
       })
