@@ -77,12 +77,25 @@ watch(
   <div ref="menuRef" class="mobile_menu">
     <nav>
       <ul class="menu_content">
-        <li v-for="(link, i) in navLinks" :key="link.id" :ref="(el) => (linksRef[i] = el!)">
+        <li
+          v-for="(link, i) in navLinks"
+          :key="link.id"
+          :ref="(el) => (linksRef[i] = el! as Element)"
+          class="nav_links"
+          @click="toggleNav"
+        >
           {{ link.label }}
         </li>
 
         <!-- Resume download -->
-        <a href="/resume/CV.pdf" download class="nav_links"> Resume </a>
+        <a
+          :ref="(el) => (linksRef[navLinks.length] = el! as Element)"
+          href="/resume/CV.pdf"
+          download
+          class="nav_links"
+        >
+          Resume
+        </a>
       </ul>
     </nav>
 
@@ -137,7 +150,7 @@ watch(
   @apply py-6 md:p-8 flex flex-col  space-y-3 mt-15;
 }
 
-.menu_content li {
+.menu_content .nav_links {
   @apply text-5xl md:text-6xl  transition-colors duration-300;
 }
 
