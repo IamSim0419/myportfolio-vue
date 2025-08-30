@@ -62,9 +62,9 @@ section {
   @apply relative max-w-[1440px] mx-auto overflow-hidden;
 }
 
-.hero_effects {
+/* .hero_effects {
   @apply absolute w-[300px] h-[600px] bg-[##e6f2ff] rounded-full top-0 right-0 z-50;
-}
+} */
 .hero-container {
   @apply mx-4 md:mx-8 lg:mx-[65px]
          flex flex-col justify-between;
