@@ -68,8 +68,8 @@ section {
 .hero-container {
   @apply mx-4 md:mx-8 lg:mx-[65px]
          flex flex-col justify-between;
-  height: 100dvh;
-  /* min-height: 100vh; */
+  min-height: 100vh;
+  /* min-height: 100dvh; */
 }
 
 .hero-container h1 {
@@ -83,11 +83,11 @@ section {
 
 .hero_details {
   @apply flex items-center justify-between w-full
-         border-b border-[#6B6B6B]/50 pb-4 mb-12;
+         border-b border-[#6B6B6B]/50 pb-4 mb-27 md:mb-30 lg:mb-14;
 }
 
 .hero_works {
-  @apply flex items-center gap-2 self-end lg:self-start text-[16px];
+  @apply flex items-center gap-2 self-end lg:self-start text-[15px] lg:text-[16px];
 }
 
 .hero_works img {
@@ -99,7 +99,7 @@ section {
 }
 
 .hero_info p {
-  @apply text-[#6B6B6B] text-[16px] leading-5;
+  @apply text-[#6B6B6B] text-[15px] leading-5;
 }
 
 .hero_info span {
