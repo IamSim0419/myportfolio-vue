@@ -1,24 +1,69 @@
 // useCustomCursor.ts
+// useCustomCursor.ts
 import { onMounted, onUnmounted } from 'vue'
 import gsap from 'gsap'
 
-export function useCustomCursor() {
+interface CustomCursorOptions {
+  defaultSize?: { width: number; height: number }
+  defaultBorderRadius?: string
+  defaultBackgroundColor?: string // Cursor default color
+  defaultSelectionColor?: string // Default text selection color (blue)
+  animationDuration?: number
+  cursorSelector?: string
+  cursorTextSelector?: string
+}
+
+export function useCustomCursor(options: CustomCursorOptions = {}) {
+  const {
+    defaultSize = { width: 16, height: 16 },
+    defaultBorderRadius = '50%',
+    defaultBackgroundColor = '#FFFFFF', // Cursor default (white)
+    defaultSelectionColor = '#7c3aed', // Mimic Windows default blue
+    animationDuration = 0.1,
+    cursorSelector = '.custom_cursor',
+    cursorTextSelector = '.custom_cursor_text',
+  } = options
+
   let cursorEl: HTMLElement | null = null
   let cursorTextEl: HTMLElement | null = null
   let moveHandler: ((e: MouseEvent) => void) | null = null
 
   onMounted(() => {
-    cursorEl = document.querySelector('.custom_cursor')
-    cursorTextEl = document.querySelector('.custom_cursor_text')
+    cursorEl = document.querySelector<HTMLElement>(cursorSelector)
+    cursorTextEl = document.querySelector<HTMLElement>(cursorTextSelector)
 
     if (!cursorEl) return
+
+    // Apply default selection color via CSS
+    const style = document.createElement('style')
+    style.textContent = `
+      ::selection {
+        background-color: ${defaultSelectionColor};
+        color: #000;
+      }
+      *::-moz-selection {
+        background-color: ${defaultSelectionColor};
+        color: #000;
+      }
+    `
+    document.head.appendChild(style)
+
+    // Initialize cursor position and style
+    gsap.set(cursorEl, {
+      width: defaultSize.width,
+      height: defaultSize.height,
+      borderRadius: defaultBorderRadius,
+      backgroundColor: defaultBackgroundColor,
+      x: 0,
+      y: 0,
+    })
 
     // Move cursor with GSAP
     moveHandler = (e: MouseEvent) => {
       gsap.to(cursorEl, {
         x: e.clientX,
         y: e.clientY,
-        duration: 0.1,
+        duration: animationDuration,
         ease: 'power3.out',
       })
     }
@@ -32,61 +77,65 @@ export function useCustomCursor() {
           scale: 5,
           borderRadius: '50%',
           backgroundColor: '#ffffff',
-          duration: 0.1,
+          duration: animationDuration,
         })
         if (cursorTextEl) cursorTextEl.textContent = 'View'
       })
       card.addEventListener('mouseleave', () => {
         gsap.to(cursorEl, {
           scale: 1,
-          borderRadius: '50%',
-          backgroundColor: '#ffffff',
-          duration: 0.1,
+          borderRadius: defaultBorderRadius,
+          backgroundColor: defaultBackgroundColor,
+          duration: animationDuration,
         })
         if (cursorTextEl) cursorTextEl.textContent = ''
       })
     })
 
-    // Hover states for all text elements
+    // Hover states for text elements with dynamic height based on font size
     const textElements = document.querySelectorAll(
       'p, h1, h2, h3, h4, h5, h6, span, small, strong, em',
     )
     textElements.forEach((el) => {
       el.addEventListener('mouseenter', () => {
+        const style = window.getComputedStyle(el)
+        const fontSize = parseFloat(style.fontSize)
+        const cursorHeight = Math.min(100, Math.max(24, fontSize * 1.3))
+
         gsap.to(cursorEl, {
           width: 2,
-          height: 24,
+          height: cursorHeight,
           scale: 1,
           borderRadius: '0%',
           backgroundColor: '#7c3aed',
-          duration: 0.1,
+          duration: animationDuration,
         })
       })
       el.addEventListener('mouseleave', () => {
         gsap.to(cursorEl, {
-          width: 16,
-          height: 16,
-          borderRadius: '50%',
-          backgroundColor: '#ffffff',
-          duration: 0.1,
+          width: defaultSize.width,
+          height: defaultSize.height,
+          borderRadius: defaultBorderRadius,
+          backgroundColor: defaultBackgroundColor,
+          duration: animationDuration,
         })
       })
-    })
-
-    // Copy event → change cursor color to violet temporarily
-    document.addEventListener('copy', () => {
-      if (cursorEl) {
-        gsap.to(cursorEl, {
-          backgroundColor: '#7ffd', // Tailwind violet-600
-          duration: 0.2,
-          yoyo: true,
-          repeat: 1, // flash effect
-        })
-      }
     })
   })
 
   onUnmounted(() => {
     if (moveHandler) window.removeEventListener('mousemove', moveHandler)
+    // Clean up the dynamically added style
+    const style = document.head.querySelector('style')
+    if (style) document.head.removeChild(style)
   })
 }
+
+// Usage
+// import { useCustomCursor } from '@/composables/useCustomCursor'
+
+// useCustomCursor({
+//   defaultSize: { width: 20, height: 20 },
+//   textHover: { minHeight: 20, maxHeight: 120, width: 3 },
+//   projectHover: { scale: 6, text: 'Explore' },
+// })
