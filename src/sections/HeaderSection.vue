@@ -3,12 +3,20 @@ import MobileNav from '@/components/MobileNav.vue'
 import { navLinks } from '@/lib/constant'
 import { useGsapScrollTrigger } from '@/composables/useGsapScollTrigger'
 import { onMounted, useTemplateRef } from 'vue'
+import { gsap } from 'gsap'
 import { useNightMode } from '@/composables/useNightMode'
-import { useScrollTo } from '@/composables/useScrollTo'
 
 const headerRef = useTemplateRef<HTMLElement>('header')
+
 const { isDark, toggleNightMode } = useNightMode()
-const { scrollTo } = useScrollTo()
+
+const scrollToSection = (sectionId: string) => {
+  gsap.to(window, {
+    duration: 1,
+    scrollTo: { y: `#${sectionId}`, offsetY: 80 },
+    ease: 'power2.out',
+  })
+}
 
 onMounted(() => {
   useGsapScrollTrigger(headerRef.value, { preset: 'slide-down', once: true, duration: 1 })
@@ -33,10 +41,10 @@ onMounted(() => {
         <nav>
           <ul>
             <li
-              class="nav_links"
-              @click="scrollTo(link.id)"
+              @click="scrollToSection(link.id)"
               v-for="link in navLinks"
               :key="link.id"
+              class="nav_links"
             >
               {{ link.label }}
             </li>
@@ -46,7 +54,7 @@ onMounted(() => {
           </ul>
         </nav>
         <div class="mobile_nav">
-          <MobileNav :navLinks="navLinks" />
+          <MobileNav @scroll-to="scrollToSection" :navLinks="navLinks" />
         </div>
       </div>
     </div>

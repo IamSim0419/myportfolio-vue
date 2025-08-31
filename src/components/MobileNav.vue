@@ -2,10 +2,13 @@
 import { ref, watch, onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import { useSplitText } from '@/composables/useSplitText'
-import { useScrollTo } from '@/composables/useScrollTo'
 
 defineProps<{
   navLinks: { id: string; label: string }[]
+}>()
+
+const emit = defineEmits<{
+  'scroll-to': [sectionId: string]
 }>()
 
 const isOpen = ref(false)
@@ -13,15 +16,20 @@ const menuRef = ref<HTMLElement | null>(null)
 const linksRef = ref<Element[]>([])
 const navLocRef = ref<HTMLElement | null>(null)
 const navcontactRef = ref<HTMLElement | null>(null)
-const { scrollTo } = useScrollTo()
+
+const scrollToSection = (sectionId: string) => {
+  toggleNav()
+
+  gsap.to(window, {
+    duration: 1,
+    scrollTo: { y: `#${sectionId}`, offsetY: 80 },
+    ease: 'power2.out',
+  })
+  emit('scroll-to', sectionId)
+}
 
 function toggleNav() {
   isOpen.value = !isOpen.value
-}
-
-function handleNavClick(linkId: string) {
-  scrollTo(linkId) // Use the composable's scrollTo
-  toggleNav() // Close menu
 }
 
 onMounted(async () => {
@@ -66,11 +74,11 @@ watch(
     <nav>
       <ul class="menu_content">
         <li
+          @click.prevent="scrollToSection(link.id)"
           v-for="(link, i) in navLinks"
           :key="link.id"
           :ref="(el) => (linksRef[i] = el! as Element)"
           class="nav_links"
-          @click="handleNavClick(link.id)"
         >
           {{ link.label }}
         </li>
