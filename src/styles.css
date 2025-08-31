@@ -28,13 +28,10 @@ body {
   /* background-color: #080808;
   color: #ffffff; */
   font-family: var(--Haas-Grotesk);
-  cursor: none;
 }
 
-@media (max-width: 1024) {
-  .custom_cursor {
-    display: none !important;
+@media (min-width: 1024px) {
+  body {
+    cursor: none;
   }
 }
-
-/* for dark mode color #FAFAFA */

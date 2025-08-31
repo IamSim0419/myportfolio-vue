@@ -1,5 +1,4 @@
 // useCustomCursor.ts
-// useCustomCursor.ts
 import { onMounted, onUnmounted } from 'vue'
 import gsap from 'gsap'
 
@@ -29,6 +28,9 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
   let moveHandler: ((e: MouseEvent) => void) | null = null
 
   onMounted(() => {
+    // Check if screen width is below mobile breakpoint
+    if (window.innerWidth <= 1024) return // 1024px for tablet/mobile cutoff
+
     cursorEl = document.querySelector<HTMLElement>(cursorSelector)
     cursorTextEl = document.querySelector<HTMLElement>(cursorTextSelector)
 
@@ -77,6 +79,7 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
           scale: 5,
           borderRadius: '50%',
           backgroundColor: '#ffffff',
+          color: '#000000',
           duration: animationDuration,
         })
         if (cursorTextEl) cursorTextEl.textContent = 'View'
@@ -91,6 +94,29 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
         if (cursorTextEl) cursorTextEl.textContent = ''
       })
     })
+
+    // Hover states for resume download
+    // const resumeDownload = document.querySelectorAll('.resume_download')
+    // resumeDownload.forEach((res) => {
+    //   res.addEventListener('mouseenter', () => {
+    //     gsap.to(cursorEl, {
+    //       scale: 5,
+    //       borderRadius: '20%',
+    //       backgroundColor: '#ffffff',
+    //       duration: animationDuration,
+    //     })
+    //     if (cursorTextEl) cursorTextEl.textContent = 'Download'
+    //   })
+    //   res.addEventListener('mouseleave', () => {
+    //     gsap.to(cursorEl, {
+    //       scale: 1,
+    //       borderRadius: defaultBorderRadius,
+    //       backgroundColor: defaultBackgroundColor,
+    //       duration: animationDuration,
+    //     })
+    //     if (cursorTextEl) cursorTextEl.textContent = ''
+    //   })
+    // })
 
     // Hover states for text elements with dynamic height based on font size
     const textElements = document.querySelectorAll(

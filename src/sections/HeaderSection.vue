@@ -44,7 +44,7 @@ const emit = defineEmits<{
             </li>
 
             <!-- Resume download -->
-            <a href="/resume/CV.pdf" download class="nav_links"> Resume </a>
+            <a href="/resume/CV.pdf" download class="nav_links resume_download"> Resume </a>
           </ul>
         </nav>
         <div class="mobile_nav">

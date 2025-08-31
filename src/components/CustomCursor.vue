@@ -7,11 +7,13 @@ useCustomCursor() // 👈 activate the cursor behavior
 <template>
   <!-- Custom cursor -->
   <div class="custom_cursor">
-    <span class="custom_cursor_text text-[#080808]"></span>
+    <span class="custom_cursor_text"></span>
   </div>
 </template>
 
 <style scoped>
+@reference 'tailwindcss';
+
 /* Custom cursor */
 .custom_cursor {
   position: fixed;
@@ -30,5 +32,13 @@ useCustomCursor() // 👈 activate the cursor behavior
   justify-content: center;
   font-size: 4px;
   mix-blend-mode: difference;
+}
+
+/* Fallback hide on mobile */
+@media (max-width: 1024px) {
+  .custom_cursor,
+  .custom_cursor_text {
+    display: none !important;
+  }
 }
 </style>

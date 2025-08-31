@@ -117,7 +117,7 @@ watch(
 
 /* Hamburger Button */
 .hamburger_button {
-  @apply relative z-50 p-3 focus:outline-none cursor-none;
+  @apply relative z-50 p-3 focus:outline-none;
 }
 
 .line {
