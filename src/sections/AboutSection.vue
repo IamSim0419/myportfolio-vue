@@ -2,50 +2,71 @@
 import AboutAccordion from '@/components/AboutAccordion.vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { onMounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
+import debounce from 'lodash/debounce' // Ensure lodash is installed
 
 gsap.registerPlugin(ScrollTrigger)
 
 onMounted(() => {
-  const aboutSection = document.querySelector<HTMLElement>('.aboutSection')
-  const leftScreen = document.querySelector<HTMLElement>('.box1')
-  const rightScreen = document.querySelector<HTMLElement>('.box2')
-  // let mm = gsap.matchMedia()
+  // Use matchMedia for dynamic breakpoint handling (pin only)
+  const mm = gsap.matchMedia()
 
-  if (!aboutSection || !leftScreen || !rightScreen) return
+  mm.add('(min-width: 1024px)', (context) => {
+    const { cleanup } = context // Cleanup function for this media query
 
-  // gsap.matchMedia().add('(min-width: 1025)', () => {
-  ScrollTrigger.create({
-    trigger: aboutSection,
-    start: 'top 11.4%',
-    // end: () => `+=${rightScreen?.scrollHeight} 10%`,
-    end: () => `bottom 22.5%`,
-    pin: leftScreen,
-    pinSpacing: false,
-    anticipatePin: 1,
-    invalidateOnRefresh: true,
-    // markers: true,
-  })
+    const aboutSection = document.querySelector<HTMLElement>('.aboutSection')
+    const leftScreen = document.querySelector<HTMLElement>('.box1')
+    const rightScreen = document.querySelector<HTMLElement>('.box2')
 
-  gsap.utils
-    .toArray(rightScreen?.querySelectorAll<HTMLElement>('.about_text, .experience, .about_image'))
-    .forEach((el) => {
-      gsap.from(el as HTMLElement, {
-        opacity: 0,
-        y: 100,
-        duration: 0.5,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: el as HTMLElement,
-          start: 'top 85%',
-          toggleActions: 'play none none reverse',
-        },
-      })
+    if (!aboutSection || !leftScreen || !rightScreen) return
+
+    const pinTrigger = ScrollTrigger.create({
+      trigger: aboutSection,
+      start: 'top 11.4%',
+      end: () => 'bottom 22.5%',
+      pin: leftScreen,
+      pinSpacing: false,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      markers: true, // Keep for debugging if needed
     })
 
-  ScrollTrigger.refresh()
+    // Debounced refresh on resize
+    const refreshScrollTrigger = debounce(() => ScrollTrigger.refresh(), 250)
+    window.addEventListener('resize', refreshScrollTrigger)
+
+    // Cleanup on unmount or when breakpoint changes
+    return () => {
+      pinTrigger.kill() // Kill the pin ScrollTrigger
+      window.removeEventListener('resize', refreshScrollTrigger)
+      cleanup() // GSAP matchMedia cleanup
+    }
+  })
+
+  // Animations for all screen sizes
+  const rightScreen = document.querySelector<HTMLElement>('.box2')
+  if (rightScreen) {
+    gsap.utils
+      .toArray(rightScreen.querySelectorAll<HTMLElement>('.about_text, .experience, .about_image'))
+      .forEach((el) => {
+        gsap.from(el as HTMLElement, {
+          opacity: 0,
+          y: 100,
+          duration: 0.5,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el as HTMLElement,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+        })
+      })
+  }
+
+  onUnmounted(() => {
+    mm.revert() // Clean up all matchMedia instances
+  })
 })
-// })
 </script>
 
 <template>
@@ -78,7 +99,7 @@ onMounted(() => {
         </div>
 
         <div id="about_image" class="about_image">
-          <img src="../assets/images/myprofile-pic.png" alt="my profile" />
+          <img src="../assets/images/myprofile-pic.png" alt="my profile" loading="lazy" />
           <p>This is me :)</p>
         </div>
       </article>
@@ -127,5 +148,12 @@ section {
 
 .about_image img {
   @apply w-full h-auto rounded-lg;
+}
+
+/* Mobile/tablet fallback: disable pin only */
+@media (max-width: 1023px) {
+  .box1 {
+    position: static !important; /* Disable pin */
+  }
 }
 </style>
