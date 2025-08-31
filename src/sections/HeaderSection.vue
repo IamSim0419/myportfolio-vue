@@ -4,17 +4,15 @@ import { navLinks } from '@/lib/constant'
 import { useGsapScrollTrigger } from '@/composables/useGsapScollTrigger'
 import { onMounted, useTemplateRef } from 'vue'
 import { useNightMode } from '@/composables/useNightMode'
+import { useScrollTo } from '@/composables/useScrollTo'
 
 const headerRef = useTemplateRef<HTMLElement>('header')
 const { isDark, toggleNightMode } = useNightMode()
+const { scrollTo } = useScrollTo()
 
 onMounted(() => {
   useGsapScrollTrigger(headerRef.value, { preset: 'slide-down', once: true, duration: 1 })
 })
-
-const emit = defineEmits<{
-  navigate: [id: string]
-}>()
 </script>
 
 <template>
@@ -36,7 +34,7 @@ const emit = defineEmits<{
           <ul>
             <li
               class="nav_links"
-              @click="emit('navigate', link.id)"
+              @click="scrollTo(link.id)"
               v-for="link in navLinks"
               :key="link.id"
             >

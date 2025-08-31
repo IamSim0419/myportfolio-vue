@@ -20,7 +20,6 @@ onMounted(async () => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // console.log(entry.target)
           entry.target.classList.add('show')
         } else {
           entry.target.classList.remove('show')
@@ -40,7 +39,7 @@ onBeforeMount(() => {
   observer?.disconnect()
 })
 
-// Track expanded descriptions by title (or index)
+// Track expanded descriptions by title
 const expanded = ref<string | null>(null)
 
 const toggleExpand = (title: string) => {
@@ -67,7 +66,7 @@ const toggleExpand = (title: string) => {
         <p :class="expanded === project.title ? 'line-clamp-none' : 'line-clamp-2 lg:line-clamp-1'">
           {{ project.description }}
         </p>
-        <span @click="toggleExpand(project.title)">
+        <span @click="toggleExpand(project.title)" class="expand-toggle">
           {{ expanded === project.title ? 'Less' : 'More' }}
         </span>
       </div>
@@ -83,7 +82,7 @@ const toggleExpand = (title: string) => {
 @reference 'tailwindcss';
 
 .card_container {
-  @apply grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-10;
+  @apply grid grid-cols-1 lg:grid-cols-2 gap-10; /* Consistent 2-column grid on desktop */
 }
 
 .project_list {
@@ -96,15 +95,15 @@ const toggleExpand = (title: string) => {
 
 /* Special spanning for card01 */
 .card_container .card_01 {
-  @apply lg:col-span-3;
+  @apply lg:col-span-2;
 }
 
 .project_card.card_01 img {
-  @apply lg:aspect-[16/7];
+  @apply lg:aspect-[16/7]; /* Standard widescreen ratio */
 }
 
 .project_card {
-  @apply rounded-xl;
+  @apply rounded-xl; /* Enforce minimum height for alignment */
 }
 
 .project_card img {
@@ -120,19 +119,19 @@ const toggleExpand = (title: string) => {
 }
 
 .card_image .arrow_icon {
-  @apply absolute bg-lime-500 py-8 px-7 rounded-full top-5 right-10  transition-all duration-300 z-50 opacity-0 group-hover:translate-x-6 group-hover:opacity-100 -rotate-90;
+  @apply absolute bg-lime-500 py-2 px-3 rounded-full top-2 sm:top-4 right-2 sm:right-4 transition-all duration-300 z-50 opacity-0 group-hover:translate-x-2 group-hover:opacity-100 -rotate-90;
 }
 
 .project_card h4 {
-  @apply text-[16px] md:text-[18px] mt-3;
+  @apply text-[14px] sm:text-[16px] md:text-[18px] mt-2 sm:mt-3;
 }
 
 .card_description p {
-  @apply text-[14px] md:text-[15px] text-[#8D8C95] mt-1;
+  @apply text-[12px] sm:text-[14px] md:text-[15px] text-[#8D8C95] mt-1;
 }
 
-.card_description span {
-  @apply cursor-pointer transition-all duration-300 text-sm;
+.card_description span.expand-toggle {
+  @apply cursor-pointer transition-all duration-300 text-sm px-2 py-1;
 }
 
 .tech_badge {

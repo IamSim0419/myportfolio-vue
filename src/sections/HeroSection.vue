@@ -73,7 +73,7 @@ section {
 
 .hero-container h1 {
   @apply text-[45px] md:text-[55px] lg:text-[65px]
-         leading-[48px] md:leading-15 lg:max-w-[990px];
+         leading-[48px] md:leading-15 lg:max-w-[85%];
 }
 
 .hero-content {

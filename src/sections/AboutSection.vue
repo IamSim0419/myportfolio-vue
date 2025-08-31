@@ -28,7 +28,7 @@ onMounted(() => {
       pinSpacing: false,
       anticipatePin: 1,
       invalidateOnRefresh: true,
-      markers: true, // Keep for debugging if needed
+      // markers: true,
     })
 
     // Debounced refresh on resize
@@ -115,7 +115,7 @@ section {
 }
 
 .about_container {
-  @apply mx-4 md:mx-8 lg:mx-[65px] flex flex-col lg:flex-row gap-6;
+  @apply mx-4 md:mx-8 lg:mx-[65px] flex flex-col lg:flex-row gap-8;
 }
 
 .box1 {
