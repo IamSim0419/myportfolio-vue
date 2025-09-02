@@ -118,7 +118,7 @@ section {
 }
 
 .box1 {
-  @apply border-t border-[#6B6B6B]/60 lg:min-w-[50%];
+  @apply border-t border-[#6B6B6B]/60  lg:min-w-[50%];
 }
 
 .box2 {
@@ -126,7 +126,7 @@ section {
 }
 
 .about_container h2 {
-  @apply text-[35px] lg:text-[65px];
+  @apply text-[35px] lg:text-[65px]  pt-6;
 }
 
 .about_container .about_text {
