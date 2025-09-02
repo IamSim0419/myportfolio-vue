@@ -35,6 +35,7 @@ export const socialLinks = [
 export const projects = [
   {
     title: 'SaaS Modern Platform',
+    href: 'https://cypress-saas.vercel.app/',
     description:
       'A sleek and intuitive SaaS platform designed to simplify complex workflows. Built with Vue and TypeScript, animated with GSAP, and styled with TailwindCSS to deliver a seamless user experience.',
     image: CypressImg,
@@ -45,6 +46,7 @@ export const projects = [
     title: 'JobSpots - Job Offer Platform',
     description:
       'A modern job marketplace where employers and job seekers connect effortlessly. Powered by Vue and Pinia for state management, with GSAP-driven interactions and a clean TailwindCSS interface for a polished experience.',
+    href: 'https://jobspots-neon.vercel.app/',
     image: OfferJobsImg,
     tech: ['Vue', 'TypeScript', 'GSAP', 'Pinia', 'TailwindCSS'],
     class: 'card_02',
@@ -53,6 +55,7 @@ export const projects = [
     title: 'Portfolio',
     description:
       'A personal portfolio crafted to showcase projects and skills with style. Built using Vue and TypeScript, enhanced with GSAP animations, and designed with TailwindCSS for a modern, responsive look.',
+    href: 'https://myportfolio-mu-eight-69.vercel.app/',
     image: PortfolioImg,
     tech: ['Vue', 'TypeScript', 'GSAP', 'TailwindCSS'],
     class: 'card_03',

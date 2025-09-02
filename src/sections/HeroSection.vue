@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useSplitText } from '@/composables/useSplitText'
+import { Icon } from '@iconify/vue'
 
 const isDesktop = ref(false)
 const heroTitleEl = ref<HTMLElement | null>(null)
@@ -48,7 +49,8 @@ useSplitText(heroInfoRef, undefined, { type: 'words', stagger: 0.08, y: 50 })
         <div class="hero_works">
           <!-- Only render on desktop (lg and up) -->
           <p v-if="isDesktop" ref="selectedTextEL">See Selected Works</p>
-          <img src="../assets/icons/arrow-down.svg" alt="Arrow Down" />
+          <!-- <img src="../assets/icons/arrow-down.svg" alt="Arrow Down" /> -->
+          <Icon class=".purple_icon" icon="line-md:arrow-down" />
         </div>
       </div>
     </div>
@@ -89,8 +91,8 @@ section {
   @apply flex items-center gap-2 self-end lg:self-start text-[15px] lg:text-[16px];
 }
 
-.hero_works img {
-  @apply w-4 h-4;
+.hero_works svg {
+  @apply w-6 h-6 text-[#7000FF];
 }
 
 .hero_info {

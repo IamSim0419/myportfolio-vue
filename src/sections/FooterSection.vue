@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { navLinks } from '@/lib/constant'
 import { socialLinks } from '@/lib/constant'
+import { Icon } from '@iconify/vue'
 </script>
 
 <template>
@@ -19,7 +20,7 @@ import { socialLinks } from '@/lib/constant'
             <h1>Let's talk</h1>
             <a class="send_email" href="mailto:simreich1989@gmail.com">
               <h1 class="hovered_email">Drop me a line</h1>
-              <img src="../assets/icons/arrow_area.svg" alt="arrow logo" />
+              <Icon icon="material-symbols:arrow-outward" />
             </a>
           </div>
 
@@ -90,12 +91,16 @@ footer {
   @apply text-[45px] dark:text-white leading-8;
 }
 
-.email .hovered_email:hover {
-  @apply text-[#af71ff] transition duration-300;
+.email svg {
+  @apply h-[60px] w-[60px] text-[#7000FF];
 }
 
-.email img {
-  @apply h-[60px] w-[60px];
+.send_email {
+  @apply cursor-none;
+}
+
+.send_email:hover {
+  @apply opacity-60 transition duration-300;
 }
 
 .links {

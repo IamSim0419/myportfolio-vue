@@ -4,11 +4,15 @@ import { navLinks } from '@/lib/constant'
 import { useGsapScrollTrigger } from '@/composables/useGsapScollTrigger'
 import { onMounted, useTemplateRef } from 'vue'
 import { gsap } from 'gsap'
-import { useNightMode } from '@/composables/useNightMode'
+import { Icon } from '@iconify/vue'
 
 const headerRef = useTemplateRef<HTMLElement>('header')
 
-const { isDark, toggleNightMode } = useNightMode()
+defineProps(['theme'])
+
+defineEmits<{
+  toggleTheme: () => void
+}>()
 
 const scrollToSection = (sectionId: string) => {
   gsap.to(window, {
@@ -31,11 +35,11 @@ onMounted(() => {
         <a href="/"><img src="/sim_logo.svg" alt="logo" /></a>
       </div>
       <div class="desktop_nav">
-        <div @click="toggleNightMode()">
-          <!-- Night mode = show moon -->
-          <img v-if="isDark" class="moon_icon" src="@/assets/icons/moon_icon.svg" alt="Moon Icon" />
+        <div @click="$emit('toggleTheme')">
+          <!-- Dark mode = show moon -->
+          <Icon v-if="theme === 'dark'" icon="ri:moon-line" />
           <!-- Light mode = show sun -->
-          <img v-else class="sun_icon" src="@/assets/icons/sun_icon.svg" alt="Sun Icon" />
+          <Icon v-else icon="ri:sun-line" class="text-gray-600" />
         </div>
 
         <nav>
@@ -65,7 +69,7 @@ onMounted(() => {
 @reference 'tailwindcss';
 
 header {
-  @apply dark:bg-black/40 bg-white/40 border-b border-white/10 fixed top-0 left-0 right-0 z-20;
+  @apply dark:bg-black/40 bg-white  border-b border-white/10 fixed top-0 left-0 right-0 z-20;
   --webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
@@ -95,15 +99,11 @@ header {
   @apply flex items-center gap-2 md:gap-3 lg:gap-10;
 }
 
-.desktop_nav .moon_icon {
-  @apply h-[16px] w-[16px] transition-all duration-300;
+.desktop_nav svg {
+  @apply h-[20px] w-[20px] transition-transform duration-300;
 }
 
-.desktop_nav .sun_icon {
-  @apply h-[25px] w-[25px] transition-all duration-300;
-}
-
-.desktop_nav .moon_icon:hover {
+.desktop_nav svg:hover {
   @apply transform -translate-y-1;
 }
 

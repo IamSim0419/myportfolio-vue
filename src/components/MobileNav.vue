@@ -2,6 +2,7 @@
 import { ref, watch, onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
 import { useSplitText } from '@/composables/useSplitText'
+import { Icon } from '@iconify/vue'
 
 defineProps<{
   navLinks: { id: string; label: string }[]
@@ -95,10 +96,11 @@ watch(
     </nav>
     <div class="info">
       <p ref="navLocRef">Philippines,<br />Iloilo City</p>
-      <div class="linkedin">
-        <a ref="navContactRef" href="#"><p>Linkedin</p></a>
-        <img src="../assets/icons/arrow_icon_left.svg" alt="arrow icon" />
-      </div>
+
+      <a class="linkedin" ref="navContactRef" href="#"
+        ><p>Linkedin</p>
+        <Icon icon="material-symbols:arrow-outward" />
+      </a>
     </div>
   </div>
 </template>
@@ -142,8 +144,7 @@ watch(
 .info .linkedin {
   @apply flex items-center text-neutral-500 self-end;
 }
-.linkedin img {
-  @apply w-[18px] -rotate-[35deg] bg-white;
-  stroke: red;
+.linkedin svg {
+  @apply w-5 h-5 ml-0.5 text-[#7000FF];
 }
 </style>

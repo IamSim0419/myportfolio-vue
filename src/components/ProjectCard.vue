@@ -1,9 +1,11 @@
 <script lang="ts" setup>
+import { Icon } from '@iconify/vue'
 import { nextTick, onBeforeMount, onMounted, ref } from 'vue'
 
 defineProps<{
   projects: {
     title: string
+    href: string
     description: string
     image: string
     tech: string[]
@@ -55,10 +57,11 @@ const toggleExpand = (title: string) => {
       :class="['project_card', project.class]"
       class="project_list"
     >
-      <div class="card_image group">
-        <div class="arrow_icon"><img src="../assets/icons/arrow-down.svg" alt="arrow icon" /></div>
+      <a :href="project.href" target="_blank" class="card_image group">
+        <div class="arrow_icon"><Icon icon="material-symbols:arrow-forward-rounded" /></div>
+
         <img :class="project.class" :src="project.image" alt="project image" />
-      </div>
+      </a>
 
       <h4>{{ project.title }}</h4>
 
@@ -115,11 +118,15 @@ const toggleExpand = (title: string) => {
 }
 
 .card_image {
-  @apply relative;
+  @apply relative block;
 }
 
 .card_image .arrow_icon {
-  @apply absolute bg-lime-500 py-2 px-3 rounded-full top-2 sm:top-4 right-2 sm:right-4 transition-all duration-300 z-50 opacity-0 group-hover:translate-x-2 group-hover:opacity-100 -rotate-90;
+  @apply absolute hidden lg:block bg-lime-500 p-4 rounded-full top-10 right-22 transition-all duration-300 z-50 opacity-0 group-hover:translate-x-10 group-hover:opacity-100;
+}
+
+.card_image .arrow_icon svg {
+  @apply w-10 h-10 text-neutral-900;
 }
 
 .project_card h4 {

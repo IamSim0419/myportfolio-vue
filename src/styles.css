@@ -7,27 +7,20 @@
   src: url('./fonts/NeueHaasGrotDisp-55Roman-Trial.otf');
 }
 
-@theme {
-  --color-mint-500: oklch(0.72 0.11 178);
-  /* Azure/blue */
-  --color-azurePrimary-50: #e6f2ff;
-  --color-azurePrimary-100: #b0d7ff;
-  --color-azurePrimary-200: #8ac4ff;
-  --color-azurePrimary-300: #54a9ff;
-  --color-azurePrimary-400: #3399ff;
-  --color-azurePrimary-500: #007fff;
-  --color-azurePrimary-600: #0074e8;
-  --color-azurePrimary-700: #005ab5;
-  --color-azurePrimary-800: #00468c;
-  --color-azurePrimary-900: #00356b;
-
-  --Haas-Grotesk: 'Haas Grotesk', sans-serif;
+:root {
+  --bg-color: #080808;
+  --text-color: #fafafa;
 }
 
+/* .dark {
+  --bg-color: #080808;
+  --text-color: #fafafa;
+} */
+
 body {
-  /* background-color: #080808;
-  color: #ffffff; */
-  font-family: var(--Haas-Grotesk);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Haas Grotesk', sans-serif;
 }
 
 @media (min-width: 1024px) {

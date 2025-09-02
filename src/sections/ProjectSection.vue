@@ -25,7 +25,7 @@ onMounted(() => {
 @reference 'tailwindcss';
 
 section {
-  @apply max-w-[1440px] mx-auto mt-22;
+  @apply max-w-[1440px] mx-auto mt-10 lg:mt-22;
 }
 
 .project_container {
