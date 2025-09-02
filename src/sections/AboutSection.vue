@@ -3,7 +3,7 @@ import AboutAccordion from '@/components/AboutAccordion.vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { onMounted, onUnmounted } from 'vue'
-import debounce from 'lodash/debounce' // Ensure lodash is installed
+import debounce from 'lodash/debounce'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,7 +12,7 @@ onMounted(() => {
   const mm = gsap.matchMedia()
 
   mm.add('(min-width: 1024px)', (context) => {
-    const { cleanup } = context // Cleanup function for this media query
+    const { cleanup } = context
 
     const aboutSection = document.querySelector<HTMLElement>('.aboutSection')
     const leftScreen = document.querySelector<HTMLElement>('.box1')
@@ -23,23 +23,26 @@ onMounted(() => {
     const pinTrigger = ScrollTrigger.create({
       trigger: aboutSection,
       start: 'top 11.4%',
-      end: () => 'bottom 22.5%',
+      end: 'bottom 22.5%',
       pin: leftScreen,
       pinSpacing: false,
       anticipatePin: 1,
       invalidateOnRefresh: true,
-      // markers: true,
     })
 
-    // Debounced refresh on resize
-    const refreshScrollTrigger = debounce(() => ScrollTrigger.refresh(), 250)
+    // Debounced refresh for actual resize (exclude zoom)
+    const refreshScrollTrigger = debounce(() => {
+      // Check if the event is caused by zooming using visualViewport
+      if (window.visualViewport?.scale !== 1) return // Skip refresh on zoom
+      ScrollTrigger.refresh()
+    }, 250)
+
     window.addEventListener('resize', refreshScrollTrigger)
 
-    // Cleanup on unmount or when breakpoint changes
     return () => {
-      pinTrigger.kill() // Kill the pin ScrollTrigger
+      pinTrigger.kill()
       window.removeEventListener('resize', refreshScrollTrigger)
-      cleanup() // GSAP matchMedia cleanup
+      cleanup()
     }
   })
 
@@ -56,8 +59,9 @@ onMounted(() => {
           ease: 'power2.out',
           scrollTrigger: {
             trigger: el as HTMLElement,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
+            start: 'top 90%', // Slightly more forgiving start position
+            toggleActions: 'play none none none', // Play once, no reverse
+            once: true, // Ensure animation only runs once
           },
         })
       })
@@ -72,12 +76,9 @@ onMounted(() => {
 <template>
   <section id="about" class="aboutSection">
     <div class="about_container">
-      <!-- About label left side -->
       <aside class="box box1">
         <h2>About</h2>
       </aside>
-
-      <!-- About Content right side -->
       <article ref="aboutContent" class="box box2">
         <p class="about_text" id="about">
           I'm Simreich, a frontend developer with 2 years of experience based in the Philippines.
@@ -93,11 +94,9 @@ onMounted(() => {
           I specialize in creating seamless digital experiences, writing clean and maintainable
           code, and continuously improving my skills to adapt to the evolving web landscape.
         </p>
-
         <div id="experience" class="experience">
           <AboutAccordion />
         </div>
-
         <div id="about_image" class="about_image">
           <img src="../assets/images/myprofile_img.png" alt="my profile" loading="lazy" />
           <p>This is me :)</p>
@@ -150,10 +149,9 @@ section {
   @apply w-full h-auto rounded-lg;
 }
 
-/* Mobile/tablet fallback: disable pin only */
 @media (max-width: 1023px) {
   .box1 {
-    position: static !important; /* Disable pin */
+    position: static !important;
   }
 }
 </style>
