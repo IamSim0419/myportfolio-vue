@@ -112,7 +112,7 @@ const toggleExpand = (title: string) => {
 }
 
 .project_card img {
-  @apply w-full aspect-square md:aspect-video object-cover md:object-top rounded-2xl transition-transform duration-300 cursor-none;
+  @apply w-full aspect-square md:aspect-video object-cover md:object-top rounded-2xl transition-transform duration-300 lg:cursor-none;
 }
 
 .project_card img:hover {
@@ -120,7 +120,7 @@ const toggleExpand = (title: string) => {
 }
 
 .project_title {
-  @apply block cursor-none;
+  @apply block lg:cursor-none;
 }
 
 .card_image {

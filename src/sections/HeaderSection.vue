@@ -79,7 +79,7 @@ header {
 }
 
 .header_container img {
-  @apply relative h-[38x] w-[38px] transition-all duration-300;
+  @apply relative h-[38x] w-[38px] transition-all duration-300 lg:cursor-none;
 }
 
 .header_container .logo {
@@ -125,6 +125,10 @@ nav a {
 
 .mobile_nav {
   @apply flex items-center gap-4 lg:hidden;
+}
+
+.resume_download {
+  @apply lg:cursor-none;
 }
 
 .mobile_nav img {

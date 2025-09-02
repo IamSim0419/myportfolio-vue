@@ -31,7 +31,7 @@ useCustomCursor() // 👈 activate the cursor behavior
   align-items: center;
   justify-content: center;
   font-size: 4px;
-  mix-blend-mode: difference;
+  /* mix-blend-mode: difference; */
 }
 
 /* Fallback hide on mobile */

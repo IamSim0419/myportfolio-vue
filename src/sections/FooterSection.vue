@@ -19,7 +19,7 @@ import { Icon } from '@iconify/vue'
           <div class="email">
             <h1>Let's talk</h1>
             <a class="send_email" href="mailto:simreich1989@gmail.com">
-              <h1 class="hovered_email">Drop me a line</h1>
+              <div class="hovered_email">Drop me a line</div>
               <Icon icon="material-symbols:arrow-outward" />
             </a>
           </div>
@@ -31,6 +31,13 @@ import { Icon } from '@iconify/vue'
                 <div class="bullet_icon"></div>
                 <p>{{ link.label }}</p>
               </li>
+              <!-- Resume download with animation -->
+              <li class="list_link group">
+                <div class="bullet_icon"></div>
+                <a href="/resume/CV.pdf" download class="nav_links resume_download">
+                  <p>Resume</p>
+                </a>
+              </li>
             </ul>
 
             <!-- Social Links -->
@@ -38,7 +45,7 @@ import { Icon } from '@iconify/vue'
               <li class="list_link group" v-for="link in socialLinks" :key="link.href">
                 <div class="bullet_icon"></div>
                 <p class="inline">
-                  <a :href="link.href">{{ link.name }}</a>
+                  <a class="lg:cursor-none" :href="link.href">{{ link.name }}</a>
                 </p>
               </li>
             </ul>
@@ -67,7 +74,7 @@ footer {
 }
 
 .footer_wrapper {
-  @apply flex flex-col lg:flex-row gap-6 lg:gap-0;
+  @apply flex flex-col lg:flex-row gap-12 lg:gap-0;
 }
 
 .footer_col {
@@ -88,6 +95,10 @@ footer {
 }
 
 .email h1 {
+  @apply text-[45px] dark:text-white leading-8;
+}
+
+.email .send_email {
   @apply text-[45px] dark:text-white leading-8;
 }
 
@@ -113,7 +124,7 @@ footer {
 
 /* Fixed list link */
 .list_link {
-  @apply relative inline-flex items-center text-[15px] ml-1;
+  @apply relative inline-flex items-center text-[15px] ml-1 lg:cursor-none;
 }
 
 /* Bullet - absolutely positioned so it won't push siblings */
@@ -137,6 +148,14 @@ footer {
 
 .group:hover p {
   transform: translateX(16px);
+}
+
+.list_link a {
+  @apply text-[#BFBFBF] transition-transform duration-300 ease-out;
+}
+
+.resume_download {
+  @apply lg:cursor-none;
 }
 
 .footer_bottom {

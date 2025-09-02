@@ -80,6 +80,7 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
           borderRadius: '50%',
           backgroundColor: '#ffffff',
           color: '#000000',
+          fontSize: '4px',
           duration: animationDuration,
         })
         if (cursorTextEl) cursorTextEl.textContent = 'View'
@@ -96,32 +97,32 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
     })
 
     // Hover states for resume download
-    // const resumeDownload = document.querySelectorAll('.resume_download')
-    // resumeDownload.forEach((res) => {
-    //   res.addEventListener('mouseenter', () => {
-    //     gsap.to(cursorEl, {
-    //       scale: 5,
-    //       borderRadius: '20%',
-    //       backgroundColor: '#ffffff',
-    //       duration: animationDuration,
-    //     })
-    //     if (cursorTextEl) cursorTextEl.textContent = 'Download'
-    //   })
-    //   res.addEventListener('mouseleave', () => {
-    //     gsap.to(cursorEl, {
-    //       scale: 1,
-    //       borderRadius: defaultBorderRadius,
-    //       backgroundColor: defaultBackgroundColor,
-    //       duration: animationDuration,
-    //     })
-    //     if (cursorTextEl) cursorTextEl.textContent = ''
-    //   })
-    // })
+    const resumeDownload = document.querySelectorAll('.resume_download')
+    resumeDownload.forEach((res) => {
+      res.addEventListener('mouseenter', () => {
+        gsap.to(cursorEl, {
+          scale: 5,
+          borderRadius: '50%',
+          backgroundColor: '#7c3aed',
+          duration: animationDuration,
+          fontSize: '3px',
+          color: '#ffffff',
+        })
+        if (cursorTextEl) cursorTextEl.textContent = 'Download'
+      })
+      res.addEventListener('mouseleave', () => {
+        gsap.to(cursorEl, {
+          scale: 1,
+          borderRadius: defaultBorderRadius,
+          backgroundColor: defaultBackgroundColor,
+          duration: animationDuration,
+        })
+        if (cursorTextEl) cursorTextEl.textContent = ''
+      })
+    })
 
     // Hover states for text elements with dynamic height based on font size
-    const textElements = document.querySelectorAll(
-      'p, h1, h2, h3, h4, h5, h6, span, small, strong, em',
-    )
+    const textElements = document.querySelectorAll(' h1, h2, h3, h4, h5, h6, span,  strong, em')
     textElements.forEach((el) => {
       el.addEventListener('mouseenter', () => {
         const style = window.getComputedStyle(el)
