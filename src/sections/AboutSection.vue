@@ -99,7 +99,7 @@ onMounted(() => {
         </div>
 
         <div id="about_image" class="about_image">
-          <img src="../assets/images/myprofile-pic.png" alt="my profile" loading="lazy" />
+          <img src="../assets/images/myprofile_img.png" alt="my profile" loading="lazy" />
           <p>This is me :)</p>
         </div>
       </article>
