@@ -120,7 +120,7 @@ const toggleExpand = (title: string) => {
 }
 
 .project_title {
-  @apply cursor-none;
+  @apply block cursor-none;
 }
 
 .card_image {
@@ -135,12 +135,12 @@ const toggleExpand = (title: string) => {
   @apply w-6 h-6 text-neutral-900;
 }
 
-.project_card h4 {
-  @apply text-[14px] sm:text-[16px] md:text-[18px] mt-2 sm:mt-3;
+.project_title h4 {
+  @apply text-[18px] lg:text-[24px] mt-3;
 }
 
 .card_description p {
-  @apply text-[12px] sm:text-[14px] md:text-[15px] text-[#8D8C95] mt-1;
+  @apply text-[12px]  md:text-[14px] text-[#8D8C95];
 }
 
 .card_description span.expand-toggle {
