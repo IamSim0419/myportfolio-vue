@@ -77,3 +77,31 @@ export const techStack = [
   { name: 'Html', icon: htmlIcon },
   { name: 'Css', icon: CssIcon },
 ]
+
+// About Section > Accordion
+export const experience = [
+  {
+    id: 1,
+    company: 'Freelance / Upwork',
+    role: 'Frontend Developer',
+    year: '2025',
+    description:
+      'As a freelance Frontend Developer based in the Philippines with 2 years of experience, I deliver modern, responsive, and high-performance websites tailored to client needs, leveraging cutting-edge technologies.',
+  },
+  {
+    id: 2,
+    company: 'Freelance / Online Jobs PH',
+    role: 'Frontend Developer',
+    year: '2024',
+    description:
+      'As a freelance Frontend Developer at OnlineJobs PH, I delivered scalable web applications, collaborating with diverse clients to create innovative, user-focused solutions tailored to their needs.',
+  },
+  {
+    id: 3,
+    company: 'FlexCode',
+    role: 'Intern Frontend Developer',
+    year: 'Feb-May 2024',
+    description:
+      'As an Intern Frontend Developer, I honed my skills in crafting seamless digital experiences, writing clean and maintainable code, and adapting to the dynamic web development landscape.',
+  },
+]

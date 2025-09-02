@@ -1,31 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-const items = [
-  {
-    id: 1,
-    company: 'Freelance / Upwork',
-    role: 'Frontend Developer',
-    year: 'Currently 2025',
-    description:
-      'Simreich, a frontend developer with 2 years of experience based in the Philippines. Currently, I work as a freelance developer, helping clients build modern, responsive, and high-performance websites.',
-  },
-  {
-    id: 2,
-    company: 'Freelance / Upwork',
-    role: 'Frontend Developer',
-    year: 'Currently 2025',
-    description:
-      'I worked as a Frontend Developer at FlexCode, a local company, where I contributed to developing scalable web applications and collaborated with cross-functional teams to deliver user-focused solutions.',
-  },
-  {
-    id: 3,
-    company: 'FlexCode',
-    role: 'Intern Frontend Developer',
-    year: '2023',
-    description:
-      'I specialize in creating seamless digital experiences, writing clean and maintainable code, and continuously improving my skills to adapt to the evolving web landscape.',
-  },
-]
+import { experience } from '@/lib/constant'
 
 const activeId = ref<number | null>(null)
 
@@ -40,7 +15,7 @@ function toggleAbout(id: number) {
     <h4>Experience</h4>
 
     <div class="dropdown_menu">
-      <div v-for="item in items" :key="item.id" class="dropdown_item">
+      <div v-for="item in experience" :key="item.id" class="dropdown_item">
         <!-- Clickable -->
         <div class="dropdown_title flex justify-between pt-4" @click="toggleAbout(item.id)">
           <div class="leading-6">
