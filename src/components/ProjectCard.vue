@@ -63,7 +63,9 @@ const toggleExpand = (title: string) => {
         <img :class="project.class" :src="project.image" alt="project image" />
       </a>
 
-      <h4>{{ project.title }}</h4>
+      <a class="project_title" :href="project.href">
+        <h4>{{ project.title }}</h4>
+      </a>
 
       <div class="card_description">
         <p :class="expanded === project.title ? 'line-clamp-none' : 'line-clamp-2 lg:line-clamp-1'">
@@ -110,11 +112,15 @@ const toggleExpand = (title: string) => {
 }
 
 .project_card img {
-  @apply w-full aspect-square md:aspect-video object-cover md:object-top rounded-2xl transition-transform duration-300;
+  @apply w-full aspect-square md:aspect-video object-cover md:object-top rounded-2xl transition-transform duration-300 cursor-none;
 }
 
 .project_card img:hover {
   @apply scale-[102%];
+}
+
+.project_title {
+  @apply cursor-none;
 }
 
 .card_image {
