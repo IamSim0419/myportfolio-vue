@@ -128,11 +128,11 @@ const toggleExpand = (title: string) => {
 }
 
 .card_image .arrow_icon {
-  @apply absolute hidden lg:block bg-lime-500 p-4 rounded-full top-10 right-22 transition-all duration-300 z-50 opacity-0 group-hover:translate-x-10 group-hover:opacity-100;
+  @apply absolute hidden lg:block bg-lime-500 p-6 rounded-full top-10 right-22 transition-all duration-300 z-50 opacity-0 group-hover:translate-x-10 group-hover:opacity-100;
 }
 
 .card_image .arrow_icon svg {
-  @apply w-10 h-10 text-neutral-900;
+  @apply w-6 h-6 text-neutral-900;
 }
 
 .project_card h4 {
