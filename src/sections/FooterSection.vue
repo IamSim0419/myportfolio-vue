@@ -69,9 +69,9 @@ footer {
   @apply bg-[#131313]  mt-50;
 }
 
-.dark footer {
+/* .dark footer {
   @apply bg-[#F0F0F0];
-}
+} */
 
 .footer_container {
   @apply mx-4 md:mx-8 lg:mx-[65px] pt-38;
@@ -102,17 +102,17 @@ footer {
   @apply text-[45px] text-white leading-8;
 }
 
-.dark .email h1 {
+/* .dark .email h1 {
   @apply text-black;
-}
+} */
 
 .email .send_email {
   @apply text-[45px] text-white leading-8;
 }
 
-.dark .send_email {
+/* .dark .send_email {
   @apply text-black;
-}
+} */
 
 .email svg {
   @apply h-[60px] w-[60px] text-[#7000FF];
@@ -158,9 +158,9 @@ footer {
   transform: translateX(0);
 }
 
-.dark .list_link p {
+/* .dark .list_link p {
   @apply text-[#646464];
-}
+} */
 
 .group:hover p {
   transform: translateX(16px);
@@ -170,9 +170,9 @@ footer {
   @apply text-[#BFBFBF] transition-transform duration-300 ease-out;
 }
 
-.dark .list_link a {
+/* .dark .list_link a {
   @apply text-[#646464];
-}
+} */
 
 .resume_download {
   @apply lg:cursor-none;
@@ -182,7 +182,7 @@ footer {
   @apply flex items-center justify-between mt-20 border-t border-[#2A2A2A] py-3 text-[12px] text-[#BFBFBF];
 }
 
-.dark .footer_bottom {
+/* .dark .footer_bottom {
   @apply text-[#646464] border-t border-[#b3b2b2];
-}
+} */
 </style>

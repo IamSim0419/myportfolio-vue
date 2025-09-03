@@ -73,9 +73,9 @@ header {
   backdrop-filter: blur(10px);
 }
 
-.dark header {
+/* .dark header {
   @apply bg-white/40 border-black/10;
-}
+} */
 
 .header_container {
   @apply flex items-center justify-between px-4 py-[12px] md:px-[32px] lg:px-[50px] md:py-[15px] lg:py-[20px];
@@ -118,9 +118,9 @@ nav .nav_links {
   @apply text-base transition-all duration-300 text-white;
 }
 
-.dark nav .nav_links {
+/* .dark nav .nav_links {
   @apply text-black;
-}
+} */
 
 nav .nav_links:hover {
   @apply transform -translate-y-1;
