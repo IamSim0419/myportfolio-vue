@@ -70,12 +70,11 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
       card.addEventListener('mouseenter', () => {
         gsap.to(cursorEl!, {
           scale: 6,
-          borderRadius: '50%',
+          // borderRadius: '50%',
           backgroundColor: '#080808',
           duration: animationDuration,
           color: '#fafafa',
           fontSize: '2px',
-          paddingTop: '1px',
         })
         if (cursorTextEl) cursorTextEl.textContent = 'VIEW PROJECT'
       })

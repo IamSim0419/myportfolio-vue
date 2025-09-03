@@ -135,7 +135,7 @@ section {
 }
 
 .about_container span {
-  @apply text-[#7000FF];
+  @apply text-[#2726FF];
 }
 
 .about_image {

@@ -29,6 +29,7 @@ useCustomCursor() // 👈 activate the cursor behavior
   align-items: center;
   justify-content: center;
   font-size: 4px;
+  padding-top: 1px;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }

@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import './styles.css'
 import gsap from 'gsap'
+
 import { ScrollToPlugin, ScrollSmoother } from 'gsap/all'
 
 gsap.registerPlugin(ScrollToPlugin, ScrollSmoother)
