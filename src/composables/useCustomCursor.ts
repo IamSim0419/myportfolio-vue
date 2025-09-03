@@ -1,7 +1,6 @@
 // useCustomCursor.ts
 import { onMounted, onUnmounted, watch } from 'vue'
 import gsap from 'gsap'
-import { useTheme } from '@/composables/useTheme' // 👈 import your theme composable
 
 interface CustomCursorOptions {
   defaultSize?: { width: number; height: number }
@@ -27,14 +26,9 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
   let moveHandler: ((e: MouseEvent) => void) | null = null
   let styleEl: HTMLStyleElement | null = null
 
-  // Theme composable
-  const { theme } = useTheme()
-
-  const getCursorColor = () => (theme.value === 'light' ? '#FFFFFF' : '#000000')
-
   const applyThemeToCursor = () => {
     if (cursorEl) {
-      gsap.set(cursorEl, { backgroundColor: getCursorColor() })
+      gsap.set(cursorEl, { backgroundColor: '#FFFFFF' })
     }
   }
 
@@ -58,7 +52,7 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
       width: defaultSize.width,
       height: defaultSize.height,
       borderRadius: defaultBorderRadius,
-      backgroundColor: getCursorColor(),
+      backgroundColor: '#FFFFFF',
       backdropFilter: 'blur(10px)',
 
       x: 0,
@@ -94,7 +88,7 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
         gsap.to(cursorEl!, {
           scale: 1,
           borderRadius: defaultBorderRadius,
-          backgroundColor: getCursorColor(),
+          backgroundColor: '#ffffff',
           duration: animationDuration,
         })
         if (cursorTextEl) cursorTextEl.textContent = ''
@@ -118,7 +112,7 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
         gsap.to(cursorEl!, {
           scale: 1,
           borderRadius: defaultBorderRadius,
-          backgroundColor: getCursorColor(),
+          backgroundColor: '#ffffff',
           duration: animationDuration,
         })
         if (cursorTextEl) cursorTextEl.textContent = ''
@@ -147,16 +141,11 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
             width: defaultSize.width,
             height: defaultSize.height,
             borderRadius: defaultBorderRadius,
-            backgroundColor: getCursorColor(),
+            backgroundColor: '#ffffff',
             duration: animationDuration,
           })
         })
       })
-  })
-
-  // React to theme change
-  watch(theme, () => {
-    applyThemeToCursor()
   })
 
   onUnmounted(() => {

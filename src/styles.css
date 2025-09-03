@@ -14,10 +14,6 @@
   --text-light: #080808;
 }
 
-html {
-  background-color: var(--bg-dark); /* fallback for light */
-}
-
 body {
   background-color: var(--bg-dark);
   color: var(--text-dark);
