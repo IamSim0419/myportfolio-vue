@@ -53,7 +53,7 @@ function toggleAbout(id: number) {
 }
 
 .accordion h3 {
-  @apply text-[#7000FF];
+  @apply text-[#2726FF];
 }
 
 .dropdown_menu {

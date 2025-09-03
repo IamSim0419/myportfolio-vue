@@ -115,7 +115,7 @@ footer {
 } */
 
 .email svg {
-  @apply h-[60px] w-[60px] text-[#7000FF];
+  @apply h-[60px] w-[60px] text-[#2726FF];
 }
 
 .send_email {

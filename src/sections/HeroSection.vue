@@ -92,7 +92,8 @@ section {
 }
 
 .hero_works svg {
-  @apply w-6 h-6 text-[#7000FF];
+  @apply w-6 h-6;
+  color: #2726ff;
 }
 
 .hero_info {
@@ -104,6 +105,6 @@ section {
 }
 
 .hero_info span {
-  @apply text-[#7000FF];
+  color: #2726ff;
 }
 </style>

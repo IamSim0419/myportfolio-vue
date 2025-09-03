@@ -6,6 +6,7 @@ interface CustomCursorOptions {
   defaultSize?: { width: number; height: number }
   defaultBorderRadius?: string
   defaultSelectionColor?: string
+  defaultPrimaryColor?: string
   animationDuration?: number
   cursorSelector?: string
   cursorTextSelector?: string
@@ -15,7 +16,7 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
   const {
     defaultSize = { width: 16, height: 16 },
     defaultBorderRadius = '50%',
-    defaultSelectionColor = '#7c3aed',
+    defaultPrimaryColor = '#2726FF',
     animationDuration = 0.1,
     cursorSelector = '.custom_cursor',
     cursorTextSelector = '.custom_cursor_text',
@@ -25,12 +26,6 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
   let cursorTextEl: HTMLElement | null = null
   let moveHandler: ((e: MouseEvent) => void) | null = null
   let styleEl: HTMLStyleElement | null = null
-
-  const applyThemeToCursor = () => {
-    if (cursorEl) {
-      gsap.set(cursorEl, { backgroundColor: '#FFFFFF' })
-    }
-  }
 
   onMounted(() => {
     if (window.innerWidth <= 1024) return
@@ -42,8 +37,8 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
     // Apply default selection color
     styleEl = document.createElement('style')
     styleEl.textContent = `
-      ::selection { background-color: ${defaultSelectionColor}; color: #000; }
-      *::-moz-selection { background-color: ${defaultSelectionColor}; color: #000; }
+      ::selection { background-color: ${defaultPrimaryColor}; color: #000; }
+      *::-moz-selection { background-color: ${defaultPrimaryColor}; color: #000; }
     `
     document.head.appendChild(styleEl)
 
@@ -52,7 +47,7 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
       width: defaultSize.width,
       height: defaultSize.height,
       borderRadius: defaultBorderRadius,
-      backgroundColor: '#FFFFFF',
+      backgroundColor: defaultPrimaryColor,
       backdropFilter: 'blur(10px)',
 
       x: 0,
@@ -74,21 +69,21 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
     document.querySelectorAll('.project_card img').forEach((card) => {
       card.addEventListener('mouseenter', () => {
         gsap.to(cursorEl!, {
-          scale: 5,
+          scale: 6,
           borderRadius: '50%',
-          backgroundColor: '#ffffff',
+          backgroundColor: '#080808',
           duration: animationDuration,
-          color: '#000000',
-          fontSize: '4px',
+          color: '#fafafa',
+          fontSize: '2px',
           paddingTop: '1px',
         })
-        if (cursorTextEl) cursorTextEl.textContent = 'View'
+        if (cursorTextEl) cursorTextEl.textContent = 'VIEW PROJECT'
       })
       card.addEventListener('mouseleave', () => {
         gsap.to(cursorEl!, {
           scale: 1,
           borderRadius: defaultBorderRadius,
-          backgroundColor: '#ffffff',
+          backgroundColor: defaultPrimaryColor,
           duration: animationDuration,
         })
         if (cursorTextEl) cursorTextEl.textContent = ''
@@ -101,7 +96,7 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
         gsap.to(cursorEl!, {
           scale: 4,
           // borderRadius: '50%',
-          backgroundColor: '#7c3aed',
+          backgroundColor: defaultPrimaryColor,
           duration: animationDuration,
           fontSize: '3px',
           paddingBottom: '1px',
@@ -112,7 +107,7 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
         gsap.to(cursorEl!, {
           scale: 1,
           borderRadius: defaultBorderRadius,
-          backgroundColor: '#ffffff',
+          backgroundColor: defaultPrimaryColor,
           duration: animationDuration,
         })
         if (cursorTextEl) cursorTextEl.textContent = ''
@@ -132,7 +127,7 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
             width: 2,
             height: cursorHeight,
             borderRadius: '0%',
-            backgroundColor: '#7c3aed',
+            backgroundColor: defaultPrimaryColor,
             duration: animationDuration,
           })
         })
@@ -141,7 +136,7 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
             width: defaultSize.width,
             height: defaultSize.height,
             borderRadius: defaultBorderRadius,
-            backgroundColor: '#ffffff',
+            backgroundColor: '#2726FF',
             duration: animationDuration,
           })
         })
