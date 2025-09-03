@@ -8,19 +8,25 @@
 }
 
 :root {
-  --bg-color: #080808;
-  --text-color: #fafafa;
+  --bg-dark: #080808;
+  --text-dark: #fafafa;
+  --bg-light: #fafafa;
+  --text-light: #080808;
 }
 
-/* .dark {
-  --bg-color: #080808;
-  --text-color: #fafafa;
-} */
+html {
+  background-color: var(--bg-dark); /* fallback for light */
+}
 
 body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  font-family: 'Haas Grotesk', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+  @apply transition-colors duration-300;
+}
+
+.dark body {
+  background-color: var(--bg-light);
+  color: var(--text-light);
 }
 
 @media (min-width: 1024px) {

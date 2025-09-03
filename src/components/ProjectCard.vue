@@ -123,6 +123,10 @@ const toggleExpand = (title: string) => {
   @apply block lg:cursor-none;
 }
 
+.project_title:hover h4 {
+  @apply text-neutral-300;
+}
+
 .card_image {
   @apply relative block;
 }

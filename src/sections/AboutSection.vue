@@ -23,11 +23,12 @@ onMounted(() => {
     const pinTrigger = ScrollTrigger.create({
       trigger: aboutSection,
       start: 'top 11.4%',
-      end: 'bottom 22.5%',
+      end: 'bottom 75%',
       pin: leftScreen,
       pinSpacing: false,
       anticipatePin: 1,
       invalidateOnRefresh: true,
+      // markers: true,
     })
 
     // Debounced refresh for actual resize (exclude zoom)
@@ -118,7 +119,7 @@ section {
 }
 
 .box1 {
-  @apply border-t border-[#6B6B6B]/60  lg:min-w-[50%];
+  @apply border-t border-[#6B6B6B]/60 pt-6 lg:min-w-[50%];
 }
 
 .box2 {
@@ -126,7 +127,7 @@ section {
 }
 
 .about_container h2 {
-  @apply text-[35px] lg:text-[65px]  pt-6;
+  @apply text-[35px] lg:text-[65px];
 }
 
 .about_container .about_text {

@@ -21,8 +21,6 @@ useCustomCursor() // 👈 activate the cursor behavior
   left: 0;
   width: 16px;
   height: 16px;
-  padding-top: 1px;
-  background-color: #ffffff;
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%); /* ⬅ centers the circle on mouse */
@@ -31,7 +29,8 @@ useCustomCursor() // 👈 activate the cursor behavior
   align-items: center;
   justify-content: center;
   font-size: 4px;
-  /* mix-blend-mode: difference; */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 /* Fallback hide on mobile */

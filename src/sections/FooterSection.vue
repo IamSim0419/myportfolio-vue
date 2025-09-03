@@ -66,7 +66,11 @@ import { Icon } from '@iconify/vue'
 @reference 'tailwindcss';
 
 footer {
-  @apply bg-[#131313] mt-50;
+  @apply bg-[#131313]  mt-50;
+}
+
+.dark footer {
+  @apply bg-[#F0F0F0];
 }
 
 .footer_container {
@@ -95,11 +99,19 @@ footer {
 }
 
 .email h1 {
-  @apply text-[45px] dark:text-white leading-8;
+  @apply text-[45px] text-white leading-8;
+}
+
+.dark .email h1 {
+  @apply text-black;
 }
 
 .email .send_email {
-  @apply text-[45px] dark:text-white leading-8;
+  @apply text-[45px] text-white leading-8;
+}
+
+.dark .send_email {
+  @apply text-black;
 }
 
 .email svg {
@@ -119,12 +131,12 @@ footer {
 }
 
 .links ul {
-  @apply flex flex-col gap-4;
+  @apply flex flex-col gap-2;
 }
 
 /* Fixed list link */
 .list_link {
-  @apply relative inline-flex items-center text-[15px] ml-1 lg:cursor-none;
+  @apply relative inline-flex items-center text-[14px] ml-1 lg:cursor-none;
 }
 
 /* Bullet - absolutely positioned so it won't push siblings */
@@ -146,6 +158,10 @@ footer {
   transform: translateX(0);
 }
 
+.dark .list_link p {
+  @apply text-[#646464];
+}
+
 .group:hover p {
   transform: translateX(16px);
 }
@@ -154,11 +170,19 @@ footer {
   @apply text-[#BFBFBF] transition-transform duration-300 ease-out;
 }
 
+.dark .list_link a {
+  @apply text-[#646464];
+}
+
 .resume_download {
   @apply lg:cursor-none;
 }
 
 .footer_bottom {
   @apply flex items-center justify-between mt-20 border-t border-[#2A2A2A] py-3 text-[12px] text-[#BFBFBF];
+}
+
+.dark .footer_bottom {
+  @apply text-[#646464] border-t border-[#b3b2b2];
 }
 </style>

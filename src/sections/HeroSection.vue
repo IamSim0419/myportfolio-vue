@@ -39,16 +39,16 @@ useSplitText(heroInfoRef, undefined, { type: 'words', stagger: 0.08, y: 50 })
 
       <div class="hero_details">
         <div ref="heroInfoRef" class="hero_info">
-          <p>
+          <p class="hero_current">
             Currently a freelance Frontend Developer, <br />
             previously at <span>FlexCode</span>.
           </p>
-          <p>Based in Philippines, Iloilo</p>
+          <p class="hero_current">Based in Philippines, Iloilo</p>
         </div>
 
         <div class="hero_works">
           <!-- Only render on desktop (lg and up) -->
-          <p v-if="isDesktop" ref="selectedTextEL">See Selected Works</p>
+          <div v-if="isDesktop" ref="selectedTextEL">See Selected Works</div>
           <!-- <img src="../assets/icons/arrow-down.svg" alt="Arrow Down" /> -->
           <Icon class=".purple_icon" icon="line-md:arrow-down" />
         </div>

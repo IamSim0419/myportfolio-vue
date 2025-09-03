@@ -1,12 +1,12 @@
 // useCustomCursor.ts
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, watch } from 'vue'
 import gsap from 'gsap'
+import { useTheme } from '@/composables/useTheme' // 👈 import your theme composable
 
 interface CustomCursorOptions {
   defaultSize?: { width: number; height: number }
   defaultBorderRadius?: string
-  defaultBackgroundColor?: string // Cursor default color
-  defaultSelectionColor?: string // Default text selection color (blue)
+  defaultSelectionColor?: string
   animationDuration?: number
   cursorSelector?: string
   cursorTextSelector?: string
@@ -16,8 +16,7 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
   const {
     defaultSize = { width: 16, height: 16 },
     defaultBorderRadius = '50%',
-    defaultBackgroundColor = '#FFFFFF', // Cursor default (white)
-    defaultSelectionColor = '#7c3aed', // Mimic Windows default blue
+    defaultSelectionColor = '#7c3aed',
     animationDuration = 0.1,
     cursorSelector = '.custom_cursor',
     cursorTextSelector = '.custom_cursor_text',
@@ -26,43 +25,49 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
   let cursorEl: HTMLElement | null = null
   let cursorTextEl: HTMLElement | null = null
   let moveHandler: ((e: MouseEvent) => void) | null = null
+  let styleEl: HTMLStyleElement | null = null
+
+  // Theme composable
+  const { theme } = useTheme()
+
+  const getCursorColor = () => (theme.value === 'light' ? '#FFFFFF' : '#000000')
+
+  const applyThemeToCursor = () => {
+    if (cursorEl) {
+      gsap.set(cursorEl, { backgroundColor: getCursorColor() })
+    }
+  }
 
   onMounted(() => {
-    // Check if screen width is below mobile breakpoint
-    if (window.innerWidth <= 1024) return // 1024px for tablet/mobile cutoff
+    if (window.innerWidth <= 1024) return
 
     cursorEl = document.querySelector<HTMLElement>(cursorSelector)
     cursorTextEl = document.querySelector<HTMLElement>(cursorTextSelector)
-
     if (!cursorEl) return
 
-    // Apply default selection color via CSS
-    const style = document.createElement('style')
-    style.textContent = `
-      ::selection {
-        background-color: ${defaultSelectionColor};
-        color: #000;
-      }
-      *::-moz-selection {
-        background-color: ${defaultSelectionColor};
-        color: #000;
-      }
+    // Apply default selection color
+    styleEl = document.createElement('style')
+    styleEl.textContent = `
+      ::selection { background-color: ${defaultSelectionColor}; color: #000; }
+      *::-moz-selection { background-color: ${defaultSelectionColor}; color: #000; }
     `
-    document.head.appendChild(style)
+    document.head.appendChild(styleEl)
 
-    // Initialize cursor position and style
+    // Initialize cursor
     gsap.set(cursorEl, {
       width: defaultSize.width,
       height: defaultSize.height,
       borderRadius: defaultBorderRadius,
-      backgroundColor: defaultBackgroundColor,
+      backgroundColor: getCursorColor(),
+      backdropFilter: 'blur(10px)',
+
       x: 0,
       y: 0,
     })
 
-    // Move cursor with GSAP
+    // Cursor move
     moveHandler = (e: MouseEvent) => {
-      gsap.to(cursorEl, {
+      gsap.to(cursorEl!, {
         x: e.clientX,
         y: e.clientY,
         duration: animationDuration,
@@ -71,98 +76,91 @@ export function useCustomCursor(options: CustomCursorOptions = {}) {
     }
     window.addEventListener('mousemove', moveHandler)
 
-    // Hover states for project images
-    const projectCards = document.querySelectorAll('.project_card img')
-    projectCards.forEach((card) => {
+    // Hover: project cards
+    document.querySelectorAll('.project_card img').forEach((card) => {
       card.addEventListener('mouseenter', () => {
-        gsap.to(cursorEl, {
+        gsap.to(cursorEl!, {
           scale: 5,
           borderRadius: '50%',
           backgroundColor: '#ffffff',
+          duration: animationDuration,
           color: '#000000',
           fontSize: '4px',
-          duration: animationDuration,
+          paddingTop: '1px',
         })
         if (cursorTextEl) cursorTextEl.textContent = 'View'
       })
       card.addEventListener('mouseleave', () => {
-        gsap.to(cursorEl, {
+        gsap.to(cursorEl!, {
           scale: 1,
           borderRadius: defaultBorderRadius,
-          backgroundColor: defaultBackgroundColor,
+          backgroundColor: getCursorColor(),
           duration: animationDuration,
         })
         if (cursorTextEl) cursorTextEl.textContent = ''
       })
     })
 
-    // Hover states for resume download
-    const resumeDownload = document.querySelectorAll('.resume_download')
-    resumeDownload.forEach((res) => {
+    // Hover: resume download
+    document.querySelectorAll('.resume_download').forEach((res) => {
       res.addEventListener('mouseenter', () => {
-        gsap.to(cursorEl, {
-          scale: 5,
-          borderRadius: '50%',
+        gsap.to(cursorEl!, {
+          scale: 4,
+          // borderRadius: '50%',
           backgroundColor: '#7c3aed',
           duration: animationDuration,
           fontSize: '3px',
-          color: '#ffffff',
+          paddingBottom: '1px',
         })
         if (cursorTextEl) cursorTextEl.textContent = 'Download'
       })
       res.addEventListener('mouseleave', () => {
-        gsap.to(cursorEl, {
+        gsap.to(cursorEl!, {
           scale: 1,
           borderRadius: defaultBorderRadius,
-          backgroundColor: defaultBackgroundColor,
+          backgroundColor: getCursorColor(),
           duration: animationDuration,
         })
         if (cursorTextEl) cursorTextEl.textContent = ''
       })
     })
 
-    // Hover states for text elements with dynamic height based on font size
-    const textElements = document.querySelectorAll(' h1, h2, h3, h4, h5, h6, span,  strong, em')
-    textElements.forEach((el) => {
-      el.addEventListener('mouseenter', () => {
-        const style = window.getComputedStyle(el)
-        const fontSize = parseFloat(style.fontSize)
-        const cursorHeight = Math.min(100, Math.max(24, fontSize * 1.3))
+    // Hover: text elements
+    document
+      .querySelectorAll('h1,h2,h3,h5,h6,strong,em, .hero_current, .about_text')
+      .forEach((el) => {
+        el.addEventListener('mouseenter', () => {
+          const style = window.getComputedStyle(el)
+          const fontSize = parseFloat(style.fontSize)
+          const cursorHeight = Math.min(100, Math.max(24, fontSize * 1.3))
 
-        gsap.to(cursorEl, {
-          width: 2,
-          height: cursorHeight,
-          scale: 1,
-          borderRadius: '0%',
-          backgroundColor: '#7c3aed',
-          duration: animationDuration,
+          gsap.to(cursorEl!, {
+            width: 2,
+            height: cursorHeight,
+            borderRadius: '0%',
+            backgroundColor: '#7c3aed',
+            duration: animationDuration,
+          })
+        })
+        el.addEventListener('mouseleave', () => {
+          gsap.to(cursorEl!, {
+            width: defaultSize.width,
+            height: defaultSize.height,
+            borderRadius: defaultBorderRadius,
+            backgroundColor: getCursorColor(),
+            duration: animationDuration,
+          })
         })
       })
-      el.addEventListener('mouseleave', () => {
-        gsap.to(cursorEl, {
-          width: defaultSize.width,
-          height: defaultSize.height,
-          borderRadius: defaultBorderRadius,
-          backgroundColor: defaultBackgroundColor,
-          duration: animationDuration,
-        })
-      })
-    })
+  })
+
+  // React to theme change
+  watch(theme, () => {
+    applyThemeToCursor()
   })
 
   onUnmounted(() => {
     if (moveHandler) window.removeEventListener('mousemove', moveHandler)
-    // Clean up the dynamically added style
-    const style = document.head.querySelector('style')
-    if (style) document.head.removeChild(style)
+    if (styleEl) document.head.removeChild(styleEl)
   })
 }
-
-// Usage
-// import { useCustomCursor } from '@/composables/useCustomCursor'
-
-// useCustomCursor({
-//   defaultSize: { width: 20, height: 20 },
-//   textHover: { minHeight: 20, maxHeight: 120, width: 3 },
-//   projectHover: { scale: 6, text: 'Explore' },
-// })

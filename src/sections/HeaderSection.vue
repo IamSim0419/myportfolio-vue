@@ -4,7 +4,7 @@ import { navLinks } from '@/lib/constant'
 import { useGsapScrollTrigger } from '@/composables/useGsapScollTrigger'
 import { onMounted, useTemplateRef } from 'vue'
 import { gsap } from 'gsap'
-import { Icon } from '@iconify/vue'
+// import { Icon } from '@iconify/vue'
 
 const headerRef = useTemplateRef<HTMLElement>('header')
 
@@ -35,12 +35,12 @@ onMounted(() => {
         <a href="/"><img src="/sim_logo.svg" alt="logo" /></a>
       </div>
       <div class="desktop_nav">
-        <div @click="$emit('toggleTheme')">
-          <!-- Dark mode = show moon -->
-          <Icon v-if="theme === 'dark'" icon="ri:moon-line" />
-          <!-- Light mode = show sun -->
-          <Icon v-else icon="ri:sun-line" class="text-gray-600" />
-        </div>
+        <!-- <div  @click="$emit('toggleTheme')">
+
+          <Icon v-if="theme === 'light'" icon="ri:moon-line" />
+
+          <Icon v-else icon="ri:sun-line" class="text-black" />
+        </div> -->
 
         <nav>
           <ul>
@@ -66,12 +66,15 @@ onMounted(() => {
 </template>
 
 <style scoped>
-@reference 'tailwindcss';
+@import 'tailwindcss';
 
 header {
-  @apply dark:bg-black/40 bg-white  border-b border-white/10 fixed top-0 left-0 right-0 z-20;
-  --webkit-backdrop-filter: blur(10px);
+  @apply bg-black/40 border-b border-white/10 fixed top-0 left-0 right-0 z-20;
   backdrop-filter: blur(10px);
+}
+
+.dark header {
+  @apply bg-white/40 border-black/10;
 }
 
 .header_container {
@@ -112,7 +115,11 @@ nav ul {
 }
 
 nav .nav_links {
-  @apply text-base transition-all duration-300 text-gray-300 hover:text-white;
+  @apply text-base transition-all duration-300 text-white;
+}
+
+.dark nav .nav_links {
+  @apply text-black;
 }
 
 nav .nav_links:hover {
