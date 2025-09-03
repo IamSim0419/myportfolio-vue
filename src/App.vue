@@ -6,34 +6,24 @@ import TechSection from '@/sections/TechSection.vue'
 import AboutSection from '@/sections/AboutSection.vue'
 import FooterSection from '@/sections/FooterSection.vue'
 import CursorPointer from '@/components/CustomCursor.vue'
-import { inject } from '@vercel/analytics'
-
-inject()
+import { Analytics } from '@vercel/analytics/vue'
 </script>
 
 <template>
-  <div>
-    <CursorPointer />
-    <HeaderSection />
+  <Analytics />
+  <CursorPointer />
+  <HeaderSection />
 
-    <!-- GSAP ScrollSmoother wrapper -->
-    <div id="smooth-wrapper">
-      <div id="smooth-content">
-        <main>
-          <HeroSection />
-          <ProjectSection />
-          <TechSection />
-          <AboutSection />
-        </main>
-        <FooterSection />
-      </div>
+  <!-- GSAP ScrollSmoother wrapper -->
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <main>
+        <HeroSection />
+        <ProjectSection />
+        <TechSection />
+        <AboutSection />
+      </main>
+      <FooterSection />
     </div>
   </div>
 </template>
-
-<!-- ❌ Do NOT use scoped here -->
-<style>
-/* Global CSS if needed */
-</style>
-
-<style></style>
