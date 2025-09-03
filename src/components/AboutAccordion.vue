@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { experience } from '@/lib/constant'
+import { Icon } from '@iconify/vue'
 
 const activeId = ref<number | null>(null)
 
@@ -23,11 +24,10 @@ function toggleAbout(id: number) {
             <h4 class="text-[20px] text-neutral-500">{{ item.role }}</h4>
             <small class="text-[15px] text-neutral-500">{{ item.year }}</small>
           </div>
-          <img
-            src="../assets/icons/add_icon.svg"
-            alt="add icon"
-            class="w-10 h-10 transition-transform duration-300"
+          <Icon
+            class="w-8 h-8 transition-transform duration-300"
             :class="[item.id === activeId ? 'rotate-45' : '']"
+            icon="ant-design:plus-outlined"
           />
         </div>
 
