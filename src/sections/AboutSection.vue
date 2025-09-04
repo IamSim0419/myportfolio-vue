@@ -11,9 +11,7 @@ onMounted(() => {
   // Use matchMedia for dynamic breakpoint handling (pin only)
   const mm = gsap.matchMedia()
 
-  mm.add('(min-width: 1024px)', (context) => {
-    const { cleanup } = context
-
+  mm.add('(min-width: 1024px)', () => {
     const aboutSection = document.querySelector<HTMLElement>('.aboutSection')
     const leftScreen = document.querySelector<HTMLElement>('.box1')
     const rightScreen = document.querySelector<HTMLElement>('.box2')
@@ -33,17 +31,16 @@ onMounted(() => {
 
     // Debounced refresh for actual resize (exclude zoom)
     const refreshScrollTrigger = debounce(() => {
-      // Check if the event is caused by zooming using visualViewport
-      if (window.visualViewport?.scale !== 1) return // Skip refresh on zoom
+      if (window.visualViewport?.scale !== 1) return
       ScrollTrigger.refresh()
     }, 250)
 
     window.addEventListener('resize', refreshScrollTrigger)
 
+    // ✅ cleanup happens here
     return () => {
       pinTrigger.kill()
       window.removeEventListener('resize', refreshScrollTrigger)
-      cleanup()
     }
   })
 

@@ -26,9 +26,9 @@ export const navLinks = [
 
 // Footer section social links
 export const socialLinks = [
-  { name: 'Linkedin', href: 'https://www.linkedin.com/in/your-profile' },
-  { name: 'X.com', href: 'https://github.com/your-profile' },
-  { name: 'Github', href: 'https://twitter.com/your-profile' },
+  { name: 'Linkedin', href: 'https://www.linkedin.com/in/simreich-somogod-a977a02b3/' },
+  { name: 'X.com', href: 'https://x.com/iamsimreich' },
+  { name: 'Github', href: 'https://github.com/IamSim0419' },
 ]
 
 // Project Section
@@ -86,7 +86,7 @@ export const experience = [
     role: 'Frontend Developer',
     year: '2025',
     description:
-      'As a freelance Frontend Developer based in the Philippines with 2 years of experience, I deliver modern, responsive, and high-performance websites tailored to client needs, leveraging cutting-edge technologies.',
+      'Freelance Frontend Developer based in the Philippines with 2 years of experience, I deliver modern, responsive, and high-performance websites tailored to client needs, leveraging cutting-edge technologies.',
   },
   {
     id: 2,
@@ -94,7 +94,7 @@ export const experience = [
     role: 'Frontend Developer',
     year: '2024',
     description:
-      'As a freelance Frontend Developer at OnlineJobs PH, I delivered scalable web applications, collaborating with diverse clients to create innovative, user-focused solutions tailored to their needs.',
+      'Freelance Frontend Developer at OnlineJobs PH, I delivered scalable web applications, collaborating with diverse clients to create innovative, user-focused solutions tailored to their needs.',
   },
   {
     id: 3,
