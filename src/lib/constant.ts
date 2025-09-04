@@ -34,10 +34,10 @@ export const socialLinks = [
 // Project Section
 export const projects = [
   {
-    title: 'Saas Modern Platform',
+    title: 'Saas Modern Landing Page',
     href: 'https://cypress-saas.vercel.app/',
     description:
-      'A sleek and intuitive SaaS platform designed to simplify complex workflows. Built with Vue and TypeScript, animated with GSAP, and styled with TailwindCSS to deliver a seamless user experience.',
+      'Designed and developed a dark-themed SaaS landing page from design to code, ensuring pixel-perfect implementation and responsiveness across devices. Built with Vue 3, TypeScript, Tailwind CSS, and GSAP to deliver smooth animations, modern UI components, and an engaging user experience. The project demonstrates strong frontend development skills in turning design concepts into functional, production-ready code.',
     image: CypressImg,
     tech: ['Vue', 'TypeScript', 'GSAP', 'TailwindCSS'],
     class: 'card_01',
@@ -45,7 +45,7 @@ export const projects = [
   {
     title: 'JobSpots - Job Offer Platform',
     description:
-      'A modern job marketplace where employers and job seekers connect effortlessly. Powered by Vue and Pinia for state management, with GSAP-driven interactions and a clean TailwindCSS interface for a polished experience. The platform features built-in filter functionality and more to enhance user experience.',
+      'Developed a modern job offer platform with features such as advanced search and filtering to enhance user experience. Built using Vue 3, TypeScript, Vite, Tailwind CSS, and Pinia for state management, with GSAP animations for smooth interactions and engaging UI transitions. The project highlights clean design, responsive layouts, and efficient data handling to deliver a seamless and intuitive job-hunting experience.',
     href: 'https://jobspots-neon.vercel.app/',
     image: OfferJobsImg,
     tech: ['Vue', 'TypeScript', 'GSAP', 'Pinia', 'TailwindCSS'],
@@ -54,7 +54,7 @@ export const projects = [
   {
     title: 'Portfolio',
     description:
-      'A personal portfolio crafted to showcase projects and skills with style. Built using Vue and TypeScript, enhanced with GSAP animations, and designed with TailwindCSS for a modern, responsive look.',
+      'Built a personal portfolio website named Simreich, designed in Figma and developed into a sleek, modern, and fully responsive site. Implemented smooth GSAP animations and interactive transitions to enhance user engagement. Developed with Vue 3, TypeScript, and Tailwind CSS, focusing on performance, accessibility, and clean UI to effectively showcase projects and skills.',
     href: 'https://myportfolio-mu-eight-69.vercel.app/',
     image: PortfolioImg,
     tech: ['Vue', 'TypeScript', 'GSAP', 'TailwindCSS'],
