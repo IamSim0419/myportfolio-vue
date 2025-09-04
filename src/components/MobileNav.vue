@@ -126,7 +126,7 @@ watch(
   @apply -rotate-45 -translate-y-1.5;
 }
 .mobile_menu {
-  @apply p-6 fixed top-0 right-0 w-full dark:bg-[#080808] dark:text-white bg-[##FAFAFA] flex flex-col justify-between z-10 lg:hidden;
+  @apply p-6 fixed top-0 right-0 w-full bg-[#080808] text-white flex flex-col justify-between z-10 lg:hidden;
   height: 100dvh;
 }
 .menu_content {
