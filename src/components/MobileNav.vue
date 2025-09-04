@@ -99,7 +99,7 @@ watch(
 
       <a class="linkedin" ref="navContactRef" href="#"
         ><p>Linkedin</p>
-        <Icon icon="material-symbols:arrow-outward" />
+        <Icon color="#2726FF" icon="material-symbols:arrow-outward" />
       </a>
     </div>
   </div>
@@ -145,6 +145,6 @@ watch(
   @apply flex items-center text-neutral-500 self-end;
 }
 .linkedin svg {
-  @apply w-5 h-5 ml-0.5 text-['#2726FF'];
+  @apply w-5 h-5 ml-0.5;
 }
 </style>
