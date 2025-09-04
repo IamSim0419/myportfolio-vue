@@ -85,7 +85,7 @@ watch(
         </li>
         <a
           :ref="(el) => (linksRef[navLinks.length] = el! as Element)"
-          href="/resume/CV.pdf"
+          href="/resume/MyCV_2025.pdf"
           download
           class="nav_links"
           @click="toggleNav"
