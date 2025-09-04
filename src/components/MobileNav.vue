@@ -145,6 +145,6 @@ watch(
   @apply flex items-center text-neutral-500 self-end;
 }
 .linkedin svg {
-  @apply w-5 h-5 ml-0.5 text-[#7000FF];
+  @apply w-5 h-5 ml-0.5 text-['#2726FF'];
 }
 </style>
