@@ -103,7 +103,7 @@ watch(
         href="https://www.linkedin.com/in/simreich-somogod-a977a02b3/"
         target="_blank"
         rel="noopener"
-        ><p>Linkedin</p>
+        ><p>LinkedIn</p>
         <Icon color="#2726FF" icon="material-symbols:arrow-outward" />
       </a>
     </div>

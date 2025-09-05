@@ -26,7 +26,7 @@ export const navLinks = [
 
 // Footer section social links
 export const socialLinks = [
-  { name: 'Linkedin', href: 'https://www.linkedin.com/in/simreich-somogod-a977a02b3/' },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/simreich-somogod-a977a02b3/' },
   { name: 'X.com', href: 'https://x.com/iamsimreich' },
   { name: 'Github', href: 'https://github.com/IamSim0419' },
 ]
