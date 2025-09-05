@@ -1,3 +1,4 @@
+// MobileNav.vue
 <script lang="ts" setup>
 import { ref, watch, onMounted, nextTick } from 'vue'
 import gsap from 'gsap'
@@ -16,11 +17,10 @@ const isOpen = ref(false)
 const menuRef = ref<HTMLElement | null>(null)
 const linksRef = ref<Element[]>([])
 const navLocRef = ref<HTMLElement | null>(null)
-const navcontactRef = ref<HTMLElement | null>(null)
+const navContactRef = ref<HTMLElement | null>(null) // ⚡ fix casing
 
 const scrollToSection = (sectionId: string) => {
   toggleNav()
-
   gsap.to(window, {
     duration: 1,
     scrollTo: { y: `#${sectionId}`, offsetY: 80 },
@@ -33,11 +33,13 @@ function toggleNav() {
   isOpen.value = !isOpen.value
 }
 
+// ✅ Call composable directly in setup
+useSplitText(navLocRef, undefined, { type: 'words', y: 20 })
+useSplitText(navContactRef, undefined, { type: 'lines', stagger: 0.2, y: 20 })
+
 onMounted(async () => {
   await nextTick()
   if (menuRef.value) gsap.set(menuRef.value, { xPercent: 100 })
-  useSplitText(navLocRef, undefined, { type: 'words', y: 20 })
-  useSplitText(navcontactRef, undefined, { type: 'lines', stagger: 0.2, y: 20 })
 })
 
 watch(
@@ -103,7 +105,8 @@ watch(
         href="https://www.linkedin.com/in/simreich-somogod-a977a02b3/"
         target="_blank"
         rel="noopener"
-        ><p>LinkedIn</p>
+      >
+        <p>LinkedIn</p>
         <Icon color="#2726FF" icon="material-symbols:arrow-outward" />
       </a>
     </div>
