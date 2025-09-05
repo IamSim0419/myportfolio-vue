@@ -97,7 +97,12 @@ watch(
     <div class="info">
       <p ref="navLocRef">Philippines,<br />Iloilo City</p>
 
-      <a class="linkedin" ref="navContactRef" href="#"
+      <a
+        class="linkedin"
+        ref="navContactRef"
+        href="https://www.linkedin.com/in/simreich-somogod-a977a02b3/"
+        target="_blank"
+        rel="noopener"
         ><p>Linkedin</p>
         <Icon color="#2726FF" icon="material-symbols:arrow-outward" />
       </a>
