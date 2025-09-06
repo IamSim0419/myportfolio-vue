@@ -9,7 +9,7 @@ defineProps<{
     description: string
     image: string
     tech: string[]
-    class: string
+    class?: string
   }[]
 }>()
 
