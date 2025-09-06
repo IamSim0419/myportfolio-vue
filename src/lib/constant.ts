@@ -67,7 +67,7 @@ export const projects = [
     description:
       'Built a modern and sleek dark-themed SaaS landing page using Next.js and React, styled with Tailwind CSS for a fully responsive design. Implemented smooth, interactive animations with Framer Motion and deployed seamlessly on Vercel. The project highlights expertise in creating production-ready landing pages with performance, scalability, and modern UI best practices in mind.',
     image: FurrowImg,
-    tech: ['Next.js', 'React', 'Framer Motion', 'TailwindCSS', 'Vercel'],
+    tech: ['Next.js', 'React', 'Framer Motion', 'TailwindCSS'],
   },
 ]
 
