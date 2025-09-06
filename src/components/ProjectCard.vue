@@ -152,6 +152,6 @@ const toggleExpand = (title: string) => {
 }
 
 .tech_badge {
-  @apply inline-block border border-[#8D8C95] rounded-[12px] px-3 py-[2px] text-[12px] mr-2 mt-2;
+  @apply inline-flex items-center justify-center border border-[#8D8C95] rounded-[12px] px-3 py-[2px] text-[12px] mr-2 mt-2;
 }
 </style>

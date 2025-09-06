@@ -1,6 +1,7 @@
 import CypressImg from '@/assets/images/cypress-img.png'
 import OfferJobsImg from '@/assets/images/offer-jobs.png'
 import PortfolioImg from '@/assets/images/porfolio-img.png'
+import FurrowImg from '@/assets/images//furrow-img.png'
 
 // Tech images for Tech Section
 import VueIcon from '/vue.svg'
@@ -59,6 +60,14 @@ export const projects = [
     image: PortfolioImg,
     tech: ['Vue', 'TypeScript', 'GSAP', 'TailwindCSS'],
     class: 'card_03',
+  },
+  {
+    title: 'Furrow - Saas Landing Page',
+    href: 'https://furrow-modern-saas-landing-page.vercel.app/',
+    description:
+      'Built a modern and sleek dark-themed SaaS landing page using Next.js and React, styled with Tailwind CSS for a fully responsive design. Implemented smooth, interactive animations with Framer Motion and deployed seamlessly on Vercel. The project highlights expertise in creating production-ready landing pages with performance, scalability, and modern UI best practices in mind.',
+    image: FurrowImg,
+    tech: ['Next.js', 'React', 'Framer Motion', 'TailwindCSS', 'Vercel'],
   },
 ]
 
