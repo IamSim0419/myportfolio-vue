@@ -112,6 +112,10 @@ section {
   @apply w-auto h-[35px] md:h-[40px];
 }
 
+/* .row_tech li:nth-child(1) {
+  @apply w-[85px] h-[85px];
+} */
+
 .fade {
   @apply overflow-hidden flex relative after:content-[''] after:bg-gradient-to-l after:from-black after:to-transparent  after:right-0 after:bottom-0 after:top-0 after:w-20 after:z-10 after:absolute before:content-[''] before:bg-gradient-to-r before:from-black before:to-transparent  before:left-0 before:top-0 before:bottom-0 before:w-20 before:z-10 before:absolute;
 }
