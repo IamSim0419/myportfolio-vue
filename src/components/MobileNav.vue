@@ -17,10 +17,11 @@ const isOpen = ref(false)
 const menuRef = ref<HTMLElement | null>(null)
 const linksRef = ref<Element[]>([])
 const navLocRef = ref<HTMLElement | null>(null)
-const navContactRef = ref<HTMLElement | null>(null) // ⚡ fix casing
+const navContactRef = ref<HTMLElement | null>(null)
 
 const scrollToSection = (sectionId: string) => {
   toggleNav()
+
   gsap.to(window, {
     duration: 1,
     scrollTo: { y: `#${sectionId}`, offsetY: 80 },
@@ -100,14 +101,16 @@ watch(
       <p ref="navLocRef">Philippines,<br />Iloilo City</p>
 
       <a
-        class="linkedin"
+        class="linkedin_link"
         ref="navContactRef"
         href="https://www.linkedin.com/in/simreich-somogod-a977a02b3/"
         target="_blank"
         rel="noopener"
       >
-        <p>LinkedIn</p>
-        <Icon color="#2726FF" icon="material-symbols:arrow-outward" />
+        <div>
+          <p>LinkedIn</p>
+          <Icon color="#2726FF" icon="material-symbols:arrow-outward" />
+        </div>
       </a>
     </div>
   </div>
@@ -149,10 +152,14 @@ watch(
 .info p {
   @apply text-[15px];
 }
-.info .linkedin {
-  @apply flex items-center text-neutral-500 self-end;
+.info .linkedin_link {
+  @apply text-neutral-500 self-end;
 }
-.linkedin svg {
+.linkedin_link svg {
   @apply w-5 h-5 ml-0.5;
+}
+
+.linkedin_link div {
+  @apply flex items-center;
 }
 </style>
