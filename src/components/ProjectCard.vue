@@ -63,7 +63,7 @@ const toggleExpand = (title: string) => {
         <img :class="project.class" :src="project.image" alt="project image" />
       </a>
 
-      <a class="project_title" :href="project.href">
+      <a class="project_title" :href="project.href" target="_blank">
         <h4>{{ project.title }}</h4>
       </a>
 
