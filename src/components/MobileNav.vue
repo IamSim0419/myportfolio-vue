@@ -53,7 +53,7 @@ watch(
         linksRef.value,
         {
           opacity: 0,
-          x: 50,
+          x: 60,
           ease: 'power.in',
           stagger: 0.2,
         },

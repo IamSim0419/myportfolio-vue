@@ -21,9 +21,9 @@ onBeforeUnmount(() => {
 })
 
 // plug in composable
-useSplitText(heroTitleEl, undefined, { type: 'lines', duration: 0.5, stagger: 0.2, y: 100 })
+useSplitText(heroTitleEl, undefined, { type: 'lines', duration: 0.5, stagger: 0.1, y: 100 })
 useSplitText(selectedTextEL, isDesktop)
-useSplitText(heroInfoRef, undefined, { type: 'words', duration: 0.5, stagger: 0.08, y: 50 })
+useSplitText(heroInfoRef, undefined, { type: 'words', duration: 0.5, stagger: 0.05, y: 50 })
 </script>
 
 <template>
