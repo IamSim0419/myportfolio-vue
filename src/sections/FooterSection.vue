@@ -2,6 +2,15 @@
 import { navLinks } from '@/lib/constant'
 import { socialLinks } from '@/lib/constant'
 import { Icon } from '@iconify/vue'
+import gsap from 'gsap'
+
+const scrollToSection = (sectionId: string) => {
+  gsap.to(window, {
+    duration: 1,
+    scrollTo: { y: `#${sectionId}`, offsetY: 80 },
+    ease: 'power2.out',
+  })
+}
 </script>
 
 <template>
@@ -27,9 +36,14 @@ import { Icon } from '@iconify/vue'
           <div class="links">
             <!-- Navigation Links -->
             <ul>
-              <li class="list_link group" v-for="link in navLinks" :key="link.id">
+              <li
+                v-for="link in navLinks"
+                @click.prevent="scrollToSection(link.id)"
+                class="list_link group"
+                :key="link.id"
+              >
                 <div class="bullet_icon"></div>
-                <p>{{ link.label }}</p>
+                <p class="cursor-pointer lg:cursor-none">{{ link.label }}</p>
               </li>
               <!-- Resume download with animation -->
               <li class="list_link group">
@@ -69,10 +83,6 @@ footer {
   @apply bg-[#131313]  mt-50;
 }
 
-/* .dark footer {
-  @apply bg-[#F0F0F0];
-} */
-
 .footer_container {
   @apply mx-4 md:mx-8 lg:mx-[65px] pt-38;
 }
@@ -102,17 +112,9 @@ footer {
   @apply text-[45px] text-white leading-8;
 }
 
-/* .dark .email h1 {
-  @apply text-black;
-} */
-
 .email .send_email {
   @apply text-[45px] text-white leading-8;
 }
-
-/* .dark .send_email {
-  @apply text-black;
-} */
 
 .email svg {
   @apply h-[60px] w-[60px] text-[#2726FF];
@@ -158,10 +160,6 @@ footer {
   transform: translateX(0);
 }
 
-/* .dark .list_link p {
-  @apply text-[#646464];
-} */
-
 .group:hover p {
   transform: translateX(16px);
 }
@@ -170,10 +168,6 @@ footer {
   @apply text-[#BFBFBF] transition-transform duration-300 ease-out;
 }
 
-/* .dark .list_link a {
-  @apply text-[#646464];
-} */
-
 .resume_download {
   @apply lg:cursor-none;
 }
@@ -181,8 +175,4 @@ footer {
 .footer_bottom {
   @apply flex items-center justify-between mt-20 border-t border-[#2A2A2A] py-3 text-[12px] text-[#BFBFBF];
 }
-
-/* .dark .footer_bottom {
-  @apply text-[#646464] border-t border-[#b3b2b2];
-} */
 </style>

@@ -22,7 +22,6 @@ import NodeIcon from '/node.svg'
 export const navLinks = [
   { id: 'work', label: 'Work' },
   { id: 'about', label: 'About' },
-  // { id: 'resume', label: 'Resume' },
 ]
 
 // Footer section social links
