@@ -33,7 +33,7 @@ useSplitText(heroInfoRef, undefined, { type: 'words', duration: 0.5, stagger: 0.
     <div class="hero-container">
       <h1 ref="heroTitleEl" class="hero-content">
         I'm Simreich,<br />
-        a full-stack developer who enjoys solving design-to-code challenges with precision across the stack.
+        a Fullstack Developer who enjoys solving design-to-code challenges with precision across the stack.
       </h1>
 
       <div class="hero_details">
