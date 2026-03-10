@@ -39,7 +39,7 @@ useSplitText(heroInfoRef, undefined, { type: 'words', duration: 0.5, stagger: 0.
       <div class="hero_details">
         <div ref="heroInfoRef" class="hero_info">
           <p class="hero_current">
-            Currently a freelance Frontend Developer, <br />
+            Currently a freelance Fullstack Developer, <br />
             previously at <span>FlexCode</span>.
           </p>
           <p class="hero_current">Based in Philippines, Iloilo</p>
