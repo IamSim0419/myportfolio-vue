@@ -79,7 +79,7 @@ onMounted(() => {
       </aside>
       <article ref="aboutContent" class="box box2">
         <p class="about_text" id="about">
-          I'm Simreich, a fullstack developer with 2 years of experience based in the Philippines.
+          My name is Simreich, a fullstack developer with 2+ years of experience based in the Philippines.
           Currently, I work as a freelance developer, helping clients build modern, responsive, and
           high-performance websites.
           <br />
