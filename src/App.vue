@@ -10,6 +10,7 @@ import CursorPointer from '@/components/CustomCursor.vue'
 </script>
 
 <template>
+  <!-- I put the script vercel analytics in the index.html -->
   <!-- <Analytics /> -->
   <CursorPointer />
   <HeaderSection />
