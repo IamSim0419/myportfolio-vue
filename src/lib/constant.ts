@@ -91,16 +91,16 @@ export const experience = [
   {
     id: 1,
     company: 'Freelance / Upwork',
-    role: 'Frontend Developer',
-    year: '2025',
+    role: 'Fullstack Developer',
+    year: '2026',
     description:
-      'Freelance Frontend Developer based in the Philippines with 2 years of experience, I deliver modern, responsive, and high-performance websites tailored to client needs, leveraging cutting-edge technologies.',
+      'Freelance Fullstack Developer based in the Philippines with 2 years of experience, I deliver modern, responsive, and high-performance websites tailored to client needs, leveraging cutting-edge technologies.',
   },
   {
     id: 2,
     company: 'Freelance / Online Jobs PH',
     role: 'Frontend Developer',
-    year: '2024',
+    year: '2025',
     description:
       'Freelance Frontend Developer at OnlineJobs PH, I delivered scalable web applications, collaborating with diverse clients to create innovative, user-focused solutions tailored to their needs.',
   },
