@@ -94,7 +94,7 @@ export const experience = [
     role: 'Fullstack Developer',
     year: '2026',
     description:
-      'Freelance Fullstack Developer based in the Philippines with 2 years of experience, I deliver modern, responsive, and high-performance websites tailored to client needs, leveraging cutting-edge technologies.',
+      'Freelance Fullstack Developer based in the Philippines with 2+ years of experience, I deliver modern, responsive, and high-performance websites tailored to client needs, leveraging cutting-edge technologies.',
   },
   {
     id: 2,
